@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<TITLE>Proof Designer Instructions</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H1>Proof Designer Instructions</H1>
+<P>Proof Designer has five menus, <b>File</b>, <b>Edit</b>, <b>Strategy</b>, <b>Infer</b>, and <b>Goal</b>,
+  located at the top of the window.  Click on the title of a menu to show the menu, and then click
+  on a command in the menu to give the command.  You can use the + and &minus; buttons to the right
+  of the menus to adjust the font size.  To start writing a proof, select
+  &#8220;New Theorem...&#8221; from the File menu.  For instructions on using the New Theorem command,
+  click <a href="NewTheorem.html">here</a>.
+</P>
+<P>As you give commands in Proof Designer, an outline of the 
+proof you are writing will gradually take shape.  While you are working on 
+the proof, there will usually be one or more <EM>gaps</EM> in the proof 
+where additional steps need to be filled in.  Each gap will be indented 
+and enclosed in a box, and it will have a pink background and a &#8220;?&#8221; button in the 
+upper left corner.  The gap will say what needs to be filled in at that 
+point in the proof, and then 
+it will give a list of <EM>givens</EM>&#8212;statements that are known 
+to be true at that point in the proof&#8212;and the 
+<EM>goal</EM> of the gap.  Usually the goal is a statement that needs 
+to be proven, but occasionally the goal indicates that you need to assign 
+a value to a variable, 
+and you can also have gaps that have no goal at all.  Initially, the 
+entire proof consists of a gap whose givens are the hypotheses of the 
+theorem, and whose goal is the conclusion of the theorem.
+</P>
+<P>To add a step to the proof, you click on a given or goal to select it
+and then give a command from one of the menus at the top of the window.  
+Sometimes you will need to select several 
+items.  To do this, simply click on them one after another.
+You can also select an entire gap by clicking either on the 
+sentence that introduces the gap or in the margin to the left of the gap.
+If you accidentally select something you didn't want to select, just
+click on it again to deselect it.
+</P>
+<P>As you give commands, steps will be added to the proof, and the givens 
+and goal lists will be updated.  Sometimes a step will be justified by a 
+<EM>subproof</EM>&#8212;a sequence of steps that, together, justify an 
+assertion.  Each subproof is indented and enclosed in a box, and has a 
+&#8220;&#8756;&#8221; button in the upper
+left corner.  Subproofs can be nested inside each other, and a subproof
+may also contain a gap.  You can select a step in the proof by clicking
+on it.  If the step is justified by one or more subproofs, the subproofs
+get selected as well.
+</P>
+<P>Some commands will add <EM>variant</EM> forms to givens or goals.  A 
+variant of a statement is another statement that is equivalent to the original 
+statement.  A variant of a given or goal is listed below the original and 
+indented, and it has an open circle in front of it rather than a bullet.  
+You use a variant just like the original given or goal.  In particular,
+you can select a variant by clicking on it.
+</P>
+<P>You can change the order of the givens in a givens list by pointing to a 
+given, pressing and holding down the mouse button to &#8220;grab&#8221; 
+it, and then dragging it to a new location in the list.  Any 
+variants of the given get moved with it.
+</P>
+<P>If the structure of the proof you are creating gets complicated, you 
+can hide some of the details by clicking on a button in the upper left 
+corner of a subproof or gap.  When you click on the button, the details 
+of the subproof or gap are hidden.  Click again to show the details again.
+</P>
+<P>You can print your proof by using the Print command in your browser.
+</P>
+<P>Here is a list of all the menu commands.  Click on a command to get 
+instructions on how to use the command.
+</P>
+<UL>
+  <LI>File Menu
+    <UL>
+    <LI>Help: Choosing this command displays the main help file.
+    </LI>
+    <LI><A href="NewTheorem.html">New Theorem&hellip;</A>
+    </LI>
+    <LI><A href="ReviseTheorem.html">Revise Theorem&hellip;</A>
+    </LI>
+    <li><a href="Save.html">Save</a>
+    </li>
+    <li><a href="Open.html">Open&hellip;</a>
+    </li>
+    </UL>
+    </LI>
+    <LI>Edit Menu
+<UL>
+<LI><A href="Undo.html">Undo</A>
+</LI>
+<LI><A href="Redo.html">Redo</A>
+</LI>
+<LI><A href="Finish.html">Finish</A>
+</LI>
+<LI><A href="Delete.html">Delete</A>
+</LI>
+<LI><A href="Insert.html">Insert&hellip;</A>
+</LI>
+<LI><A href="Rejustify.html">Rejustify</A>
+</LI>
+<LI><A href="Lemma.html">Lemma</A>
+</LI>
+</UL>
+</LI>
+<LI>Strategy Menu
+<UL>
+<LI><A href="Contrad.html">Contradiction</A>
+</LI>
+<LI><A href="Cases.html">Cases&hellip;</A>
+</LI>
+<LI><A href="Reexpress.html">Reexpress&hellip;</A>
+</LI>
+<LI><A href="Substitute.html">Substitute&hellip;</A>
+</LI>
+<LI><A href="Define.html">Define&hellip;</A>
+</LI>
+</UL>
+<LI>Infer Menu
+</LI>
+<UL>
+<LI><A href="MP.html">Modus Ponens</A>
+</LI>
+<LI><A href="MT.html">Modus Tollens</A>
+</LI>
+<LI><A href="Conjoin.html">Conjoin</A>
+</LI>
+<LI><A href="SplitUp.html">Split Up</A>
+</LI>
+<LI><A href="Addition.html">Addition&hellip;</A>
+</LI>
+<LI><A href="DisjSyll.html">Disjunctive Syllogism</A>
+</LI>
+<LI><A href="UI.html">Universal Instantiation&hellip;</A>
+</LI>
+<LI><A href="EI.html">Existential Instantiation&hellip;</A>
+</LI>
+<LI><A href="Reflexive.html">Reflexive Law&hellip;</A>
+</LI>
+</UL>
+<LI>Goal Menu
+</LI>
+<UL>
+  <LI><A href="Direct.html">Direct</A>
+  </LI>
+  <LI><A href="Contrapos.html">Contrapositive</A>
+  </LI>
+  <LI><A href="Bicond.html">Biconditional</A>
+  </LI>
+  <li><a href="Conjunction.html">Conjunction</a>
+  </LI>
+  <LI><A href="Disjunction.html">Disjunction&hellip;</A>
+  </LI>
+  <LI><A href="Arbitrary.html">Arbitrary Object&hellip;</A>
+  </LI>
+  <LI><A href="Existence.html">Existence&hellip;</A>
+  </LI>
+  <LI><A href="ExistUnique.html">Existence &#38; Uniqueness</A>
+  </LI>
+</UL>  
+</UL>
+</BODY>
+</HTML>

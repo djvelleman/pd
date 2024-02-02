@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<HTML lang="en">
+<HEAD>
+<meta charset="utf-8">
+<TITLE>Disjunctive Syllogism Command Help</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H2>Infer Menu:</H2>
+<H1>Disjunctive Syllogism Command</H1>
+<P>If you have givens of the forms <span class="formula"><i>P</i>&or;<i>Q</i></span>
+and <span class="formula">&not;<i>P</i></span>, then
+you may infer <span class="formula"><i>Q</i></span>.  More generally, if you have a given of the form
+<span class="formula"><i>P</i><sub>1</sub>&or;<i>P</i><sub>2</sub>&or;&hellip;&or;<i>P<sub>n</sub></i></span>
+and you also have the negations of some of the statements <span class="formula"><i>P</i><sub>1</sub></span>,
+<span class="formula"><i>P</i><sub>2</sub></span>, &hellip;, <span class="formula"><i>P<sub>n</sub></i></span>
+as givens, then you can infer that one of the other statements in the list must be true.  Select
+all of the givens involved in the inference and give the Disjunctive
+Syllogism command, and Proof Designer will make the inference.
+</P>
+<P>You can also use this command to work backwards from your goal.  If you
+have a given of the form
+<span class="formula"><i>P</i><sub>1</sub>&or;<i>P</i><sub>2</sub>&or;&hellip;&or;<i>P<sub>n</sub></i></span>
+and your goal is the
+disjunction of some of the statements <span class="formula"><i>P</i><sub>1</sub></span>,
+<span class="formula"><i>P</i><sub>2</sub></span>, &hellip;,
+<span class="formula"><i>P<sub>n</sub></i></span>, then you could complete
+the proof by first proving the negations of the other statements in the
+list and then using the disjunctive syllogism rule.  Select the given
+<span class="formula"><i>P</i><sub>1</sub>&or;<i>P</i><sub>2</sub>&or;&hellip;&or;<i>P<sub>n</sub></i></span>
+and the goal and give the
+Disjunctive Syllogism command.  Proof Designer will say that you now have
+to prove the negations of those statements in the list <span class="formula"><i>P</i><sub>1</sub></span>,
+<span class="formula"><i>P</i><sub>2</sub></span>, &hellip;,
+<span class="formula"><i>P<sub>n</sub></i></span> that
+don't appear in the goal, and it will say that once these have been proven,
+they can be used, together with the statement
+<span class="formula"><i>P</i><sub>1</sub>&or;<i>P</i><sub>2</sub>&or;&hellip;&or;<i>P<sub>n</sub></i></span>,
+to infer the goal.  If you already have some of these negations in your givens
+list, then you can select them too before giving the Disjunctive Syllogism
+command.  Proof Designer will then require you to prove only those
+negations that are not already in your givens list.
+</P>
+<P>Parentheses in your given can affect how the Disjunctive Syllogism
+command works.  For example, suppose you have a given of the form
+<span class="formula"><i>P</i>&or;<i>Q</i>&or;<i>R</i></span>
+and your goal is <span class="formula"><i>P</i></span>.  If you select this given
+and goal and give the Disjunctive Syllogism command, then Proof Designer
+will say that you must prove both <span class="formula">&not;<i>Q</i></span>
+and <span class="formula">&not;<i>R</i></span> in order to complete the
+proof.  But if the given is <span class="formula"><i>P</i>&or;(<i>Q</i>&or;<i>R</i>)</span>,
+then Proof Designer will say that you must prove
+<span class="formula">&not;(<i>Q</i>&or;<i>R</i>)</span>.  Thus, you
+may want to add or remove parentheses in your given before using the
+Disjunctive Syllogism command.  Too add or remove parentheses, use the <A
+href="Reexpress.html">Reexpress</A> command.
+</BODY>
+</HTML>

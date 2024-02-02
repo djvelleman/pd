@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<HTML lang="en">
+<HEAD>
+<meta charset="utf-8">
+<TITLE>Modus Tollens Command Help</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H2>Infer Menu:</H2>
+<H1>Modus Tollens Command</H1>
+<P>If you have givens of the forms <span class="formula"><I>P</I>&#8594;<I>Q</I></span>
+and <span class="formula">&#172;<I>Q</I></span>, then
+you may infer <span class="formula">&#172;<I>P</I></span>.  Select the givens
+and give the Modus Tollens command, and Proof Designer will make the
+inference.
+</P>
+<P>You can also use this command to work backwards from your goal.  If you
+have a given of the form <span class="formula"><I>P</I>&#8594;<I>Q</I></span>
+and your goal is <span class="formula">&#172;<I>P</I></span>, then you could
+complete the proof by first proving <span class="formula">&#172;<I>Q</I></span>
+and then using modus tollens to infer <span class="formula">&#172;<I>P</I></span> from
+<span class="formula"><I>P</I>&#8594;<I>Q</I></span> and <span class="formula">&#172;<I>Q</I></span>.
+If you want to do this, select the given <span class="formula"><I>P</I>&#8594;<I>Q</I></span>
+and the goal <span class="formula">&#172;<I>P</I></span> and give the Modus Tollens command.
+Proof Designer will say that you now have to prove <span class="formula">&#172;<I>Q</I></span>,
+and it will say that once <span class="formula">&#172;<I>Q</I></span> has been proven,
+it can be used, together with <span class="formula"><I>P</I>&#8594;<I>Q</I></span>, to infer
+<span class="formula">&#172;<I>P</I></span>.
+</P>
+</BODY>
+</HTML>

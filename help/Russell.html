@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<TITLE>Russell's Paradox</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+
+P.display {
+  margin-left: 20px
+}
+</STYLE>
+</HEAD>
+
+<BODY>
+<H1>Russell's Paradox</H1>
+<P>Suppose that &#8220;<span class="formula">&hellip;<i>x</i>&hellip;</span>&#8221; is some statement
+about an unspecified object called <span class="formula"><i>x</i></span>.  This statement will be true
+for some values of <span class="formula"><i>x</i></span> and false for others.  It is tempting to think
+that we could form the set of all values of <span class="formula"><i>x</i></span> for which the
+statement is true.  In other words, it is tempting to think that the
+expression
+</P>
+<P class="display"><span class="formula">{<i>x</i>|&hellip;<i>x</i>&hellip;}</span>
+</P>
+<P>should be accepted as a definition of a set.  However, the assumption
+that such expressions always name sets leads to a contradiction.  This was
+first noticed by Bertrand Russell in 1901, and so it has come to be known
+as <EM>Russell's Paradox</EM>.
+</P>
+<P>To see how the paradox is derived, suppose that all expressions of the
+type displayed above do name sets.  Russell suggested that we consider the
+following definition of a set <span class="formula"><i>R</i></span>:
+</P>
+<P class="display"><span class="formula"><i>R</i>={<i>x</i>|<i>x</i>&notin;<i>x</i>}</span>
+</P>
+<P>According to this definition, an object <span class="formula"><i>x</i></span> will be an element of
+<span class="formula"><i>R</i></span> if and only if <span class="formula"><i>x</i>&notin;<i>x</i></span>.
+But now suppose we ask whether or not <span class="formula"><i>R</i></span> is
+an element of itself.  Plugging in <span class="formula"><i>R</i></span> for <span class="formula"><i>x</i></span>
+in the definition of <span class="formula"><i>R</i></span>, we come to the conclusion that
+<span class="formula"><i>R</i>&isin;<i>R</i></span> if and only if
+<span class="formula"><i>R</i>&notin;<i>R</i></span>.  But this is impossible; whether
+<span class="formula"><i>R</i></span> is an element of itself or not, this statement cannot be true.
+Thus we have
+reached a contradiction.
+</P>
+<P>The lesson that most mathematicians have drawn from Russell's Paradox is
+that definitions of the kind displayed above cannot always be trusted to
+define sets.  To avoid the paradox, mathematicians use only a restricted
+form of this kind of definition.  If <span class="formula"><i>U</i></span> is a set, then mathematicians
+accept the following expression as a definition of a set:
+</P>
+<P class="display"><span class="formula">{<i>x</i>&isin;<i>U</i>|&hellip;<i>x</i>&hellip;}</span>
+</P>
+<P>In this definition, only elements of <span class="formula"><i>U</i></span> are considered for
+membership in the set being defined.  Among elements of <span class="formula"><i>U</i></span>, only
+those that make the statement &#8220;<span class="formula">&hellip;<i>x</i>&hellip;</span>&#8221; come out true
+are elements of the set.  Following the usual practice in mathematics,
+Proof Designer only allows definitions of this more restricted kind.
+</P>
+<P>Of course, if <span class="formula"><i>U</i></span> were a set that contained
+absolutely everything, then this restricted definition would be equivalent
+to the previous, unrestricted one, and would therefore be unacceptable. 
+Thus, Russell's Paradox can be thought of as a proof that there can be no
+set that contains absolutely everything.  In fact, this makes a nice,
+challenging exercise in Proof Designer!  See if you can use Proof Designer
+to prove, from no hyptheses, the conclusion
+<span class="formula">&not;&exist;<i>U</i>&forall;<i>x</i>(<i>x</i>&isin;<i>U</i>)</span>.
+</P>
+<P>Russell's Paradox also explains why Proof Designer places a restriction
+on intersections of families of sets.  If <span class="formula"><i>F</i></span> is a set whose elements
+are sets, the <span class="formula">&cap;<i>F</i></span> is the intersection
+of all of the sets in <span class="formula"><i>F</i></span>.  Thus, for any <span class="formula"><i>x</i></span>,
+<span class="formula"><i>x</i>&isin;&cap;<i>F</i></span> if
+and only if <span class="formula">&forall;<i>A</i>&isin;<i>F</i>(<i>x</i>&isin;<i>A</i>)</span>. 
+But if <span class="formula"><i>F</i>=&empty;</span> then the statement
+<span class="formula">&forall;<i>A</i>&isin;<i>F</i>(<i>x</i>&isin;<i>A</i>)</span>
+would be true no matter what <span class="formula"><i>x</i></span> is, and therefore
+<span class="formula">&cap;<i>F</i></span> would be a set containing everything.  Since
+Russell's Paradox shows that there can be no such set, it follows that
+<span class="formula">&cap;&empty;</span> is not a
+set.  For this reason, Proof Designer requires that you explicitly include
+at least one set in any intersection.  If <span class="formula"><i>U</i></span> is
+a set and <span class="formula"><i>F</i></span> is
+a family of sets, then <span class="formula"><i>U</i>&cap;&cap;<i>F</i></span> is the
+intersection of <span class="formula"><i>U</i></span> and
+all of the elements of <span class="formula"><i>F</i></span>.  In other words,
+</P>
+<P class="display"><span class="formula"><i>U</i>&cap;&cap;<i>F</i>={<i>x</i>&isin;<i>U</i>|&forall;<i>A</i>&isin;<i>F</i>(<i>x</i>&isin;<i>A</i>)}</span>.
+</P>
+<P>Since the values of <span class="formula"><i>x</i></span> in this definition must come from the set
+  <span class="formula"><i>U</i></span>, this definition is acceptable.
+</P>
+</BODY>
+</HTML>

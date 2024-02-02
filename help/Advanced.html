@@ -1,0 +1,295 @@
+<!DOCTYPE HTML>
+<HTML lang="en">
+<HEAD>
+<meta charset="utf-8">
+<TITLE>Advanced Features</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+
+blockquote {
+  font-size: .95em;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H1>Advanced Features of Proof Designer</H1>
+<P>The instructions below will lead you through a proof that
+<span class="formula">&Pscr;(<i>A</i>)&sube;&Pscr;(<i>B</i>)&rarr;<i>A</i>&sube;<i>B</i></span>.
+This proof will illustrate some of the more advanced features of Proof 
+Designer.
+</P>
+<OL>
+<LI>
+<p>Choose New Theorem from the File menu.  
+In the dialog box, type
+<span class="formula">&Pscr;(<i>A</i>)&sube;&Pscr;(<i>B</i>)&rarr;<i>A</i>&sube;<i>B</i></span>.
+and click the Set Conclusion button.
+There are no hypotheses for this theorem.  Click OK.
+</p>
+</LI>
+<LI>
+  <p>Select the goal
+  <span class="formula">&Pscr;(<i>A</i>)&sube;&Pscr;(<i>B</i>)&rarr;<i>A</i>&sube;<i>B</i></span>
+and choose Direct from the Goal menu.  Proof Designer will suppose that
+<span class="formula">&Pscr;(<i>A</i>)&sube;&Pscr;(<i>B</i>)</span>
+ and it will say that you must 
+now prove that <span class="formula"><i>A</i>&sube;<i>B</i></span>.
+  </p>
+</LI>
+<LI>
+  <p>Select the given <span class="formula">&Pscr;(<i>A</i>)&sube;&Pscr;(<i>B</i>)</span> and choose
+Reexpress from the Strategy menu.  Click on the Apply Definition button, 
+but <EM>don't</EM> click on OK yet.  Proof Designer will rewrite the statement 
+as <span class="formula">&forall;<i>a</i>(<i>a</i>&isin;&Pscr;(<i>A</i>)&rarr;<i>a</i>&isin;&Pscr;(<i>B</i>))</span>.
+Now use the mouse to select the statement
+<span class="formula"><i>a</i>&isin;&Pscr;(<i>A</i>)</span>, 
+which appears before the <span class="formula">&rarr;</span>.  (You do this 
+just the way you would do it in a word processing program, by dragging the
+mouse across what you want 
+to select.)  Click Apply Definition again and Proof Designer will change
+<span class="formula"><i>a</i>&isin;&Pscr;(<i>A</i>)</span>
+to <span class="formula"><i>a</i>&sube;<i>A</i></span>, writing out the 
+definition of power set.  Use the same procedure to write out
+<span class="formula"><i>a</i>&isin;&Pscr;(<i>B</i>)</span> as
+<span class="formula"><i>a</i>&sube;<i>B</i></span>, and then click 
+OK.
+</p>
+</LI>
+<LI>
+  <p>Select the given variant 
+  <span class="formula">&forall;<i>a</i>(<i>a</i>&sube;<i>A</i>&rarr;<i>a</i>&sube;<i>B</i>)</span> and 
+choose Universal Instantiation from the Infer menu.  When the dialog box 
+appears, say that you want to substitute <span class="formula"><i>A</i></span> for
+<span class="formula"><i>a</i></span>.  
+Proof Designer will infer 
+<span class="formula"><i>A</i>&sube;<i>A</i>&rarr;<i>A</i>&sube;<i>B</i></span>.
+  </p>
+</LI>
+<LI>
+  <p>Select the given <span class="formula"><i>A</i>&sube;<i>A</i>&rarr;<i>A</i>&sube;<i>B</i></span> 
+and the goal <span class="formula"><i>A</i>&sube;<i>B</i></span> and choose 
+Modus Ponens from the Infer menu.  Proof Designer will use the modus 
+ponens 
+inference rule to work backwards from the goal.  Proof Designer will say 
+that you can infer the goal <span class="formula"><i>A</i>&sube;<i>B</i></span>
+by modus ponens from
+<span class="formula"><i>A</i>&sube;<i>A</i>&rarr;<i>A</i>&sube;<i>B</i></span> and
+<span class="formula"><i>A</i>&sube;<i>A</i></span>, but you must still 
+prove <span class="formula"><i>A</i>&sube;<i>A</i></span>.
+  </p>
+</LI>
+<LI>
+  <p>Although you could just fill in the proof of
+  <span class="formula"><i>A</i>&sube;<i>A</i></span>
+where Proof Designer says it is needed, it might be better to indicate 
+somehow that this is a general fact about all sets, and not a fact about 
+this specific set <span class="formula"><i>A</i></span>.  To do this, click on the sentence 
+&#8220;Suppose
+<span class="formula">&Pscr;(<i>A</i>)&sube;&Pscr;(<i>B</i>)</span>&#8221; at the 
+beginning of the 
+proof.  This selects the entire subproof that is introduced by this 
+sentence, along with the conclusion it justifies.  (You can also do this 
+by clicking in the margin to the left of this subproof, or on the 
+conclusion it justifies.)  Choose Insert from the Edit menu.  This will 
+allow you to insert some new steps before the subproof you have just 
+selected.  A dialog box will appear, asking what goal you want to achieve 
+with these additional steps.  Click on the choice saying that you want to 
+prove something, and type in
+<span class="formula">&forall;<i>x</i>(<i>x</i>&sube;<i>x</i>)</span> as 
+the statement you want to prove.  Click OK.
+</p>
+<p>Proof Designer will insert a new gap in the proof 
+whose goal is to prove that <span class="formula">&forall;<i>x</i>(<i>x</i>&sube;<i>x</i>)</span>.  
+Note that in the original gap, where you still need to prove that
+<span class="formula"><i>A</i>&sube;<i>A</i></span>, the statement
+  <span class="formula">&forall;<i>x</i>(<i>x</i>&sube;<i>x</i>)</span>
+is now listed as a given.
+</LI>
+</p>
+<LI>
+  <p>It would look better to have the proof of the statement
+  <span class="formula">&forall;<i>x</i>(<i>x</i>&sube;<i>x</i>)</span>
+  set off from the rest of the proof 
+as a lemma.  (A lemma is a small theorem that is used to prove another 
+theorem.)  To do this, click on the sentence &#8220;Proof of
+<span class="formula">&forall;<i>x</i>(<i>x</i>&sube;<i>x</i>)</span>
+goes here&#8221; at the beginning 
+of the new proof gap.  This selects the entire gap.  (You can also do this 
+by clicking in the margin to the left of the gap.)  Now choose Lemma from 
+the Edit menu.
+</p>
+</LI>
+<LI>
+  <p>You now have two gaps to complete.  You can do them in either order.  
+To prove the lemma, you can let <span class="formula"><i>x</i></span> be arbitrary, reexpress
+<span class="formula"><i>x</i>&sube;<i>x</i></span> as 
+  <span class="formula">&forall;<i>a</i>(<i>a</i>&isin;<i>x</i>&rarr;<i>a</i>&isin;<i>x</i>)</span>,
+let <span class="formula"><i>a</i></span> be arbitrary, and then do a direct proof of
+<span class="formula"><i>a</i>&isin;<i>x</i>&rarr;<i>a</i>&isin;<i>x</i></span>.  Note 
+that after 
+you give the Direct command, your goal will already be listed as a given, 
+so you can select the given and give the Finish command.  To fill in the 
+second gap, you can apply universal instantiation to the given
+<span class="formula">&forall;<i>x</i>(<i>x</i>&sube;<i>x</i>)</span> to conclude that 
+<span class="formula"><i>A</i>&sube;<i>A</i></span>.
+</p>
+</LI>
+<LI>
+  <p>Let's try changing the proof.  Click on the final conclusion
+&#8220;Therefore 
+<span class="formula">&Pscr;(<i>A</i>)&sube;&Pscr;(<i>B</i>)&rarr;<i>A</i>&sube;<i>B</i></span>,&#8221;
+which selects this conclusion and the subproof that justifies it.  Choose 
+Rejustify from the Edit menu.  The subproof and conclusion will disappear, 
+and be replaced by a gap that says &#8220;Proof of
+<span class="formula">&Pscr;(<i>A</i>)&sube;&Pscr;(<i>B</i>)&rarr;<i>A</i>&sube;<i>B</i></span>
+goes here.&#8221;  We can now redo the proof a different way.  (Leave the 
+lemma there&#8212;we'll need it in this version of the proof too.  If you 
+want, you can hide the details of its proof.)
+</p>
+</LI>
+<LI>
+  <p>Select the goal
+    <span class="formula">&Pscr;(<i>A</i>)&sube;&Pscr;(<i>B</i>)&rarr;<i>A</i>&sube;<i>B</i></span>
+and choose Contrapositive from the Goal menu.  Proof Designer will
+suppose that <span class="formula"><i>A</i>&#x2288<i>B</i></span>, and it 
+will say that you must prove 
+that <span class="formula">&Pscr;(<i>A</i>)&#x2288&Pscr;(<i>B</i>)</span>.
+</p>
+</LI>
+<LI>
+  <p>Select the goal <span class="formula">&Pscr;(<i>A</i>)&#x2288&Pscr;(<i>B</i>)</span>
+  and choose 
+Reexpress from the Strategy menu.  Click on Apply Definition, but 
+<EM>don't</EM> click OK yet.  Proof Designer will reexpress the goal as
+<span class="formula">&not;&forall;<i>a</i>(<i>a</i>&isin;&Pscr;(<i>A</i>)&rarr;<i>a</i>&isin;&Pscr;(<i>B</i>))</span>.
+Now click Reexpress Negative and Proof Designer will change this to
+<span class="formula">&exist;<i>a</i>&not;(<i>a</i>&isin;&Pscr;(<i>A</i>)&rarr;<i>a</i>&isin;&Pscr;(<i>B</i>))</span>.
+Note that now only
+<span class="formula">&not;(<i>a</i>&isin;&Pscr;(<i>A</i>)&rarr;<i>a</i>&isin;&Pscr;(<i>B</i>))</span>
+is selected, so you can click Reexpress Negative again to change the 
+statement to
+<span class="formula">&exist;<i>a</i>(<i>a</i>&isin;&Pscr;(<i>A</i>)&and;<i>a</i>&notin;&Pscr;(<i>B</i>))</span>.
+Click OK.
+</p>
+</LI>
+<LI>
+  <p>The goal has now been rewritten as the existential statement
+    <span class="formula">&exist;<i>a</i>(<i>a</i>&isin;&Pscr;(<i>A</i>)&and;<i>a</i>&notin;&Pscr;(<i>B</i>))</span>,
+so you should probably try to prove it by finding an example of a set 
+which is an 
+element of <span class="formula">&Pscr;(<i>A</i>)</span> but not
+<span class="formula">&Pscr;(<i>B</i>)</span>, but it may not be clear at 
+first what set to use.  Here's how you can deal with this situation:  
+Select the goal variant
+<span class="formula">&exist;<i>a</i>(<i>a</i>&isin;&Pscr;(<i>A</i>)&and;<i>a</i>&notin;&Pscr;(<i>B</i>))</span>
+and choose Existence from the Goal menu.  A dialog box will appear, 
+asking what 
+value you want to substitute for <span class="formula"><i>a</i></span> in the goal.  Click on the 
+&#8220;Use this new variable, whose definition will be inserted 
+later&#8221; option.  The default choice for the new variable is <span class="formula"><i>a</i></span>, 
+but if you 
+want to use a different name you can just type it in.  Click OK.  You will 
+now have 
+two gaps in the proof, one labeled &#8220;Definition of <span class="formula"><i>a</i></span> goes 
+here,&#8221;
+followed by one labeled &#8220;Proof of 
+<span class="formula"><i>a</i>&isin;&Pscr;(<i>A</i>)&and;<i>a</i>&notin;&Pscr;(<i>B</i>)</span> 
+goes here.&#8221;  As usual, you can work on these gaps in either order.  
+In particular, even before defining <span class="formula"><i>a</i></span> you can start in on the proof 
+that <span class="formula"><i>a</i>&isin;&Pscr;(<i>A</i>)&and;<i>a</i>&notin;&Pscr;(<i>B</i>)</span>.  When you 
+get far enough in the proof that you can tell what <span class="formula"><i>a</i></span> should be, you 
+can go 
+back and fill in the definition of <span class="formula"><i>a</i></span>.
+</p>
+</LI>
+<LI>
+  <p>Select the goal 
+  <span class="formula"><i>a</i>&isin;&Pscr;(<i>A</i>)&and;<i>a</i>&notin;&Pscr;(<i>B</i>)</span>
+  and give the
+Reexpress command from the Strategy menu.  Select the statement 
+<span class="formula"><i>a</i>&isin;&Pscr;(<i>A</i>)</span> and click Apply Definition to change this to
+<span class="formula"><i>a</i>&sube;<i>A</i></span>.  Select
+<span class="formula"><i>a</i>&notin;&Pscr;(<i>B</i>)</span> and click 
+Apply Definition to change it to <span class="formula">&not;(<i>a</i>&sube;<i>B</i>)</span>.  You 
+can click 
+Reexpress Negative if you want to change this to <span class="formula"><i>a</i>&#x2288<i>B</i></span>.  Click OK.
+</p>
+</LI>
+<LI>
+  <p>Notice now that the goal is
+  <span class="formula"><i>a</i>&sube;<i>A</i>&and;<i>a</i>&#x2288<i>B</i></span>, and 
+one of the givens is
+<span class="formula"><i>A</i>&#x2288<i>B</i></span>.  This suggests that 
+perhaps you should have defined 
+<span class="formula"><i>a</i></span> to be equal to <span class="formula"><i>A</i></span>.
+Go back to the gap labeled 
+&#8220;Definition of <span class="formula"><i>a</i></span> goes here,&#8221; select the goal
+<span class="formula"><i>a</i>=?</span>,
+and choose Define from the 
+Strategy menu.  A dialog box will appear, containing the statement 
+&#8220;Let ___ = ___.&#8221;  The first blank will already be filled in 
+with the 
+default value <span class="formula"><i>a</i></span>.  Fill in the second with
+<span class="formula"><i>A</i></span> and click OK.  
+The definition 
+of <span class="formula"><i>a</i></span> will be added to the proof, and the gap labeled 
+&#8220;Definition of 
+<span class="formula"><i>a</i></span> goes here&#8221; will disappear.
+</p>
+</LI>
+<LI>
+  <p>Select the goal variant
+<span class="formula"><i>a</i>&sube;<i>A</i>&and;<i>a</i>&#x2288<i>B</i></span>
+and choose Substitute from the Strategy menu.  A dialog box will appear.  In
+the dialog box, click on the word &ldquo;Substitute&rdquo; and a menu will appear,
+showing what substitutions you can apply.  Since we now know
+that <span class="formula"><i>a</i>=<i>A</i></span>,  you can choose to 
+substitute either <span class="formula"><i>A</i></span> for
+<span class="formula"><i>a</i></span> or <span class="formula"><i>a</i></span> for
+<span class="formula"><i>A</i></span>.  Choose <span class="formula"><i>a</i>&rArr;<i>A</i></span>
+from the menu, indicating that you want to 
+replace <span class="formula"><i>a</i></span> with <span class="formula"><i>A</i></span>,
+and the substitution will be performed.  Click OK.
+</p>
+</LI>
+<LI>
+  <p>The goal is now <span class="formula"><i>A</i>&sube;<i>A</i>&and;<i>A</i>&#x2288<i>B</i></span>, 
+and you already have <span class="formula"><i>A</i>&#x2288<i>B</i></span>
+in the given column.  Select the given
+<span class="formula"><i>A</i>&#x2288<i>B</i></span> and the goal
+<span class="formula"><i>A</i>&sube;<i>A</i>&and;<i>A</i>&#x2288<i>B</i></span>, and 
+choose Conjunction from the Goal menu.  Proof Designer will say that you can infer
+<span class="formula"><i>A</i>&sube;<i>A</i>&and;<i>A</i>&#x2288<i>B</i></span> from 
+<span class="formula"><i>A</i>&sube;<i>A</i></span>
+and <span class="formula"><i>A</i>&#x2288<i>B</i></span>, but you still 
+have to prove <span class="formula"><i>A</i>&sube;<i>A</i></span>.
+</p>
+</LI>
+<LI>
+  <p>Apply universal instantiation to 
+  <span class="formula">&forall;<i>x</i>(<i>x</i>&sube;<i>x</i>)</span>
+  to conclude that <span class="formula"><i>A</i>&sube;<i>A</i></span>.  
+This is your goal, so you can now use the Finish command to complete the 
+proof.
+</p>
+</LI>
+</OL>
+<P>Note that we introduced the variable <span class="formula"><i>a</i></span> into this proof only 
+because, 
+at the time we introduced it, we didn't know it would turn out to be equal 
+to <span class="formula"><i>A</i></span>.  Now that the proof is done, we could improve on it by 
+eliminating all mention of <span class="formula"><i>a</i></span>,  and only talking about
+<span class="formula"><i>A</i></span>.
+Often you will be able to improve on the proof outline written by Proof
+Designer.  You should use Proof Designer to work out an outline of a
+correct proof, and then try to improve on it when you write up the final proof.
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<TITLE>Reexpress Command Help</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+
+table, th, td {
+  border: 1px solid gray;
+}
+
+th, td {
+  padding: 2px 10px;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H2>Strategy Menu:</H2>
+<H1>Reexpress Command</H1>
+<P>You can use the Reexpress command to rewrite a
+given or a goal in a different but equivalent way.  Select the given or
+goal that you want to reexpress and give the Reexpress command.  A dialog
+box will open, offering a number of different ways of reexpressing the
+selected statement.  (Double-clicking on a given or goal is a shortcut for
+selecting it and giving the Reexpress command.)  The statement to be
+reexpressed appears at the top of the dialog box, and initially the entire
+statement is selected.  You can apply a reexpression to only part of the
+statement by selecting the part you want to reexpress.  Selecting works in
+the usual way, except that when you drag the mouse across a part of the
+statement, what gets selected is <EM>the smallest meaningful subexpression
+containing the symbols you drag across</EM>.  For example, if you drag the
+mouse across the symbols &#8220;<span class="formula"><i>x</i>&isin;</span>&#8221; in the
+statement &ldquo;<span class="formula"><i>x</i>&isin;<i>A</i>&and;<i>y</i>&isin;<i>B</i></span>&rdquo;,
+what will be selected is the
+statement &ldquo;<span class="formula"><i>x</i>&isin;<i>A</i></span>&rdquo;. 
+Click on the buttons in the dialog box to perform the indicated
+reexpressions on the selected part of the statement.
+</P>
+<P>Once you have reexpressed the statement in the way you want, click the
+OK button.  The new version of the statement will be listed as a
+<EM>variant</EM> of the original in the list of givens and goals.  A
+variant of a given or goal is listed below the original and indented.  You
+can select a variant and apply commands to it just like any other given or
+goal.
+</P>
+<P>Here is what the various buttons in the Reexpress dialog box do:
+</P>
+<UL>
+<LI>Rename Bound Variable: This button can only be used when the selected
+expression starts with a quantifier.  Use this button to rename the
+quantified variable.  For example, you can rewrite
+&ldquo;<span class="formula">&forall;<i>x</i>(<i>x</i>&isin;<i>A</i>)</span>&rdquo; as
+&ldquo;<span class="formula">&forall;<i>y</i>(<i>y</i>&isin;<i>A</i>)</span>&rdquo;.
+</LI>
+<LI>(...): Use this button to add parentheses around an expression.
+If the statement has brackets around it, they are changed to parentheses. 
+You can't use this button if adding parentheses would change the meaning of
+the statement; it's only for making the statement easier to read.  (There
+are a few cases in which parentheses affect the workings of a command.  For
+more information, see the <A href="Cases.html">Cases</A>,
+<a href="Conjoin.html">Conjoin</a>, <A href="Conjunction.html">Conjunction</A>,
+<A href="Disjunction.html">Disjunction</A>, <A href="DisjSyll.html">Disjunctive Syllogism</A>,
+<A href="Addition.html">Addition</A>, and <A href="SplitUp.html">Split Up</A>
+commands.)
+</LI>
+<LI>[...]: Like (...).
+</LI>
+<LI>Remove ( ) or [ ]: Use this button to remove parentheses or brackets
+around an expression.  Again, you can't do this if it would change the
+meaning of the statement.
+</LI>
+<LI>Reexpress Negative/Make Negative: When the selected expression starts
+with &ldquo;<span class="formula">&not;</span>&rdquo;, this button is called
+Reexpress Negative.  Use it to reexpress the negative statement as an
+equivalent positive one.  For example,
+&ldquo;<span class="formula">&not;&forall;<i>x</i>(<i>x</i>&isin;<i>A</i>)</span>&rdquo;
+gets reexpressed as
+&ldquo;<span class="formula">&exist;<i>x</i>(<i>x</i>&notin;<i>A</i>)</span>&rdquo;
+and &ldquo;<span class="formula">&not;(<i>x</i>&isin;<i>A</i>&and;<i>x</i>&isin;<i>B</i>)</span>&rdquo;
+becomes &ldquo;<span class="formula"><i>x</i>&notin;<i>A</i>&or;<i>x</i>&notin;<i>B</i></span>&rdquo;. 
+If the &ldquo;<span class="formula">&not;</span>&rdquo; symbol is followed by
+several quantifiers, pushing this button repeatedly will move the
+&ldquo;<span class="formula">&not;</span>&rdquo; past the quantifiers one at
+a time.  When the selected expression does not start with
+&ldquo;<span class="formula">&not;</span>&rdquo;, this button is called Make Negative,
+and it reexpresses the expression as an equivalent one starting with
+&ldquo;<span class="formula">&not;</span>&rdquo;.  Often this reverses the
+effect of the Reexpress Negative button.
+</LI>
+<LI>Apply Definition: This button performs a number of different
+reexpressions, based on the definitions of symbols appearing in the
+selected expression.  For example, &ldquo;<span class="formula"><i>x</i>=<i>y</i></span>&rdquo;
+gets reexpressed as 
+&ldquo;<span class="formula">&forall;<i>a</i>(<i>a</i>&isin;<i>x</i>&harr;<i>a</i>&isin;<i>y</i>)</span>&rdquo;,
+&ldquo;<span class="formula"><i>x</i>&sube;<i>y</i></span>&rdquo;
+gets reexpressed as
+&ldquo;<span class="formula">&forall;<i>a</i>(<i>a</i>&isin;<i>x</i>&rarr;<i>a</i>&isin;<i>y</i>)</span>&rdquo;,
+and &ldquo;<span class="formula"><i>x</i>&isin;<i>A</i>&cap;<i>B</i></span>&rdquo;
+gets reexpressed as
+&ldquo;<span class="formula"><i>x</i>&isin;<i>A</i>&and;<i>x</i>&isin;<i>B</i></span>&rdquo;. 
+Here is a list of all the reexpressions performed by this button:
+<TABLE>
+<TR>
+<th>Statements of this form:</th>
+<th>Are reexpressed like this:</th>
+</TR>
+<TR>
+<TD><span class="formula"><i>A</i>&sube;<i>B</i></span></TD>
+<TD><span class="formula">&forall;<i>a</i>(<i>a</i>&isin;<i>A</i>&rarr;<i>a</i>&isin;<i>B</i>)</span></TD>
+</TR>
+<TR>
+<TD><span class="formula"><i>A</i>=&empty;</span></TD>
+<TD><span class="formula">&not;&exist;<i>a</i>(<i>a</i>&isin;<i>A</i>)</span>
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">(<i>a</i>,<i>b</i>)=(<i>c</i>,<i>d</i>)</span></TD>
+<TD><span class="formula"><i>a</i>=<i>c</i>&and;<i>b</i>=<i>d</i></span>
+</TD>
+</TR>
+<TR>
+<TD><span class="formula"><i>A</i>=<i>B</i></span></TD>
+<TD><span class="formula">&forall;<i>a</i>(<i>a</i>&isin;<i>A</i>&harr;<i>a</i>&isin;<i>B</i>)</span> </TD>
+</TR>
+<TR>
+<TD><span class="formula"><i>x</i>&isin;&empty;</span></TD>
+<TD><span class="formula"><i>x</i>&ne;<i>x</i></span></TD>
+</TR>
+<TR>
+<TD><span class="formula"><i>x</i>&isin;{<i>a</i><sub>1</sub>,<i>a</i><sub>2</sub>,&hellip;,<i>a</i><sub><i>n</i></sub>}</span></TD>
+<TD><span class="formula"><i>x</i>=<i>a</i><sub>1</sub>&or;<i>x</i>=<i>a</i><sub>2</sub>&or;&hellip;&or;<i>x</i>=<i>a</i><sub><i>n</i></sub></span></TD>
+</TR>
+<TR>
+<TD><span class="formula"><i>x</i>&isin;<i>A</i><sub>1</sub>&cap;<i>A</i><sub>2</sub>&cap;&hellip;&cap;<i>A</i><sub><i>n</i></sub></span>
+</TD>
+<TD><span class="formula"><i>x</i>&isin;<i>A</i><sub>1</sub>&and;<i>x</i>&isin;<i>A</i><sub>2</sub>&and;&hellip;&and;<i>x</i>&isin;<i>A</i><sub><i>n</i></sub></span>
+</TD>
+</TR>
+<TR>
+<TD><span class="formula"><i>x</i>&isin;<i>A</i><sub>1</sub>&cup;<i>A</i><sub>2</sub>&cup;&hellip;&cup;<i>A</i><sub><i>n</i></sub></span>
+</TD>
+<TD><span class="formula"><i>x</i>&isin;<i>A</i><sub>1</sub>&or;<i>x</i>&isin;<i>A</i><sub>2</sub>&or;&hellip;&or;<i>x</i>&isin;<i>A</i><sub><i>n</i></sub></span>
+</TD>
+</TR>
+<TR>
+<TD><span class="formula"><i>x</i>&isin;<i>A</i>&#x25B3<i>B</i></span></TD>
+<TD><span class="formula">(<i>x</i>&isin;<i>A</i>&#x2216<i>B</i>)&or;(<i>x</i>&isin;<i>B</i>&#x2216<i>A</i>)</span>
+</TD>
+</TR>
+<TR>
+<TD><span class="formula"><i>x</i>&isin;<i>A</i>&#x2216<i>B</i></span></TD>
+<TD><span class="formula"><i>x</i>&isin;<i>A</i>&and;<i>x</i>&notin;<i>B</i></span></TD>
+</TR>
+<TR>
+<TD><span class="formula">(<i>a</i>,<i>b</i>)&isin;<i>A</i>&times;<i>B</i></span></TD>
+<TD><span class="formula"><i>a</i>&isin;<i>A</i>&and;<i>b</i>&isin;<i>B</i></span></TD>
+</TR>
+<TR>
+<TD><span class="formula"><i>x</i>&isin;<i>A</i>&times;<i>B</i></span></TD>
+<TD><span class="formula">&exist;<i>a</i>&isin;<i>A</i>&exist;<i>b</i>&isin;<i>B</i>(<i>x</i>=(<i>a</i>,<i>b</i>))</span></TD>
+</TR>
+<TR>
+<TD><span class="formula">(<i>a</i>,<i>b</i>)&isin;<i>R</i>&#x25CB<i>S</i></span></TD>
+<TD><span class="formula">&exist;<i>c</i>((<i>a</i>,<i>c</i>)&isin;<i>S</i>&and;(<i>c</i>,<i>b</i>)&isin;<i>R</i>)</span></TD>
+</TR>
+<TR>
+<TD><span class="formula"><i>x</i>&isin;<i>R</i>&#x25CB<i>S</i></span></TD>
+<TD><span class="formula">&exist;<i>a</i>&exist;<i>b</i>&exist;<i>c</i>((<i>a</i>,<i>b</i>)&isin;<i>S</i>&and;(<i>b</i>,<i>c</i>)&isin;<i>R</i>&and;<i>x</i>=(<i>a</i>,<i>c</i>))</span>
+</TD>
+</TR>
+<TR>
+<TD><span class="formula"><i>x</i>&isin;<i>U</i>&cap;&cap;<i>F</i></span></TD>
+<TD><span class="formula"><i>x</i>&isin;<i>U</i>&and;&forall;<i>A</i>&isin;<i>F</i>(<i>x</i>&isin;<i>A</i>)</span>
+</TD>
+</TR>
+<TR>
+<TD><span class="formula"><i>x</i>&isin;&cup;<i>F</i></span></TD>
+<TD><span class="formula">&exist;<i>A</i>&isin;<i>F</i>(<i>x</i>&isin;<i>A</i>)</span>
+</TD>
+</TR>
+<TR>
+<TD><span class="formula"><i>x</i>&isin;&Pscr;(<i>A</i>)</span></TD>
+<TD><span class="formula"><i>x</i>&sube;<i>A</i></span></TD>
+</TR>
+<TR>
+<TD><span class="formula">(<i>a</i>,<i>b</i>)&isin;<i>R</i><sup>−1</sup></span></TD>
+<TD><span class="formula">(<i>b</i>,<i>a</i>)&isin;<i>R</i></span></TD>
+</TR>
+<TR>
+<TD><span class="formula"><i>x</i>&isin;<i>R</i><sup>−1</sup></span></TD>
+<TD><span class="formula">&exist;<i>a</i>&exist;<i>b</i>(<i>x</i>=(<i>a</i>,<i>b</i>)&and;(<i>b</i>,<i>a</i>)&isin;<i>R</i>)</span>
+</TD>
+</TR>
+<TR>
+<TD><span class="formula"><i>x</i>&isin;{<i>y</i>&isin;<i>A</i>|<i>P</i>(<i>y</i>)}</span></TD>
+<TD><span class="formula"><i>x</i>&isin;<i>A</i>&and;<i>P</i>(<i>x</i>)</span></TD>
+</TR>
+<TR>
+<TD><span class="formula"><i>x</i>&isin;{<i>f</i>(<i>y</i>)|<i>y</i>&isin;<i>A</i>}</span></TD>
+<TD><span class="formula">&exist;<i>y</i>&isin;<i>A</i>(<i>x</i>=<i>f</i>(<i>y</i>))</span></TD>
+</TR>
+<TR>
+<TD><span class="formula"><i>x</i>&isin;(<i>a</i>,<i>b</i>)</span></TD>
+<TD><span class="formula"><i>x</i>={<i>a</i>}&or;<i>x</i>={<i>a</i>,<i>b</i>}</span></TD>
+</TR>
+<TR>
+<TD><span class="formula">&forall;<i>x</i>&isin;<i>A</i>&thinsp;<i>P</i>(<i>x</i>)</span></TD>
+<TD><span class="formula">&forall;<i>x</i>(<i>x</i>&isin;<i>A</i>&rarr;<i>P</i>(<i>x</i>))</span>
+</TD>
+</TR>
+<TR>
+  <TD><span class="formula">&exist;<i>x</i>&isin;<i>A</i>&thinsp;<i>P</i>(<i>x</i>)</span></TD>
+  <TD><span class="formula">&exist;<i>x</i>(<i>x</i>&isin;<i>A</i>&and;<i>P</i>(<i>x</i>))</span>
+  </TD>
+</TR>
+<TR>
+<TD><span class="formula">&exist;!<i>x</i>&thinsp;<i>P</i>(<i>x</i>)</span></TD>
+<TD><span class="formula">&exist;<i>x</i>(<i>P</i>(<i>x</i>)&and;&forall;<i>y</i>(<i>P</i>(<i>y</i>)&rarr;<i>y</i>=<i>x</i>))</span>
+</TD>
+</TR>
+</TABLE>
+</LI>
+</UL>
+</BODY>
+</HTML>

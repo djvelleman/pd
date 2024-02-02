@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<HTML lang="en">
+<HEAD>
+<meta charset="utf-8">
+<TITLE>Rejustify Command Help</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H2>Edit Menu:</H2>
+<H1>Rejustify Command</H1>
+<P>If you select a step in the proof and give the Rejustify command, then
+the step and its justification will be deleted, and they will be replaced
+by a gap whose goal is to prove the assertion.
+</P>
+<P>Note that if the step is justified by a subproof, you can use the
+Rejustify command even if the subproof still has gaps in it.  For example,
+suppose you are proving a statement of the form
+<span class="formula"><i>P</i>&rarr;<i>Q</i></span>, and you begin by using the
+<A href="Direct.html">Direct</A> command.  This would create a subproof in
+which it is assumed that <span class="formula"><i>P</i></span> is true, and you
+must prove that <span class="formula"><i>Q</i></span>
+is true.  The subproof would justify the assertion that
+<span class="formula"><i>P</i>&rarr;<i>Q</i></span> is true.  While trying to prove
+<span class="formula"><i>Q</i></span> in the subproof, you might run into trouble and
+decide that you would have been better off proving
+<span class="formula"><i>P</i>&rarr;<i>Q</i></span> by proving the contrapositive.
+If so, click on the assertion <span class="formula"><i>P</i>&rarr;<i>Q</i></span>, which will
+select the assertion and the subproof that justifies it, and give the
+Rejustify command.  The assertion and subproof will disappear, and be
+replaced by a gap whose goal is <span class="formula"><i>P</i>&rarr;<i>Q</i></span>.
+Now you can select the goal and give the <A href="Contrapos.html">Contrapositive</A> command.
+</P>
+</BODY>
+</HTML>

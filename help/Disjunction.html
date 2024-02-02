@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<HTML lang="en">
+<HEAD>
+<meta charset="utf-8">
+<TITLE>Disjunction Command Help</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H2>Goal Menu:</H2>
+<H1>Disjunction Command</H1>
+<P>The Disjunction command can only be used when you
+have a goal of the form
+<span class="formula"><i>P</i><sub>1</sub>&or;<i>P</i><sub>2</sub>&or;&hellip;&or;<i>P<sub>n</sub></i></span>.
+If you select a goal of
+this form and give the Disjunction command, then a dialog box will open,
+asking you which of the statements <span class="formula"><i>P</i><sub>1</sub></span>,
+<span class="formula"><i>P</i><sub>2</sub></span>, &hellip;,
+<span class="formula"><i>P<sub>n</sub></i></span> you want to prove.  Proof
+Designer will then create a subproof in which the negations of all the
+other statements are assumed, and you have to prove the statement you
+selected.  If you don't want to assume the negations of the other
+statements, remove the check mark from the &#8220;Assume negations of
+others&#8221; check box before clicking OK.
+</P>
+<P>If one of the statements <span class="formula"><i>P</i><sub>1</sub></span>,
+<span class="formula"><i>P</i><sub>2</sub></span>, &hellip;,
+<span class="formula"><i>P<sub>n</sub></i></span> is among your givens, you can
+select it as well.  When you give the Disjunction command, no dialog box will open,
+and Proof Designer will simply infer the goal from the given.
+</P>
+<P>Parentheses in the goal can affect the list of statements that appear
+in the dialog box.  For example, if you select a goal of the form
+<span class="formula"><i>P</i>&or;<i>Q</i>&or;<i>R</i></span> and give the
+Disjunction command, then you will be
+asked whether you want to prove <span class="formula"><i>P</i></span>,
+<span class="formula"><i>Q</i></span>, or <span class="formula"><i>R</i></span>.
+But if your goal has the form <span class="formula"><i>P</i>&or;(<i>Q</i>&or;<i>R</i>)</span>,
+then you will be asked to choose between <span class="formula"><i>P</i></span>
+and <span class="formula"><i>Q</i>&or;<i>R</i></span>.  Thus, you may want to
+add or remove parentheses in your goal before using the Disjunction command.
+Too add or remove parentheses, use the <A href="Reexpress.html">Reexpress</A> command.
+</P>
+</BODY>
+</HTML>

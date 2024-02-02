@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<HTML lang="en">
+<HEAD>
+<meta charset="utf-8">
+<TITLE>Modus Ponens Command Help</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H2>Infer Menu:</H2>
+<H1>Modus Ponens Command</H1>
+<P>If you have givens of the forms <span class="formula"><I>P</I></span>
+and <span class="formula"><I>P</I>&#8594;<I>Q</I></span>, then you may infer
+<span class="formula"><I>Q</I></span>.  Select the givens and give the Modus Ponens command, and Proof
+Designer will make the inference.
+</P>
+<P>You can also use this command to work backwards from your goal.  If you
+have a given of the form <span class="formula"><I>P</I>&#8594;<I>Q</I></span>
+and your goal is <span class="formula"><I>Q</I></span>, then you could complete the proof by first
+proving <span class="formula"><I>P</I></span> and then using modus ponens to infer <span class="formula"><I>Q</I></span> from
+<span class="formula"><I>P</I></span> and <span class="formula"><I>P</I>&#8594;<I>Q</I></span>.  If you
+want to do this, select the given <span class="formula"><I>P</I>&#8594;<I>Q</I></span> and the goal
+<span class="formula"><I>Q</I></span> and give the Modus Ponens
+command.  Proof Designer will say that you now have to prove <span class="formula"><I>P</I></span>, and
+it will say that once <span class="formula"><I>P</I></span> has been proven, it can be used, together
+with <span class="formula"><I>P</I>&#8594;<I>Q</I></span>, to infer <span class="formula"><I>Q</I></span>.
+</P>
+</BODY>
+</HTML>

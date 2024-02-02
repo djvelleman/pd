@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<HTML lang="en">
+<HEAD>
+<meta charset="utf-8">
+<TITLE>Addition Command Help</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H2>Infer Menu:</H2>
+<H1>Addition Command</H1>
+<P>From a given statement <span class="formula"><i>P</i></span> you can infer
+<span class="formula"><i>P</i>&or;<i>Q</i></span>, 
+for any statement <span class="formula"><i>Q</i></span>.  Select any given
+<span class="formula"><i>P</i></span> and give the 
+Addition command, and a dialog box will open asking you to fill in the 
+blank in the statement <span class="formula"><i>P</i>&or;___</span> in order
+to specify what inference you want to make.
+</P>
+<P>You can also use this command to work backwards from your goal.  If you 
+select a given <span class="formula"><i>P</i></span> and goal
+<span class="formula"><i>P</i>&or;<i>Q</i></span> and give the 
+Addition command, Proof Designer will infer the goal from the given.
+</P>
+<P>Parentheses in your goal can affect how the Addition 
+command works.  For example, if you select a given <span class="formula"><i>P</i></span> and goal
+<span class="formula"><i>P</i>&or;<i>Q</i>&or;<i>R</i></span>
+and give the Addition command, then Proof Designer will infer the goal
+from the given.  But if the goal is 
+<span class="formula">(<i>P</i>&or;<i>Q</i>)&or;<i>R</i></span>,
+then the command won't work, because Proof Designer won't consider the selected given
+to be one of the disjuncts of the goal.  Thus, you 
+may want to add or remove parentheses in your goal before using the 
+Addition command.  To add or remove parentheses, use the
+<A href="Reexpress.html">Reexpress</A> command.
+</P>
+</BODY>
+</HTML>

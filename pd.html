@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Proof Designer</title>
+
+<style>
+.menubar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid gray;
+  z-index: 1;
+}
+
+.menu-container {
+  position: relative;
+  display: inline-block;
+}
+
+.menu-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  height: 1.5em;
+  padding: 0.3em 0.6em;
+  display: inline-flex;
+  align-items: center;
+}
+
+.menu-background {
+  display: inline-block;
+  background-color: white;
+  position: absolute;
+  left: 0px;
+  top: 2.1em;
+  padding: 0.25em 0em;
+  box-shadow: 0em 0.5em 1em 0em rgba(0,0,0,0.2);
+}
+
+.menu-item {
+  font-family: sans-serif;
+  font-size: 0.9em;
+  line-height: 1.1em;
+  padding: 0.3em 1.1em;
+  white-space: nowrap;
+}
+
+.divider {
+  margin: 0.3em 0em;
+  height:0px;
+  padding:0px;
+  border-top:1px solid lightgray
+}
+
+.menu-title:hover, .menu-item:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+.menu-item.inactive {
+  color: gray;
+  pointer-events: none;
+}
+
+.inactive:hover {
+  background-color: white;
+  cursor: default;
+}
+
+.active {
+  background-color: lightgray;
+}
+
+.submenu-item {
+  font-family: Verdana, sans-serif;
+  line-height: 1.2em;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+
+sup {
+  vertical-align: baseline;
+  position: relative;
+  top: -0.4em;
+}
+
+sub {
+  vertical-align: baseline;
+  position: relative;
+  top: 0.4em;
+}
+
+.math-input {
+  font-family: Verdana, sans-serif;
+  border: 1px solid;
+  height: 1.9em;
+  line-height: 1.9em;
+  padding: 0em 0.15em;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  white-space: nowrap;
+  user-select: text;
+  -moz-user-select: text;
+  -webkit-user-select: text;
+  -ms-user-select: text;
+  cursor: text;
+}
+
+.unselectable {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  cursor: default;
+}
+
+.pal { /* Buttons in math palette */
+  font-family: Verdana, sans-serif;
+  font-size: 1em;
+  width: 1.9em;
+  height: 1.9em;
+  border: 1px solid gray;
+  background-color: rgb(220,220,220);
+}
+
+.show-hide { /* show-hide buttons for details of subproofs and gaps */
+  font-size: 1em;
+  width: 1.5em;
+  height: 1.5em;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  margin-left: -1px;
+  margin-top: -1px;
+  border: 1px solid gray;
+  background-color:  rgb(220, 220, 220);
+}
+
+.complete {  /* for show-hide button of subproof when it is complete */
+  background-color: white;
+}
+
+.intro {
+  text-indent:  1.5em;
+  padding-left: 0.25em;
+  min-height: 1.5em;
+}
+
+.tableGrid {
+  display: grid;
+  grid-gap: 0.25em;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  font-size: 0.8em;
+}
+
+.modal-background { /* Background for modal dialogs */
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0,0,0); /* fallback in case below doesn't work */
+  background-color: rgba(0,0,0,0.4);
+  z-index: 2;
+}
+
+.modal-content {
+  border: 2px solid;
+  margin: auto;
+  padding: 1.25em;
+  background-color: white;
+}
+
+.pink {
+  background-color: lavenderblush;
+  background-color: rgba(256, 200, 200, 0.2);
+}
+
+.selected {
+  background-color: lightblue; /* fallback in case below doesn't work */
+  background-color: rgba(50, 200, 256, 0.5);
+}
+
+.hide { /* Class to add to make something hidden */
+  display: none;
+}
+
+
+::selection {
+  background: transparent;  /* Do highlighting of selection myself */
+}
+
+
+.frame {
+  position: relative;
+  border: 1px solid gray;
+  margin-left: 1em;
+  margin-bottom: -1px;
+  margin-right: -1px;
+}
+
+.pad-top {
+  padding-top: 1px;
+}
+
+.pad-left {
+  padding-left: 0.25em;
+}
+
+.list-pane {
+  border: 1px solid;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.list-element {
+  padding: 0em 0.15em;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+label {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 0.66em;
+}
+
+input[type="radio"] {
+  margin-top: 0px;
+  margin-bottom: 1px;
+}
+</style>
+
+<script src="MathInput.js"></script>
+<script src="Formula.js"></script>
+<script src="Proof.js"></script>
+<script src="ProofEdit.js"></script>
+<script src="FileCommands.js"></script>
+<script src="EditCommands.js"></script>
+<script src="StrategyCommands.js"></script>
+<script src="InferCommands.js"></script>
+<script src="GoalCommands.js"></script>
+<script src="QuantifierCommands.js"></script>
+
+<script>
+"use strict";
+
+// Formula types
+const enumSet = -1;
+const comma = 0;
+const conj = 1;
+const disj = 2;
+const intr = 3;
+const union = 4;
+const cond = 5;
+const bicond = 6;
+const symmDiff = 7;
+const diff = 8;
+const prod = 9;
+const comp = 10;
+const equals = 11;
+const element = 12;
+const subset = 13;
+const notEquals = 14;
+const notElement = 15;
+const notSubset = 16;
+const doubleIntr = 17;
+const pair = 18;
+const neg = 19;
+const unionOne = 20;
+const power = 21;
+const inverse = 22;
+const empty = 23;
+const all = 24;
+const exist = 25;
+const unique = 26;
+const sep = 27;
+const rep = 28;
+const brace = 29;
+const grouping = 30;
+const setVar = 31;
+const anyKind = 999;
+
+// Object types
+const set = 1;
+const bool = 2;
+const list = 3;
+
+const symbols = [new SymbolData(',', set, list, 3),  //comma
+	new SymbolData('\u2227', bool, bool, 2),  //conj
+	new SymbolData('\u2228', bool, bool, 2),  //disj
+	new SymbolData('\u2229', set, set, 4),  //intr
+	new SymbolData('\u222A', set, set, 4),  //union
+	new SymbolData('\u2192', bool, bool, 1), //cond
+	new SymbolData('\u2194', bool, bool, 1), //bicond
+	new SymbolData('\u25B3', set, set, 4), //symmDiff
+	new SymbolData('\u2216', set, set, 4), //diff
+	new SymbolData('\u00D7', set, set, 4),  //prod
+	new SymbolData('\u25CB', set, set, 4),  //comp
+	new SymbolData('=', set, bool, 3),  //equals
+	new SymbolData('\u2208', set, bool, 3),  //element
+	new SymbolData('\u2286', set, bool, 3),  //subset
+	new SymbolData('\u2260', set, bool, 3),  //notEquals
+	new SymbolData('\u2209', set, bool, 3),  //notElement
+	new SymbolData('\u2288', set, bool, 3),  //notSubset
+	new SymbolData('\u2229', set, set, 4),  //doubleIntr
+	new SymbolData(',', set, set, 3),  //pair
+	new SymbolData('\u00AC', bool, bool, 5),  //neg
+	new SymbolData('\u222A', set, set, 5),  //unionOne
+	new SymbolData('\uD835\uDCAB', set, set, 5),  //power
+	new SymbolData('\u22121', set, set, 6),  //inverse
+	new SymbolData('\u2205', set, set, 4),  //empty
+	new SymbolData('\u2200', bool, bool, 5),  //all
+	new SymbolData('\u2203', bool, bool, 5),  //exist
+	new SymbolData('!', bool, bool, 5)];  //unique
+
+const breakAfter = [",", symbols[conj].letter, symbols[disj].letter, symbols[cond].letter,
+  symbols[bicond].letter, symbols[equals].letter, symbols[element].letter, symbols[subset].letter,
+  symbols[notEquals].letter, symbols[notElement].letter, symbols[notSubset].letter];
+
+// Proof step kinds
+const inference = 0;
+const goalGap = 1;
+const defineGoalGap = 2;
+const noGoalGap = 3;
+
+// Statement pane kinds
+const given = 4;
+const goal = 5;
+const defineGoal = 6;
+
+// Variant pane variant codes
+const contrad = -1;
+const define = -2;
+
+// Subproof placements
+const noSubproofs = 0;
+const subproofsFirst = 1;
+const subproofsLast = 2;
+
+// subformSpec locations
+const locLeft = 0;
+const locRight = 1;
+const locFrom = 2;
+const locScope = 3;
+
+// Dimensions
+const bulletIndent = 1;
+const bulletMargin = 0.25;
+const headingIndent = 1.9;
+const dotsIndent = 2;
+const lineHeight = 1.35;
+const buttonSpace = 1.1;
+const maxSubMenuChars = 40;
+const varFieldWidth = 2.8;
+const radioCheckSpace = 0.25;
+
+var mathPal;  //Palette of symbol buttons
+var mySel = {orig: null, theField: null, aOffset: 0, fOffset: 0, start: 0, end: 0};  // My selection in math field
+var subformSpec, repInfo, toDrag;
+var openMenu = null;
+var mainProof = null;
+var selectedStep;
+var selection;
+var stmntCopyTable;
+var stateList;
+var currStatePos;
+var helpURL;
+var commandName;
+var activeStack = [];
+
+function init() {
+  initMathPal();
+  document.onselectionchange = fixSelection;
+  document.onclick = hideMenu;
+  document.onkeydown = handleDeleteKey;
+  document.body.style.lineHeight = lineHeight + "em";
+  document.documentElement.style.fontSize = "16px";
+
+/*
+  // For writing documentation:
+  var inputField = makeMathField();
+  var charTable = [",", "&and;", "&or;", "&cap;", "&cup;", "&rarr;", "&harr;", "&#x25B3",
+    "&#x2216", "&times;", "&#x25CB", "=", "&isin;", "&sube;", "&ne;", "&notin;", "&#x2288", "&cap;",
+    ",", "&not;", "&cup;", "&Pscr;", "-", "&empty;", "&forall;", "&exist;"];
+  inputField.style.margin = "20px 0px";
+  document.body.appendChild(inputField);
+  var outputDiv = document.createElement("DIV");
+  document.body.appendChild(outputDiv);
+  outputDiv.style["-webkit-user-select"] = "all";
+  outputDiv.style.paddingBottom = "20px";
+  inputField.oninput = function() {
+    var output = "<span class=\"formula\">"
+    var c = inputField.childNodes;
+    var i;
+    for (i = 0; i < c.length; i++) {
+      var next = c[i];
+      if (next.tagName == "SPAN") {
+        var found = false;
+        var j;
+        for (j = 0; j < unique; j++) {
+          if (next.textContent == symbols[j].letter) {
+            output += charTable[j];
+            found = true;
+            break;
+          }
+        }
+        if (!found) {output += next.textContent;}
+      } else {
+        output += next.outerHTML;
+      }
+    }
+    outputDiv.textContent = output + "</span>";
+    navigator.clipboard.writeText(outputDiv.textContent).then(function() {
+    // clipboard successfully set
+    }, function() {
+    // clipboard write failed
+    });
+  }
+  // End of code for writing documentation
+*/
+ 
+}
+
+function scaleFont(magnify) {
+  if (openMenu != null) {
+    return;
+  }
+  var root = document.documentElement;
+  var size = parseFloat(root.style.fontSize.slice(0, -2));
+  if (magnify) {
+    root.style.fontSize = (size * 1.2) + "px";
+  } else {
+    root.style.fontSize = (size/1.2) + "px";
+  }
+}
+
+function prepareStep() {
+  clearSelection();
+  var currState = stateList[currStatePos];
+  currState.proof = copyProof(mainProof);
+  currState.command = commandName;
+  currStatePos++;
+  stateList[currStatePos] = {proof: mainProof, command: ""};
+  stateList.length = currStatePos + 1;
+  fixUndoRedo();
+}
+
+function doUndoRedo(dir) {
+  clearSelection();
+  document.body.removeChild(mainProof);
+  currStatePos = currStatePos + dir;
+  var currState = stateList[currStatePos];
+  mainProof = currState.proof;
+  document.body.appendChild(mainProof);
+  fixUndoRedo();
+}
+
+function fixUndoRedo() {
+  var undoItem = document.getElementById("Undo");
+  var redoItem = document.getElementById("Redo");
+  if (currStatePos > 0) {
+    undoItem.textContent = "Undo " + stateList[currStatePos - 1].command;
+    undoItem.classList.remove("inactive");
+  } else {
+    undoItem.textContent = "Undo";
+    undoItem.classList.add("inactive");
+  }
+  if (currStatePos < stateList.length - 1) {
+    redoItem.textContent = "Redo " + stateList[currStatePos].command;
+    redoItem.classList.remove("inactive");
+  } else {
+    redoItem.textContent = "Redo";
+    redoItem.classList.add("inactive");
+  }
+}
+
+function installProof(thmString, newProof) {
+  var i, n, items;
+  if (mainProof != null) {
+    document.body.removeChild(mainProof);
+  }
+  document.getElementById("theorem").innerHTML = thmString;
+  mainProof = newProof;
+  document.body.appendChild(mainProof);
+  selectedStep = null;
+  selection = [];
+  stateList = [{proof: mainProof, command: ""}];
+  currStatePos = 0;
+  items = document.getElementsByClassName("menu-item");
+  n = items.length;
+  for (i = 0; i < n; i++) {
+    items[i].classList.remove("inactive");
+  }
+  fixUndoRedo();
+}
+
+function handleDeleteKey(event) {
+  if ((document.body.lastChild.className != "modal-background") &&
+        (openMenu == null) && (event.key == "Backspace") && (selectedStep != null)) {
+    doDelete();
+    event.preventDefault();
+  }
+}
+
+function toggleMenu(menu) {
+  menu.parentNode.getElementsByClassName("menu-background")[0].classList.toggle("hide");
+  var mts = document.getElementsByClassName("menu-title");
+  var m;
+  for (m of mts) {
+    if (m == menu) {
+      m.classList.toggle("active");
+    } else {
+      m.classList.toggle("inactive");
+    }
+  }
+}
+
+function showMenu(event, menu) {
+  if (openMenu == null) {
+    toggleMenu(menu);
+    openMenu = menu;
+    event.stopPropagation();
+  }
+}
+
+function hideMenu() {
+  if (openMenu != null) {
+    toggleMenu(openMenu);
+    openMenu = null;
+  }
+}
+
+function useError(messageHTML = "Incorrect use of command.", doAfter = null) {
+  showMessage(messageHTML + "<br><br><button onclick='window.open(\"" +
+      helpURL + "\")'>Get Help</button>", doAfter)
+}
+
+function alreadyDefinedError(v, doAfter = null) {
+  showMessage(textToElemHTML(varToText(v), "span", false) +
+  " is already defined. Use a different variable.", doAfter);
+}
+
+function willDefineError(v, doAfter = null) {
+	showMessage(textToElemHTML(varToText(v), "span", false) +
+		" is used for something else later. Use a different variable.", doAfter);
+}
+
+function showMessage(messageHTML, doAfter = null) {
+  var d = makeDialog(25);
+  d.appendChild(makeTextPane(messageHTML, 0, 1.25));
+  d.appendChild(makeButtonPanel(["OK"]));
+  var OKButton = d.lastChild.firstChild;
+  OKButton.onclick = function() {hideDialog(doAfter)};
+  showDialog(d, OKButton, false);
+  OKButton.style.width = (2 * OKButton.clientWidth) + "px";
+  OKButton.focus();
+}
+
+// equalize means equalize widths of buttons in panel with defaultButton
+function showDialog(d, defaultButton, equalize) {
+  var context, mathFields, x, dialogBackgnd;
+  var activeList = [];
+
+  function turnOff(tag) {
+    var list = context.getElementsByTagName(tag);
+    for (x of list) {
+      if (!x.disabled) {
+        activeList.push(x);
+        x.disabled = true;
+      }
+    }
+  }
+
+  function clickDefault(event) {
+    if ((event.key == "Enter") && (!defaultButton.disabled)) {
+      defaultButton.onclick(event);
+      event.preventDefault();
+    }
+  }
+
+  context = document.body.lastChild;
+  if (context.className != "modal-background") {
+    context = document.body;
+  }
+  mathFields = context.getElementsByClassName("math-input");
+  for (x of mathFields) {
+    x.contentEditable = false;
+    x.tabIndex = -1;
+    x.blur();
+  }
+  turnOff("button");
+  turnOff("input");
+  activeStack.push(activeList);
+  dialogBackgnd = document.createElement("DIV");
+  dialogBackgnd.className = "modal-background";
+  dialogBackgnd.appendChild(d);
+  document.body.appendChild(dialogBackgnd);
+  d.style.marginTop = Math.floor((window.innerHeight - d.offsetHeight)/3) + "px";
+  d.onkeydown = function(event) {clickDefault(event)};
+  if (equalize) {
+    var panel = defaultButton.parentNode;
+    var maxWidth = 0;
+    for (x of panel.childNodes) {
+      if (x.clientWidth > maxWidth) {
+        maxWidth = x.clientWidth;
+      }
+    }
+    maxWidth = Math.floor(1.1 * maxWidth);
+    for (x of panel.childNodes) {
+      x.style.width = maxWidth + "px";
+    }
+  }
+}
+
+function hideDialog(doAfter = null) {
+  var dialogBackgnd, d, context, mathFields, x, activeList;
+  dialogBackgnd = document.body.lastChild;
+  d = dialogBackgnd.firstChild;
+  document.body.removeChild(dialogBackgnd);
+  if (mathPal.parentNode == d) {
+    d.removeChild(mathPal);
+  }
+  context = document.body.lastChild;
+  if (context.className != "modal-background") {
+    context = document.body;
+  }
+  mathFields = context.getElementsByClassName("math-input");
+  for (x of mathFields) {
+    if (x.onkeydown != null) {
+      x.contentEditable = true;
+    }
+    x.tabIndex = 0;
+  }
+  activeList = activeStack.pop();
+  for (x of activeList) {
+    x.disabled = false;
+  }
+  if (doAfter != null) {
+    doAfter();
+  }
+}
+
+function makeDialog(width) {
+  var d = document.createElement("DIV");
+  d.className = "modal-content";
+  d.style.width = width + "em";
+  return d;
+}
+
+function makeTextPane(textHTML, top, bottom) {
+  var d = document.createElement("DIV");
+  d.style.margin = top + "em 0em " + bottom + "em";
+  d.innerHTML = textHTML;
+  return d;
+}
+
+function makeButtonPanel(names) {
+  var d = document.createElement("DIV");
+  d.style.textAlign = "center";
+  var i, b;
+  var n = names.length - 1;
+  for (i = 0; i < n; i++) {
+    b = makeButton(names[i]);
+    b.style.marginRight = buttonSpace + "rem";
+    d.appendChild(b);
+  }
+  b = makeButton(names[n]);
+  d.appendChild(b);
+  return d;
+}
+
+function makeButton(text) {
+  var b = document.createElement("BUTTON");
+  b.innerHTML = text;
+  return b;
+}
+
+function makeData(e) {
+  e.ProofDesignerData = {};
+  return e.ProofDesignerData;
+}
+
+function getData(e) {
+  return e.ProofDesignerData;
+}
+
+function spacerHTML(width) {
+  return "<span style='display: inline-block; width: " + width + "rem'></span>";
+}
+
+</script>
+</head>
+
+<body class="unselectable" onload="init()">
+
+<div class="menubar">
+  <div class="menu-container">
+    <div class="menu-title" onclick="showMenu(event, this)">File</div>
+    <div class="menu-background hide">
+      <div class="menu-item" onclick="window.open('help/Help.html')">Help</div>
+      <div class="menu-item" onclick="doNewTheorem()">New Theorem&hellip;</div>
+      <div class="menu-item inactive" onclick="doReviseTheorem()">Revise Theorem&hellip;</div>
+      <div class="menu-item inactive" onclick="doSave()">Save</div>
+      <div class="menu-item" onclick="doOpen()">Open&hellip;</div>
+    </div>
+  </div><div class="menu-container">
+    <div class="menu-title" onclick="showMenu(event, this)">Edit</div>
+    <div class="menu-background hide">
+      <div id="Undo" class="menu-item inactive" onclick="doUndoRedo(-1)">Undo</div>
+      <div id="Redo" class="menu-item inactive" onclick="doUndoRedo(1)">Redo</div>
+      <div class="menu-item inactive" onclick="doFinish()">Finish</div>
+      <div class="menu-item inactive" onclick="doDelete()">Delete</div>
+      <div class="menu-item inactive" onclick="doInsert()">Insert&hellip;</div>
+      <div class="menu-item inactive" onclick="doRejustify()">Rejustify</div>
+      <div class="menu-item inactive" onclick="doLemma()">Lemma</div>
+    </div>
+  </div><div class="menu-container">
+    <div class="menu-title" onclick="showMenu(event, this)">Strategy</div>
+    <div class="menu-background hide">
+      <div class="menu-item inactive" onclick="doContrad()">Contradiction</div>
+      <div class="menu-item inactive" onclick="doCases()">Cases&hellip;</div>
+      <div class="menu-item inactive" onclick="doReexSub(true)">Reexpress&hellip;</div>
+      <div class="menu-item inactive" onclick="doReexSub(false)">Substitute&hellip;</div>
+      <div class="menu-item inactive" onclick="doDefine()">Define&hellip;</div>
+    </div>
+  </div><div class="menu-container">
+    <div class="menu-title" onclick="showMenu(event, this)">Infer</div>
+    <div class="menu-background hide">
+      <div class="menu-item inactive" onclick="doMPMT(true)">Modus Ponens</div>
+      <div class="menu-item inactive" onclick="doMPMT(false)">Modus Tollens</div>
+      <div class="menu-item inactive" onclick="doConj(true)">Conjoin</div>
+      <div class="menu-item inactive" onclick="doSplitUp()">Split Up</div>
+      <div class="menu-item inactive" onclick="doAddition()">Addition&hellip;</div>
+      <div class="menu-item inactive" onclick="doDisjSyll()">Disjunctive Syllogism</div>
+      <div class="menu-item inactive" onclick="doExistUI(false)">Universal Instantiation&hellip;</div>
+      <div class="menu-item inactive" onclick="doArbEI(false)">Existential Instantiation&hellip;</div>
+      <div class="menu-item inactive" onclick="doReflexive()">Reflexive Law&hellip;</div>
+    </div>
+  </div><div class="menu-container">
+    <div class="menu-title" onclick="showMenu(event, this)">Goal</div>
+    <div class="menu-background hide">
+      <div class="menu-item inactive" onclick="doDirContrap(true)">Direct</div>
+      <div class="menu-item inactive" onclick="doDirContrap(false)">Contrapositive</div>
+      <div class="menu-item inactive" onclick="doBicond()">Biconditional</div>
+      <div class="menu-item inactive" onclick="doConj(false)">Conjunction</div>
+      <div class="menu-item inactive" onclick="doDisj()">Disjunction&hellip;</div>
+      <div class="menu-item inactive" onclick="doArbEI(true)">Arbitrary Object&hellip;</div>
+      <div class="menu-item inactive" onclick="doExistUI(true)">Existence&hellip;</div>
+      <div class="menu-item inactive" onclick="doExistUnique()">Existence & Uniquenesss</div>
+    </div>
+  </div><button style="margin-left: 3em; margin-right: 0.5em" onclick="scaleFont(true)">+</button><button onclick="scaleFont(false)">&minus;</button>
+</div>
+
+<h1 style="margin-top: 2.6rem;text-align: center">Proof Designer</h1>
+
+<div id="theorem">
+<p>
+Proof Designer writes outlines of proofs in elementary set theory, under the guidance of the user.  It is intended to help students learn to write proofs.
+</p>
+<p>
+The words <b>File</b>, <b>Edit</b>, <b>Strategy</b>, <b>Infer</b>, and <b>Goal</b> appearing above are menu titles.  Click on any of these words to
+show the menu, and then click on a command in the menu to give the command.  You can use the + and &minus; buttons to the right of the menus to change the font size.
+</p>
+<p>
+To start a proof, select "New Theorem&hellip;" from the File menu.<br>
+For instructions, select "Help" from the File menu, or click <a href="help/Help.html" target="_blank">here</a>.
+</p>
+<p>
+Please report bugs to:  Daniel J. Velleman<br><img style="height: 1.4em" src="Email.png">
+</p>
+</div>
+
+</body>
+</html> 

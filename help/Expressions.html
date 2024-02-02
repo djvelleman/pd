@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<TITLE>Typing Expressions</TITLE>
+<style>
+body {
+    line-height: 20px;
+}
+
+.formula {
+    font-family: Verdana, sans-serif;
+}
+
+table, th, td {
+    border: 1px solid gray;
+}
+
+th, td {
+    padding: 2px 10px;
+}
+</style>
+</HEAD>
+<BODY>
+<H1>Typing Expressions in Proof Designer</H1>
+<P>Proof Designer recognizes the following mathematical symbols.  The 
+symbols that are not on the keyboard can be entered either by clicking on 
+the buttons in the symbol palette on the screen, or by using
+the keystrokes in the table below.  (Note:  
+In the table, &#8220;alt&#8221; refers to the alt key on a PC, and 
+the option key on a Macintosh.)
+</P>
+<TABLE>
+<tr>
+<th>Symbol
+</th>
+<th>Meaning
+</th>
+<th>How to Type It
+</th>
+</tr>
+<TR>
+<TD><span class="formula">&and;</span>
+</TD>
+<TD>and
+</TD>
+<TD>alt-A
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">&or;</span>
+</TD>
+<TD>or
+</TD>
+<TD>alt-O
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">&rarr;</span>
+</TD>
+<TD>if-then
+</TD>
+<TD>alt-C (for <b>c</b>onditional)
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">&harr;</span>
+</TD>
+<TD>if and only if
+</TD>
+<TD>alt-B (for <b>b</b>iconditional)
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">&not;</span>
+</TD>
+<TD>not
+</TD>
+<TD>alt-F (for <b>f</b>alse)
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">&forall;</span>
+</TD>
+<TD>for all
+</TD>
+<TD>alt-shift-A
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">&exist;</span>
+</TD>
+<TD>there exists
+</TD>
+<TD>alt-shift-E
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">!</span>
+</TD>
+<TD>unique (must follow <span class="formula">&exist;</span>)
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">&isin;</span>
+</TD>
+<TD>element of
+</TD>
+<TD>alt-M (for <b>m</b>ember of)
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">&notin;</span>
+</TD>
+<TD>not an element of
+</TD>
+<TD>alt-shift-M
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">&sube;</span>
+</TD>
+<TD>subset of
+</TD>
+<TD>alt-S
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">&#x2288</span>
+</TD>
+<TD>not a subset of
+</TD>
+<TD>alt-shift-S
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">=</span>
+</TD>
+<TD>equal to
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">&ne;</span>
+</TD>
+<TD>not equal to
+</TD>
+<TD>alt-=
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">&cap;</span>
+</TD>
+<TD>intersection
+</TD>
+<TD>alt-shift-I
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">&cup;</span>
+</TD>
+<TD>union
+</TD>
+<TD>alt-shift-U
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">&#x2216</span>
+</TD>
+<TD>set difference
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">&#x25B3</span>
+</TD>
+<TD>symmetric difference
+</TD>
+<TD>alt-D
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">&times;</span>
+</TD>
+<TD>cartesian product
+</TD>
+<TD>alt-P
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">&#x25CB</span>
+</TD>
+<TD>composition (of relations)
+</TD>
+<TD>alt-shift-C
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">&Pscr;</span>
+</TD>
+<TD>power set
+</TD>
+<TD>alt-shift-P
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">&empty;</span>
+</TD>
+<TD>empty set
+</TD>
+<TD>alt-0 (alt-zero)
+</TD>
+</TR>
+<TR>
+<TD><span class="formula"><sup>−1</sup></span>
+</TD>
+<TD>inverse (of a relation)
+</TD>
+<TD>alt-1 (alt-one)
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">( , )</span>
+</TD>
+<TD>ordered pairs
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">{ | }</span>
+</TD>
+<TD>set-builder notation
+</TD>
+</TR>
+<TR>
+<TD><span class="formula">( ), [ ]</span>
+</TD>
+<TD>grouping
+</TD>
+</TR>
+</TABLE>
+<P>For the most part, these symbols are simply used in the usual way.  
+Here's 
+a quick summary of what that means.
+</P>
+<P>There are two kinds of meaningful expressions in Proof Designer: 
+statements and terms.  A statement asserts that something is true, and a 
+term is a name for an object.  For example,
+<span class="formula"><i>A</i>&sube;<i>B</i></span> is a
+statement (it asserts that <span class="formula"><i>A</i></span> is a subset of <span class="formula"><i>B</i></span>), and 
+<span class="formula"><i>A</i>&cap;<i>B</i></span> is a term (it is a name 
+for the intersection of 
+<span class="formula"><i>A</i></span> and <span class="formula"><i>B</i></span>).
+</P>
+<H2>Terms</H2>
+<P>The simplest terms that Proof Designer recognizes are variables.
+You may use any letter (case matters) as a variable.  You can also 
+use a letter with a subscript between 0 and 999.  (The subscript cannot be 
+a variable; it must be a number.)  To type a subscripted variable, just 
+type the letter followed by the subscript; the digits will automatically 
+be 
+subscripted.  Whenever it matters what kind of object a variable stands 
+for,
+Proof Designer assumes that it stands for a set.
+</P>
+<P>The symbol <span class="formula">&empty;</span> is also a term, and it 
+stands for the null 
+set&#8212;the set with no elements.
+</P>
+<P>There are three ways you can use braces to form terms, illustrated by 
+the following examples:
+</P>
+<UL>
+<LI><span class="formula">{<i>a</i>,<i>b</i>,<i>c</i>}</span> is the set containing the three 
+elements <span class="formula"><i>a</i></span>, <span class="formula"><i>b</i></span>, and <span class="formula"><i>c</i></span>.
+</LI>
+<LI><span class="formula">{<i>x</i>&isin;<i>A</i>|<i>x</i>&sube;<i>B</i>}</span> is the set of all 
+elements of <span class="formula"><i>A</i></span> that are subsets of <span class="formula"><i>B</i></span>.
+Note that <span class="formula">{<i>x</i>|<i>x</i>&sube;<i>B</i>}</span> is not allowed; you 
+must specify a set from which 
+the values of <span class="formula"><i>x</i></span> are chosen.  Proof Designer requires this in order 
+to avoid <A href="Russell.html">Russell's Paradox</A>.
+</LI>
+<LI><span class="formula">{<i>x</i>&cap;<i>B</i>|<i>x</i>&isin;<i>A</i>}</span> is the set of all 
+sets of the form <span class="formula"><i>x</i>&cap;<i>B</i></span>, where 
+<span class="formula"><i>x</i></span> is an element of <span class="formula"><i>A</i></span>.
+</LI>
+</UL>
+<P>You can combine terms to form more complex terms using the symbols 
+<span class="formula">&cap;</span>, <span class="formula">&cup;</span>, <span class="formula">&#x2216</span>, 
+<span class="formula">&#x25B3</span>, and <span class="formula">&Pscr;</span>.  These have the following 
+meanings:
+</P>
+<UL>
+<LI><span class="formula"><i>A</i>&cap;<i>B</i>={<i>x</i>|<i>x</i>&isin;<i>A</i></span>
+and <span class="formula"><i>x</i>&isin;<i>B</i>}</span>
+</LI>
+<LI><span class="formula"><i>A</i>&cup;<i>B</i>={<i>x</i>|<i>x</i>&isin;<i>A</i></span>
+or <span class="formula"><i>x</i>&isin;<i>B</i>}</span>
+</LI>
+<LI><span class="formula"><i>A</i>&#x2216<i>B</i>={<i>x</i>|<i>x</i>&isin;<i>A</i></span> and 
+<span class="formula"><i>x</i>&notin;<i>B</i>}</span>
+</LI>
+<LI><span class="formula"><i>A</i>&#x25B3<i>B</i>=(<i>A</i>&#x2216<i>B</i>)&cup;(<i>B</i>&#x2216<i>A</i>)</span>
+</LI>
+<LI><span class="formula">&Pscr;(<i>A</i>)={<i>x</i>|<i>x</i>&sube;<i>A</i>}</span>
+</LI>
+</UL>
+<P>You can also use the symbol <span class="formula">&cup;</span> to form 
+the union of a family of 
+sets.  If <span class="formula"><i>F</i></span> is a set whose elements are all sets, then 
+<span class="formula">&cup;<i>F</i></span> is the union of all of the 
+sets in <span class="formula"><i>F</i></span>.  In other 
+words:
+</P>
+<UL>
+<LI><span class="formula">&cup;<i>F</i>={<i>x</i>|</span> For some 
+<span class="formula"><i>A</i>&isin;<i>F</i>, <i>x</i>&isin;<i>A</i>}</span>
+</LI>
+</UL>
+<P>Similarly, you can use the symbol <span class="formula">&cap;</span> to 
+form the intersection
+of a family of sets, but this 
+can lead to problems if the family is empty.  (For more on this, see the 
+discussion of <A href="Russell.html">Russell's Paradox</A>.)
+For this reason, Proof Designer requires that you explicitly include at 
+least one set in any intersection.  If <span class="formula"><i>U</i></span> is a set and <span class="formula"><i>F</i></span> is a 
+family of sets, then you can write the intersection of <span class="formula"><i>U</i></span> and all 
+the elements of <span class="formula"><i>F</i></span> as follows:
+</P>
+<UL>
+<LI><span class="formula"><i>U</i>&cap;&cap;<i>F</i>={<i>x</i>|<i>x</i>&isin;<i>U</i></span>
+and for all <span class="formula"><i>A</i>&isin;<i>F</i>, <i>x</i>&isin;<i>A</i>}</span>
+</LI>
+</UL>
+<P>You can also talk about ordered pairs.  <span class="formula">(<i>a</i>,<i>b</i>)</span> is the 
+ordered pair whose first coordinate is <span class="formula"><i>a</i></span> and whose second 
+coordinate is <span class="formula"><i>b</i></span>.
+If <span class="formula"><i>A</i></span> and <span class="formula"><i>B</i></span> are sets, then 
+<span class="formula"><i>A</i>&times;<i>B</i></span> is the Cartesian product 
+of <span class="formula"><i>A</i></span> and <span class="formula"><i>B</i></span>; 
+i.e., it is the set of all ordered pairs <span class="formula">(<i>a</i>,<i>b</i>)</span> with 
+<span class="formula"><i>a</i>&isin;<i>A</i></span> and
+<span class="formula"><i>b</i>&isin;<i>B</i></span>.  Sets of ordered pairs 
+are called <EM>relations</EM>, and you can use the symbols
+<span class="formula">&#x25CB</span> and 
+<span class="formula"><sup>−1</sup></span> to talk about compositions and inverses of relations:
+</P>
+<UL>
+<LI><span class="formula"><i>R</i>&#x25CB<i>S</i>={(<i>a</i>,<i>c</i>)|</span> For some <span class="formula"><i>b</i></span>, 
+<span class="formula">(<i>a</i>,<i>b</i>)&isin;<i>S</i></span> and 
+<span class="formula">(<i>b</i>,<i>c</i>)&isin;<i>R</i>}</span>
+</LI>
+<LI><span class="formula"><i>R</i><sup>−1</sup>={(<i>b</i>,<i>a</i>)|(<i>a</i>,<i>b</i>)&isin;<i>R</i>}</span>
+</LI>
+</UL>
+<P>Of course, you can combine all of these symbols to form complex 
+expressions, using parentheses and brackets to group terms together if 
+necessary.  For example, the following are all terms:
+</P>
+<UL>
+<LI><span class="formula">[<i>A</i>&cup;(<i>B</i>&times;<i>C</i>)]&#x2216&Pscr;(<i>A</i>&cap;<i>B</i>)</span>
+</LI>
+<LI><span class="formula"><i>A</i>&#x25B3{<i>x</i>&isin;&Pscr;(<i>B</i>)|<i>x</i>&cap;<i>C</i>=&empty;}</span>
+</LI>
+<LI><span class="formula">&cup;{&Pscr;(<i>x</i>)|<i>x</i>&isin;<i>F</i>&cup;<i>G</i>}&cap;&cap;{<i>x</i>&isin;&Pscr;(<i>F</i>)|<i>x</i>&#x2288<i>G</i>}</span>
+</LI>
+</UL>
+<H2>Statements</H2>
+<P>The simplest statements that Proof Designer recognizes are those of the 
+forms <span class="formula"><i>x</i>&isin;<i>y</i></span>, <span class="formula"><i>x</i>&notin;<i>y</i></span>,
+<span class="formula"><i>x</i>=<i>y</i></span>, <span class="formula"><i>x</i>&ne;<i>y</i></span>,
+<span class="formula"><i>x</i>&sube;<i>y</i></span>, and <span class="formula"><i>x</i>&#x2288<i>y</i></span>. 
+In all of these 
+statements, the letters <span class="formula"><i>x</i></span> and <span class="formula"><i>y</i></span> can be replaced by any terms.
+</P>
+<P>You can combine these basic statements to make more complex statements 
+using the logical symbols <span class="formula">&and;</span>,
+<span class="formula">&or;</span>, <span class="formula">&rarr;</span>,
+<span class="formula">&harr;</span>, and <span class="formula">&not;</span>.  
+The symbols <span class="formula">&and;</span>,
+<span class="formula">&or;</span>, <span class="formula">&rarr;</span>, and
+<span class="formula">&harr;</span> must always occur 
+between two statements, and the symbol <span class="formula">&not;</span>
+must always occur before a statement.  For example:
+</P>
+<UL>
+<LI><span class="formula"><i>x</i>&isin;<i>A</i>&and;<i>x</i>&isin;<i>B</i></span> means that
+    <span class="formula"><i>x</i>&isin;<i>A</i></span> and
+    <span class="formula"><i>x</i>&isin;<i>B</i></span>.
+</LI>
+<LI><span class="formula"><i>x</i>&isin;<i>A</i>&or;<i>x</i>&isin;<i>B</i></span> means that
+    <span class="formula"><i>x</i>&isin;<i>A</i></span> or
+    <span class="formula"><i>x</i>&isin;<i>B</i></span>.
+</LI>
+<LI><span class="formula"><i>x</i>&isin;<i>A</i>&rarr;<i>x</i>&isin;<i>B</i></span> means that
+    if <span class="formula"><i>x</i>&isin;<i>A</i></span> then
+    <span class="formula"><i>x</i>&isin;<i>B</i></span>.
+</LI>
+<LI><span class="formula"><i>x</i>&isin;<i>A</i>&harr;<i>x</i>&isin;<i>B</i></span> means that
+    <span class="formula"><i>x</i>&isin;<i>A</i></span> if and only if
+    <span class="formula"><i>x</i>&isin;<i>B</i></span>.
+</LI>
+<LI><span class="formula">&not;<i>x</i>&isin;<i>A</i></span> means that
+    it is not the case that <span class="formula"><i>x</i>&isin;<i>A</i></span>.
+</LI>
+</UL>
+<P>The quantifier symbols <span class="formula">&forall;</span> and
+<span class="formula">&exist;</span> mean &#8220;for all&#8221; 
+and &#8220;there exists&#8221;, respectively, and <span class="formula">&exist;!</span> means 
+&#8220;there exists a unique&#8221;.  Each must be followed by a 
+variable and then a statement.  For example:
+</P>
+<UL>
+<LI><span class="formula">&forall;<i>x</i>(&empty;&sube;<i>x</i>)</span> means that for 
+all <span class="formula"><i>x</i></span>, <span class="formula">&empty;&sube;<i>x</i></span>.
+</LI>
+<LI><span class="formula">&exist;<i>x</i>(&empty;&isin;<i>x</i>)</span> means that there 
+exists some 
+<span class="formula"><i>x</i></span> such that <span class="formula">&empty;&isin;<i>x</i></span>.
+</LI>
+<LI><span class="formula">&exist;!<i>x</i>(<i>x</i>&sube;&empty;)</span> means that there exists 
+a unique <span class="formula"><i>x</i></span> such that <span class="formula"><i>x</i>&sube;&empty;</span>.
+</LI>
+</UL>
+<P>You can put a restriction on the range of possible values for the 
+variable that comes after a quantifier as follows:
+</P>
+<UL>
+<LI><span class="formula">&forall;<i>x</i>&isin;<i>A</i>(<i>x</i>&isin;<i>B</i>)</span>
+means the same thing as
+<span class="formula">&forall;<i>x</i>(<i>x</i>&isin;<i>A</i>&rarr;<i>x</i>&isin;<i>B</i>)</span>.
+</LI>
+<LI><span class="formula">&exist;<i>x</i>&isin;<i>A</i>(<i>x</i>&isin;<i>B</i>)</span>
+    means the same thing as
+    <span class="formula">&exist;<i>x</i>(<i>x</i>&isin;<i>A</i>&and;<i>x</i>&isin;<i>B</i>)</span>.
+</LI>
+<LI><span class="formula">&exist;!<i>x</i>&isin;<i>A</i>(<i>x</i>&isin;<i>B</i>)</span>
+    means the same thing as
+    <span class="formula">&exist;!<i>x</i>(<i>x</i>&isin;<i>A</i>&and;<i>x</i>&isin;<i>B</i>)</span>.
+</LI>
+</UL>
+<H2>Parentheses ( ) and Brackets [ ]</H2>
+<P>You can use parentheses and brackets to eliminate ambiguity.  When in 
+doubt, put in extras&#8212;it can't do any harm.  In the 
+absence of parentheses or brackets, the following priority order 
+determines the 
+order in which expressions are combined:
+</P>
+<UL>
+<LI>Highest priority:  <span class="formula"><sup>−1</sup></span>
+</LI>
+<LI>Next: All other unary operators, quantifiers, and <span class="formula">&not;</span>
+</LI>
+<LI>Next: <span class="formula">&cap;</span>, <span class="formula">&cup;</span>,
+    <span class="formula">&#x2216</span>, <span class="formula">&#x25B3</span>,
+    <span class="formula">&#x25CB</span>, and <span class="formula">&times;</span>
+</LI>
+<LI>Next: <span class="formula">&isin;</span>, <span class="formula">&sube;</span>,
+    <span class="formula">=</span>, <span class="formula">&notin;</span>,
+    <span class="formula">&#x2288</span>, and <span class="formula">&ne;</span>
+</LI>
+<LI>Next: <span class="formula">&and;</span> and <span class="formula">&or;</span>
+</LI>
+<LI>Lowest priority: <span class="formula">&rarr;</span> and <span class="formula">&harr;</span>
+</LI>
+</UL>
+</BODY>
+</HTML>

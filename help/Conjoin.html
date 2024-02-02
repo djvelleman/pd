@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<HTML lang="en">
+<HEAD>
+<meta charset="utf-8">
+<TITLE>Conjoin Command Help</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H2>Infer Menu:</H2>
+<H1>Conjoin Command</H1>
+<P>Select givens <span class="formula"><i>P</i></span> and
+<span class="formula"><i>Q</i></span> and give the Conjoin command,
+and Proof Designer will infer <span class="formula"><i>P</i>&and;<i>Q</i></span>.
+You can select more than two givens, and Proof
+Designer will infer the conjunction of all of them.
+</P>
+<P>You can also use this command to work backwards from your goal.  If your goal is a statement of the form
+<span class="formula"><i>P</i><sub>1</sub>&and;<i>P</i><sub>2</sub>&and;&hellip;&and;<i>P<sub>n</sub></i></span>
+and some of the statements <span class="formula"><i>P</i><sub>1</sub></span>,
+<span class="formula"><i>P</i><sub>2</sub></span>, &hellip;, <span class="formula"><i>P<sub>n</sub></i></span>
+are in your givens list, then you can select those givens and the goal and give the
+Conjoin command.  Proof Designer will then require you to prove those conjuncts that are not
+already in your givens list.
+</P>
+<P>Parentheses in your goal can affect how the Conjoin
+command works.  For example, if you select a given <span class="formula"><i>P</i></span>
+and a goal of the form
+<span class="formula"><i>P</i>&and;<i>Q</i>&and;<i>R</i></span>
+and give the Conjoin command, then Proof
+Designer will say that you must prove
+<span class="formula"><i>Q</i></span> and <span class="formula"><i>R</i></span> in
+order to complete the proof.  But if the goal is
+<span class="formula"><i>P</i>&and;(<i>Q</i>&and;<i>R</i>)</span>, then
+Proof Designer will say that you must prove
+<span class="formula"><i>Q</i>&and;<i>R</i></span>.  Thus, you may want to add or remove
+parentheses in your goal before using the Conjoin command.  Too add or
+remove parentheses, use the <A href="Reexpress.html">Reexpress</A> command.
+</P>
+
+</BODY>
+</HTML>

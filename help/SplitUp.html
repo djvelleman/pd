@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<HTML lang="en">
+<HEAD>
+<meta charset="utf-8">
+<TITLE>Split Up Command Help</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H2>Infer Menu:</H2>
+<H1>Split Up Command</H1>
+<P>The Split Up command can only be used when you have a given of the form
+<span class="formula"><i>P</i>&harr;<i>Q</i></span> or
+<span class="formula"><i>P</i><sub>1</sub>&and;<i>P</i><sub>2</sub>&and;&hellip;&and;<i>P<sub>n</sub></i></span>.
+If you select a given of
+the form <span class="formula"><i>P</i>&harr;<i>Q</i></span> and give the
+Split Up command, then Proof Designer will infer
+<span class="formula"><i>P</i>&rarr;<i>Q</i></span> and
+<span class="formula"><i>Q</i>&rarr;<i>P</i></span>.  If you select a given of the form
+<span class="formula"><i>P</i><sub>1</sub>&and;<i>P</i><sub>2</sub>&and;&hellip;&and;<i>P<sub>n</sub></i></span>
+and give the Split Up
+command, then Proof Designer will infer all of the statements
+<span class="formula"><i>P</i><sub>1</sub></span>, <span class="formula"><i>P</i><sub>2</sub></span>,
+&hellip;, <span class="formula"><i>P<sub>n</sub></i></span>.
+</p>
+<P>Parentheses in your given can affect how the Split Up
+command works.  For example, if you select a given of the form
+<span class="formula"><i>P</i>&and;<i>Q</i>&and;<i>R</i></span>
+and give the Split Up command, then Proof Designer will infer
+<span class="formula"><i>P</i></span>, <span class="formula"><i>Q</i></span>,
+and <span class="formula"><i>R</i></span>.  But if the given is
+<span class="formula"><i>P</i>&and;(<i>Q</i>&and;<i>R</i>)</span>, then
+Proof Designer will infer <span class="formula"><i>P</i></span> and
+<span class="formula"><i>Q</i>&and;<i>R</i></span>.  Thus, you may want to
+add or remove parentheses in your given before using the Split Up command. 
+Too add or remove parentheses, use the <A
+href="Reexpress.html">Reexpress</A> command.
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<HTML lang="en">
+<HEAD>
+<meta charset="utf-8">
+<TITLE>Universal Instantiation Command Help</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H2>Infer Menu:</H2>
+<H1>Universal Instantiation Command</H1>
+<P>If you have a given of the form <span class="formula">&forall;<i>x</i>&thinsp;<i>P</i>(<i>x</i>)</span>, then 
+you can infer that <span class="formula"><i>P</i>(<i>x</i>)</span> is true for any value of
+<span class="formula"><i>x</i></span>
+that you choose.  Select the given and give the Universal Instantiation 
+command, and a dialog box will open asking what value 
+you would like to assign to <span class="formula"><i>x</i></span>.  If you know what value you want to use for 
+<span class="formula"><i>x</i></span>, type it into the &#8220;Use this value&#8221; box and click OK.  Proof 
+Designer will infer that <span class="formula"><i>P</i>(<i>x</i>)</span> is true for this 
+value of <span class="formula"><i>x</i></span>.
+</P>
+<P>If you don't know what 
+value you want to use for <span class="formula"><i>x</i></span>, you can use the &#8220;Use this new 
+variable, whose definition will be inserted later&#8221; box.  A default
+variable may be filled in already, but you can change it if 
+you want to.  You must choose a variable that is not already in use in the 
+proof to stand for something else.  If you choose this option, then Proof 
+Designer will insert a new gap into the proof in which you must give a 
+definition of the variable you chose, and then it will infer that <span class="formula"><i>P</i></span> 
+is true of the object named by that variable.  Thus, 
+there will now be <EM>two</EM> gaps in the proof: one for the definition 
+of the new variable, and one for the goal that you were originally 
+working on proving.  You can work on these two gaps in either 
+order.  In particular, you may find it useful to continue working on 
+proving your goal until you reach the point where you know what value 
+should be assigned to the variable, and then go back and fill in the 
+definition of the variable.  Hint: If, in the course of working on the 
+proof of your goal, you decide to make an inference from some of 
+the givens, you may want to make that inference in the <EM>first</EM> gap; 
+after all, the inference may turn out to play a role in the definition of 
+the variable, so you may want it to be available to be used in the gap in 
+which that definition must be filled in.
+</P>
+<P>If your given starts with several universal quantifiers in a row, then 
+you can handle as many of them as you want in one step.  For each 
+quantifier, you can choose to use either the &#8220;Use this value&#8221; 
+box or the &#8220;Use this new variable&#8221; box.  Make your choice for 
+the first quantifier, and then click the Next button.  Proof Designer will
+fill in the value or variable you selected and then ask what you want to do 
+for the next quantifier.  Once you have made your choice for the last 
+quantifier you want to deal with, click OK.
+</P>
+<P>The instructions above also apply if you have a given of the form
+<span class="formula">&forall;<i>x</i>&isin;<i>A</i>&thinsp;<i>P</i>(<i>x</i>)</span>,
+but in this case there is 
+also a shortcut you can use.  If you have a given of this 
+form, and you also have a given of 
+the form <span class="formula"><i>y</i>&isin;<i>A</i></span>, then you may 
+select both and give the Universal Instantiation command.  No dialog box will
+open, and Proof Designer will infer <span class="formula"><i>P</i>(<i>y</i>)</span>.
+</P>
+
+</BODY>
+</HTML>

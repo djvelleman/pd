@@ -1,0 +1,216 @@
+<!DOCTYPE HTML>
+<HTML lang="en">
+<HEAD>
+<meta charset="utf-8">
+<TITLE>Proof Designer Quick Start</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H1>Quick Start</H1>
+<P>Perhaps the best way to see what Proof Designer does is to work out a
+simple example.  These instructions will lead you through using Proof
+Designer to prove the following theorem: If <span class="formula"><i>F</i>&sube;<i>G</i></span>
+then <span class="formula">&cup;<i>F</i>&sube;&cup;<i>G</i></span>.
+</P>
+<OL>
+<LI>Choose &ldquo;New Theorem&rdquo; from the Edit menu in the Proof Designer window.
+A dialog box will open, asking you to type in the hypotheses and conclusion
+of the theorem you want to prove.  Type <span class="formula"><i>F</i>&sube;<i>G</i></span>
+and click the Add Hypothesis button.  (To type the
+subset symbol, <span class="formula">&sube;</span>, type alt-S (Windows)
+or option-S (Macintosh), or click the mouse on the <span class="formula">&sube;</span>
+button in the symbol palette at the top of the dialog box.) 
+If you have made a typographical error and the statement you have typed
+doesn't make sense, you will get an error message at this point.  Fix the
+error and try again.  If you typed it correctly, the statement
+<span class="formula"><i>F</i>&sube;<i>G</i></span> will appear in the list of
+hypotheses.  Now type <span class="formula">&cup;<i>F</i>&sube;&cup;<i>G</i></span>
+and click on the Set Conclusion button.  (To type the union symbol,
+<span class="formula">&cup;</span>, type alt-shift-U (Windows) or
+option-shift-U (Macintosh), or use the symbol palette.)  If you have
+entered the hypothesis incorrectly, you can click on it to select it, click
+the Cut Hypothesis button, and then enter the hypothesis correctly.  If you
+have entered the conclusion incorrectly, just enter the correct one and
+click the Set Conclusion button again; the new conclusion will replace the
+old one.  When you have the hypothesis and conclusion entered correctly,
+click OK. The statement of the theorem will appear in the Proof Designer window, followed by
+the word &#8220;Proof:&#8221; and then a summary of what you know
+(&#8220;Given&#8221;) and what you have to prove (&#8220;Goal&#8221;) in
+order to complete the proof.  This summary is set off from the rest of the
+contents of the window by being indented and enclosed in a box, and in the
+upper left corner of the box there is a small button containing a
+&#8220;?&#8221;.  (We'll see what the button does later.)  As you follow
+the instructions below, an outline of the proof will gradually take shape
+in this window.  &#8220;Gaps&#8221; in the proof indicating where
+additional steps still need to be added will always be indicated in this
+outline by summaries like this one, contained in boxes with a ?  button in
+the upper left corner.
+</LI>
+<LI>Click on the statement <span class="formula">&cup;<i>F</i>&sube;&cup;<i>G</i></span>
+under the heading &#8220;Goal&#8221;.  It will get highlighted to indicate
+that it has been selected.  Now choose the Reexpress command from the
+Strategy menu.  A dialog box will appear displaying the statement you
+selected, with buttons allowing you to reexpress the statement in a number
+of ways.  Click on the Apply Definition button, and the statement will get
+reexpressed as
+<span class="formula">&forall;<i>a</i>(<i>a</i>&isin;&cup;<i>F</i>&rarr;<i>a</i>&isin;&cup;<i>G</i>)</span>
+(applying the definition of <span class="formula">&sube;</span>, of
+course).  Click OK. The statement
+<span class="formula">&forall;<i>a</i>(<i>a</i>&isin;&cup;<i>F</i>&rarr;<i>a</i>&isin;&cup;<i>G</i>)</span>
+will be listed as a
+<EM>variant</EM> of the original goal
+<span class="formula">&cup;<i>F</i>&sube;&cup;<i>G</i></span>.  It is equivalent to the original
+goal, so proving the statement in either form would suffice to complete the
+proof.  A variant of a given or goal is always listed below it, indented,
+with an open circle in front of it rather than a bullet.
+</LI>
+<LI>Since the new variant of the goal starts with <span class="formula">&forall;<i>a</i></span>,
+  the best way to proceed is to let <span class="formula"><i>a</i></span> stand
+for an arbitrary object.  Click on the new variant of the goal to select
+it, and choose the Arbitrary Object command from the Goal menu.  A
+dialog box will appear, asking what name you would like to use for the
+arbitrary object.  The default choice <span class="formula"><i>a</i></span> will already be filled in,
+but if you want to use a different name you can just type it in.  Click OK.
+The window containing the proof will get updated.  Proof Designer will
+create a subproof in which <span class="formula"><i>a</i></span> is introduced as an arbitrary object. 
+To finish the subproof, you must prove the statement
+<span class="formula"><i>a</i>&isin;&cup;<i>F</i>&rarr;<i>a</i>&isin;&cup;<i>G</i></span>. 
+The declaration of <span class="formula"><i>a</i></span> as an arbitrary object only applies to steps
+inside the subproof; outside the subproof, <span class="formula"><i>a</i></span> is undefined.  To
+indicate this, Proof Designer sets off the subproof from the rest of the
+proof by indenting it and enclosing it in a box.  In the upper left corner
+of the box there is a small button containing the symbol &#8220;&therefore;&#8221;.  Proof Designer also writes the final
+sentence of the proof, saying that since <span class="formula"><i>a</i></span> was arbitrary, we can
+conclude that <span class="formula">&cup;<i>F</i>&sube;&cup;<i>G</i></span>.
+</LI>
+<LI>The goal is now an if-then statement.  You can prove it either by doing
+a direct proof, or by proving the contrapositive.  In this case a direct
+proof is probably easiest, so select the goal and choose Direct from the
+Goal menu.  Proof Designer will introduce another subproof, nested
+inside the first, in which it is assumed that
+<span class="formula"><i>a</i>&isin;&cup;<i>F</i></span>, and you must
+prove that <span class="formula"><i>a</i>&isin;&cup;<i>G</i></span>.
+This subproof justifies the conclusion that
+<span class="formula"><i>a</i>&isin;&cup;<i>F</i>&rarr;<i>a</i>&isin;&cup;<i>G</i></span>. 
+The subproof is set off from the rest of the proof to indicate that the
+assumption <span class="formula"><i>a</i>&isin;&cup;<i>F</i></span>
+only applies within the subproof.
+</LI>
+<LI>Click on the goal <span class="formula"><i>a</i>&isin;&cup;<i>G</i></span> and choose Reexpress from the
+Strategy menu.  (Shortcut: double-clicking on a statement is equivalent to
+selecting it and choosing the Reexpress command.)  Click the Apply
+Definition button again, and the statement will get rewritten as
+<span class="formula">&exist;<i>b</i>&isin;<i>G</i>(<i>a</i>&isin;<i>b</i>)</span>. 
+Click OK.
+</LI>
+<LI>Since the goal starts with <span class="formula">&exist;<i>b</i></span>,
+we must find a value to plug in for <span class="formula"><i>b</i></span>.  To do this we will have to
+look more closely at the givens.  The best one to start with is
+<span class="formula"><i>a</i>&isin;&cup;<i>F</i></span>, since it will also start with
+<span class="formula">&exist;</span> when the definition of <span class="formula">&cup;</span>
+is written out, and it is always best to use a given that starts with
+<span class="formula">&exist;</span> immediately.  So select the given
+<span class="formula"><i>a</i>&isin;&cup;<i>F</i></span> and use the
+Apply Definition button in the Reexpress
+dialog box to rewrite it as <span class="formula">&exist;<i>b</i>&isin;<i>F</i>(<i>a</i>&isin;<i>b</i>)</span>.
+</LI>
+<LI>When you know something exists, you should always give it a name.  So
+select the new given variant
+<span class="formula">&exist;<i>b</i>&isin;<i>F</i>(<i>a</i>&isin;<i>b</i>)</span>
+and choose Existential Instantiation from the Infer
+menu.  A dialog box will appear, asking what name you want to give to the
+object that exists.  It might be best to use something other than <span class="formula"><i>b</i></span>,
+to avoid confusion with the other uses of the letter <span class="formula"><i>b</i></span> in the proof,
+so let's use <span class="formula"><i>X</i></span>.  Enter <span class="formula"><i>X</i></span>
+in the dialog box, and then click
+the OK button.  The statements <span class="formula"><i>a</i>&isin;<i>X</i></span>
+and <span class="formula"><i>X</i>&isin;<i>F</i></span> will get added to the givens list.
+</LI>
+<LI>Notice that every time you do a step, a little bit gets added to the
+proof.  This might be a good time to look at what's been written so far. 
+If you click on the ?  button, the givens and goal list will be hidden, and
+you can see more clearly how the proof is shaping up.  Click on the ? 
+button again to show the givens and goal again.  Similarly, the &therefore;
+buttons hide or show the details of the
+subproofs they introduce.  Try them out!
+</LI>
+<LI>We can now say what value should be plugged in for <span class="formula"><i>b</i></span> to prove
+the goal.  Looking at the givens, you should see that the right choice is
+<span class="formula"><i>b</i>=<i>X</i></span>.  So select the goal variant
+<span class="formula">&exist;<i>b</i>&isin;<i>G</i>(<i>a</i>&isin;<i>b</i>)</span>
+and choose Existence from the Goal menu.  A dialog box will appear,
+asking you what value should be plugged in for <span class="formula"><i>b</i></span> to make the goal
+true.  Choose the "Use this value" option (it should already be selected),
+type in <span class="formula"><i>X</i></span>, and click the OK button.  The proof will get updated. 
+There are now <EM>two</EM> gaps in the proof, because you have to prove two
+statements to complete the proof.  In the first gap, your goal is to prove
+<span class="formula"><i>X</i>&isin;<i>G</i></span>, and in the second, you
+must prove <span class="formula"><i>a</i>&isin;<i>X</i></span>.  You can
+work on the gaps in either order.
+</LI>
+<LI>Fortunately, we already know <span class="formula"><i>a</i>&isin;<i>X</i></span>,
+so let's deal with the second gap first.  The goal
+of this gap is already among the givens, so there is nothing more to prove,
+but Proof Designer does not recognize this automatically.  You must tell
+Proof Designer that the goal has been achieved.  To do this, select the
+given <span class="formula"><i>a</i>&isin;<i>X</i></span> in the second gap
+and give the Finish command from the Edit menu.  The second gap will
+disappear.
+</LI>
+<LI>We will have to do a few more steps to prove the goal of the other
+gap, <span class="formula"><i>X</i>&isin;<i>G</i></span>.  Of course, it
+will follow from the givens <span class="formula"><i>X</i>&isin;<i>F</i></span>
+and <span class="formula"><i>F</i>&sube;<i>G</i></span>.  Click on the given
+<span class="formula"><i>F</i>&sube;<i>G</i></span> and use the Apply Definition
+button in the Reexpress dialog box to write it out as
+<span class="formula">&forall;<i>b</i>(<i>b</i>&isin;<i>F</i>&rarr;<i>b</i>&isin;<i>G</i>)</span>.
+</LI>
+<LI>Select the new given variant
+<span class="formula">&forall;<i>b</i>(<i>b</i>&isin;<i>F</i>&rarr;<i>b</i>&isin;<i>G</i>)</span>
+and choose the Universal
+Instantiation command in the Infer menu.  This command lets you plug in
+anything you want for <span class="formula"><i>b</i></span> in the statement
+<span class="formula"><i>b</i>&isin;<i>F</i>&rarr;<i>b</i>&isin;<i>G</i></span>.
+A dialog box will appear, asking
+what you would like to substitute for <span class="formula"><i>b</i></span>.
+In this case you want to substitute <span class="formula"><i>X</i></span> for
+<span class="formula"><i>b</i></span>, so choose the "Use this value" option (as
+before, it should already be selected), type in <span class="formula"><i>X</i></span>, and click the OK
+button.  The new given <span class="formula"><i>X</i>&isin;<i>F</i>&rarr;<i>X</i>&isin;<i>G</i></span>
+will appear in the givens list.
+</LI>
+<LI>Click on the new given <span class="formula"><i>X</i>&isin;<i>F</i>&rarr;<i>X</i>&isin;<i>G</i></span>
+to select it, and then <EM>shift</EM>-click (i.e., hold down the shift key on the keyboard while
+clicking with the mouse) on the given <span class="formula"><i>X</i>&isin;<i>F</i></span>
+to select it as well.  Choose Modus Ponens from the
+Infer menu.  Proof Designer will draw the inference
+<span class="formula"><i>X</i>&isin;<i>G</i></span>.
+</LI>
+<LI>The proof is now complete, since the desired goal,
+  <span class="formula"><i>X</i>&isin;<i>G</i></span>, was just inferred in
+the last step.  Select the given <span class="formula"><i>X</i>&isin;<i>G</i></span>
+and choose Finish from the Edit menu.  The last gap
+in the proof will disappear, and Proof Designer will congratulate you on
+finishing the proof.  Notice that the backgrounds of the buttons
+introducing subproofs change from gray to white.  Subproof buttons always
+change from gray to white when their subproofs are completed.
+</LI>
+<LI>If you want to print your proof, you can use your browser's Print command.
+</LI>
+</OL>
+<P>You should now have a pretty good idea of what Proof Designer does.
+For another example that illustrates some of the more advanced features of
+Proof Designer, click <A href="Advanced.html">here</A>.
+</P>
+</BODY>
+</HTML>
+

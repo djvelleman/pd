@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<TITLE>Cases Command Help</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H2>Strategy Menu:</H2>
+<H1>Cases Command</H1>
+<P>Use the Cases command if you want to do a proof
+by cases.  If you select a given of the form
+<span class="formula"><i>P</i><sub>1</sub>&or;<i>P</i><sub>2</sub>&or;&hellip;&or;<i>P</i><sub><i>n</i></sub></span>
+and give the Cases command, then Proof Designer will break the proof into the
+cases <span class="formula"><i>P</i><sub>1</sub></span>, <span class="formula"><i>P</i><sub>2</sub></span>,
+&hellip;, <span class="formula"><i>P</i><sub><i>n</i></sub></span>.
+You can also break your proof into cases <span class="formula"><i>P</i></span>
+and <span class="formula">&not;<i>P</i></span>, for any statement
+<span class="formula"><i>P</i></span>.  To do this, select the goal you want to
+prove by cases and give the Cases command.  Proof Designer will ask you to type in
+the statement <span class="formula"><i>P</i></span> that you want to use to determine
+the two cases.
+</P>
+<P>If you are using a given of the form
+  <span class="formula"><i>P</i><sub>1</sub>&or;<i>P</i><sub>2</sub>&or;&hellip;&or;<i>P</i><sub><i>n</i></sub></span>
+to determine the cases,
+then parentheses in the given can affect what cases you get.  For example,
+if you select a given of the form
+<span class="formula"><i>P</i>&or;<i>Q</i>&or;<i>R</i></span> and give the
+Cases command, then you will get the three cases <span class="formula"><i>P</i></span>,
+<span class="formula"><i>Q</i></span>, and <span class="formula"><i>R</i></span>.
+But if your given has the form <span class="formula"><i>P</i>&or;(<i>Q</i>&or;<i>R</i>)</span>, then you
+will get only two cases: <span class="formula"><i>P</i></span> and
+<span class="formula"><i>Q</i>&or;<i>R</i></span>.  Thus, you may want to add
+or remove parentheses in your given before using the Cases command.  To add or remove parentheses,
+use the <A href="Reexpress.html">Reexpress</A> command.
+</P>
+</BODY>
+</HTML>

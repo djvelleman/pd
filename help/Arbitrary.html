@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<HTML lang="en">
+<HEAD>
+<meta charset="utf-8">
+<TITLE>Arbitrary Object Command Help</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H2>Goal Menu:</H2>
+<H1>Arbitrary Object Command</H1>
+<P>The Arbitrary Object command can only be used when you 
+have a goal of the form
+<span class="formula">&forall;<i>x</i>&thinsp;<i>P</i>(<i>x</i>)</span>.
+Use the Arbitrary 
+Object command if you want to prove this goal by letting <span class="formula"><i>x</i></span> stand for 
+an arbitrary object and then proving <span class="formula"><i>P</i>(<i>x</i>)</span>.
+</P>
+<P>If you select a goal of the form
+<span class="formula">&forall;<i>x</i>&thinsp;<i>P</i>(<i>x</i>)</span>
+and give the Arbitrary Object command, then a dialog box will 
+open, asking you what variable you want to use to stand for the arbitrary 
+object.  A default value may be filled in already, but you can change it if 
+you want to.  You must choose a variable that is not already in use in the 
+proof to stand for something else.  When you click OK, Proof Designer will
+create a subproof in which you must prove that <span class="formula"><i>P</i></span> is true for an 
+arbitrary object named by the variable you chose.
+</P>
+<P>If your goal starts with several universal quantifiers in a row, then you can 
+introduce several arbitrary objects in one step.  Choose a variable to 
+stand for the first arbitrary object, and then click the Next button.  
+Proof Designer will fill in the variable you selected and then ask what 
+name you would like to use for the next arbitrary object.  Once you have 
+chosen a name for the last arbitrary object you want to introduce, click 
+OK.
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<HTML lang="en">
+<HEAD>
+<meta charset="utf-8">
+<TITLE>Conjunction Command Help</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H2>Goal Menu:</H2>
+<H1>Conjunction Command</H1>
+<P>If you select a goal of the form
+<span class="formula"><i>P</i><sub>1</sub>&and;<i>P</i><sub>2</sub>&and;&hellip;&and;<i>P<sub>n</sub></i></span>
+and give the Conjunction command, then Proof Designer will say that you now have to prove all of the
+statements <span class="formula"><i>P</i><sub>1</sub></span>, <span class="formula"><i>P</i><sub>2</sub></span>,
+&hellip;, <span class="formula"><i>P<sub>n</sub></i></span>, and it will say that once these have been proven,
+they can be used to infer the goal.  If you already have some of these
+statements in your givens list, then you can select them too before giving
+the Conjunction command.  Proof Designer will then require you to prove
+only those statements that are not already in your givens list.
+</P>
+<P>Parentheses in your goal can affect how the Conjunction
+command works.  For example, if you select a goal of the form
+<span class="formula"><i>P</i>&and;<i>Q</i>&and;<i>R</i></span>
+and give the Conjunction command, then Proof
+Designer will say that you must prove <span class="formula"><i>P</i></span>,
+<span class="formula"><i>Q</i></span>, and <span class="formula"><i>R</i></span> in
+order to complete the proof.  But if the goal is
+<span class="formula"><i>P</i>&and;(<i>Q</i>&and;<i>R</i>)</span>, then
+Proof Designer will say that you must prove <span class="formula"><i>P</i></span> and
+<span class="formula"><i>Q</i>&and;<i>R</i></span>.  Thus, you may want to add or remove
+parentheses in your goal before using the Conjunction command.  Too add or
+remove parentheses, use the <A href="Reexpress.html">Reexpress</A> command.
+</P>
+</BODY>
+</HTML>

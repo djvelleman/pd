@@ -1,0 +1,295 @@
+<!DOCTYPE HTML>
+<HTML lang="en">
+<HEAD>
+<meta charset="utf-8">
+<TITLE>Proof Strategies</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H1>A Guide to Proof Strategies</H1>
+<P>Usually, when you are working on a proof, you should use the logical
+forms of the givens and goals to guide you in choosing what proof
+strategies to use.  Here is a summary of the various forms that givens and
+goals might take, the strategies that are most appropriate for each form,
+and how to carry out those strategies in Proof Designer.  For a more
+complete explanation of these strategies, see my book
+<I><a href="https://www.cambridge.org/us/academic/subjects/mathematics/logic-categories-and-sets/how-prove-it-structured-approach-3rd-edition">How To Prove
+It</a></I>, published by <A href="http://www.cambridge.org/">Cambridge
+University Press</A>.
+</P>
+<H2>To Prove a Goal of the Form:</H2>
+<UL>
+<LI><span class="formula"><i>P</i>&rarr;<i>Q</i></span>
+<UL>
+<LI>Assume that <span class="formula"><i>P</i></span> is true and prove
+<span class="formula"><i>Q</i></span>.  To do this in Proof
+Designer, select the goal and then give the <A
+href="Direct.html">Direct</A> command in the Goal menu.
+</LI>
+<LI>Prove the contrapositive; i.e., assume that <span class="formula"><i>Q</i></span>
+is false and prove that <span class="formula"><i>P</i></span> is false.
+In Proof Designer, select the goal and give the <A
+href="Contrapos.html">Contrapositive</A> command in the Goal menu.
+</LI>
+</UL>
+</LI>
+<LI><span class="formula">&not;<i>P</i></span>
+<UL>
+<LI>Reexpress as a positive statement.  In Proof Designer, select the goal,
+give the <A href="Reexpress.html">Reexpress</A> command in the Strategy
+menu, and use the Reexpress Negative button in the Reexpress dialog box.
+</LI>
+<LI>Use proof by contradiction; i.e., assume <span class="formula"><i>P</i></span> is true and try to
+reach a contradiction.  In Proof Designer, select the goal and give the <A
+href="Contrad.html">Contradiction</A> command in the Strategy menu.  If you
+already know which given you are planning to contradict, you can select it
+too before giving the Contradiction command, and Proof Designer will
+indicate what you have to prove to achieve the desired contradiction.
+</LI>
+</UL>
+</LI>
+<LI><span class="formula"><i>P</i><sub>1</sub>&and;<i>P</i><sub>2</sub>&and;&hellip;&and;<i>P<sub>n</sub></i></span>
+<UL>
+<LI>Prove <span class="formula"><i>P</i><sub>1</sub></span>,
+<span class="formula"><i>P</i><sub>2</sub></span>, &hellip;,
+<span class="formula"><i>P<sub>n</sub></i></span> separately.  In other words, treat this as a list of
+<I>n</I> separate goals.  In Proof Designer, select the goal and give the
+<A href="Conjunction.html">Conjunction</A> command in the Goal menu.  If
+you already have some of the statements <span class="formula"><i>P</i><sub>1</sub></span>,
+<span class="formula"><i>P</i><sub>2</sub></span>, &hellip;,
+<span class="formula"><i>P<sub>n</sub></i></span> as givens, you can select
+them too and Proof Designer will only ask you to prove the statements from
+this list that you don't already know.
+</LI>
+</UL>
+</LI>
+<LI><span class="formula"><i>P</i><sub>1</sub>&or;<i>P</i><sub>2</sub>&or;&hellip;&or;<i>P<sub>n</sub></i></span>
+<UL>
+<LI>Assume that all but one of the statements in the list
+<span class="formula"><i>P</i><sub>1</sub></span>, <span class="formula"><i>P</i><sub>2</sub></span>,
+&hellip;, <span class="formula"><i>P<sub>n</sub></i></span> are
+false, and prove that the remaining statement is true.  In Proof Designer,
+select the goal and give the <A href="Disjunction.html">Disjunction</A>
+command in the Goal menu.  Proof Designer will ask which statement you
+are planning to prove.  If you don't want to assume the negations of the
+other statements, remove the check mark from the &#8220;Assume negations of
+others&#8221; check box by clicking on it.
+</LI>
+<LI>Use proof by cases.  In each case, prove one of the statements
+<span class="formula"><i>P</i><sub>1</sub></span>, <span class="formula"><i>P</i><sub>2</sub></span>,
+&hellip;, <span class="formula"><i>P<sub>n</sub></i></span>.  In
+Proof Designer, use the <A href="Cases.html">Cases</A> command in the
+Strategy menu to break your proof into cases.  Once you have broken the
+proof into cases, your goal in each case will be
+<span class="formula"><i>P</i><sub>1</sub>&or;<i>P</i><sub>2</sub>&or;&hellip;&or;<i>P<sub>n</sub></i></span>.
+For each case, select this goal, give the <A
+href="Disjunction.html">Disjunction</A> command in the Goal menu, and
+tell Proof Designer which statement you plan to prove.  If you are using
+this strategy, you probably <EM>will</EM> want to remove the check mark
+from the &#8220;Assume negations of others&#8221; check box.
+</LI>
+</UL>
+</LI>
+<LI><span class="formula"><i>P</i>&harr;<i>Q</i></span>
+<UL>
+<LI>Prove <span class="formula"><i>P</i>&rarr;<i>Q</i></span> and
+  <span class="formula"><i>Q</i>&rarr;<i>P</i></span>, using the methods listed
+under <span class="formula"><i>P</i>&rarr;<i>Q</i></span> above.  In Proof
+Designer, select the goal and give the <A
+href="Bicond.html">Biconditional</A> command in the Goal menu.
+</LI>
+</UL>
+</LI>
+<LI><span class="formula">&forall;<i>x</i>&thinsp;<i>P</i>(<i>x</i>)</span>
+<UL>
+<LI>Let <span class="formula"><i>x</i></span> stand for an arbitrary object, and prove
+<span class="formula"><i>P</i>(<i>x</i>)</span>.  (If the letter
+<span class="formula"><i>x</i></span> already stands for something
+in the proof, you will have to use a different letter for the arbitrary
+object.)  In Proof Designer, select the goal and give the <A
+href="Arbitrary.html">Arbitrary Object</A> command in the Goal menu.
+</LI>
+</UL>
+</LI>
+<LI><span class="formula">&exist;<i>x</i>&thinsp;<i>P</i>(<i>x</i>)</span>
+<UL>
+<LI>Find a value of <span class="formula"><i>x</i></span> that makes
+<span class="formula"><i>P</i>(<i>x</i>)</span> true.  Prove
+<span class="formula"><i>P</i>(<i>x</i>)</span> for this value of
+<span class="formula"><i>x</i></span>.  In Proof Designer, select
+the goal and give the <A href="Existence.html">Existence</A> command in the
+Goal menu.  Proof Designer will ask you what value you want to use for
+<span class="formula"><i>x</i></span>.  You have two choices: If you know what value you want to assign
+to <span class="formula"><i>x</i></span>, select the &#8220;Use this value&#8221; choice and type in the
+value.  If you don't know what value to use, select the &#8220;Use this new
+variable, whose definition will be inserted later&#8221; choice, and type
+in an unused variable name.  In the latter case, you can begin working on
+the proof of <span class="formula"><i>P</i>(<i>x</i>)</span> even before you have decided what value you
+want to use for <span class="formula"><i>x</i></span>.
+</LI>
+</UL>
+</LI>
+<LI><span class="formula">&exist;!<i>x</i>&thinsp;<i>P</i>(<i>x</i>)</span>
+<UL>
+<LI>Prove <span class="formula">&exist;<i>x</i>&thinsp;<i>P</i>(<i>x</i>)</span> (existence)
+and <span class="formula">&forall;<i>x</i>&forall;<i>y</i>(<i>P</i>(<i>x</i>)&and;<i>P</i>(<i>y</i>)&rarr;<i>x</i>=<i>y</i>)</span>
+(uniqueness).  In Proof Designer, select
+the goal and give the <A href="ExistUnique.html">Existence &#38;
+Uniqueness</A> command in the Goal menu.
+</LI>
+<LI>Prove the equivalent statement
+  <span class="formula">&exist;<i>x</i>(<i>P</i>(<i>x</i>)&and;&forall;<i>y</i>(<i>P</i>(<i>y</i>)&rarr;<i>y</i>=<i>x</i>))</span>.  In Proof Designer, select the goal,
+give the <A href="Reexpress.html">Reexpress</A> command in the Strategy
+menu, and click on the Apply Definition button.
+</LI>
+</UL>
+</LI>
+</UL>
+<H2>To Use a Given of the Form:</H2>
+<UL>
+<LI><span class="formula"><i>P</i>&rarr;<i>Q</i></span>
+<UL>
+<LI>If you are also given <span class="formula"><i>P</i></span>, or you
+can prove that <span class="formula"><i>P</i></span> is true,
+then you can conclude that <span class="formula"><i>Q</i></span> is true.  In Proof Designer, if you
+already have <span class="formula"><i>P</i></span> in your givens list then you can select the givens
+<span class="formula"><i>P</i></span> and <span class="formula"><i>P</i>&rarr;<i>Q</i></span>
+and give the
+<A href="MP.html">Modus Ponens</A> command in the Infer menu.  If you don't
+already have <span class="formula"><i>P</i></span> in the givens list but you think you can prove it,
+you may want to insert a proof of <span class="formula"><i>P</i></span> at this point in the proof,
+using the <A href="Insert.html">Insert</A> command in the Edit menu.
+</LI>
+<LI>Use the contrapositive: If you are given or can prove that <span class="formula"><i>Q</i></span>
+is false, you can conclude that <span class="formula"><i>P</i></span> is false.  In Proof Designer,
+select the givens <span class="formula">&not;<i>Q</i></span> and
+<span class="formula"><i>P</i>&rarr;<i>Q</i></span> and give the <A href="MT.html">Modus
+Tollens</A> command in the Infer menu.  If necessary, you may first have to
+insert a proof of <span class="formula">&not;<i>Q</i></span>.
+</LI>
+</UL>
+</LI>
+<LI><span class="formula">&not;<i>P</i></span>
+<UL>
+<LI>Reexpress as a positive statement.  In Proof Designer, select the
+given, give the <A href="Reexpress.html">Reexpress</A> command in the
+Strategy menu, and use the Reexpress Negative button in the Reexpress
+dialog box.
+</LI>
+<LI>If you are doing a proof by contradiction, you can reach a
+contradiction by proving <span class="formula"><i>P</i></span>.  In Proof Designer, select the given and
+give the <A href="Contrad.html">Contradiction</A> command in the Strategy
+menu.
+</LI>
+</UL>
+</LI>
+<LI><span class="formula"><i>P</i><sub>1</sub>&and;<i>P</i><sub>2</sub>&and;&hellip;&and;<i>P<sub>n</sub></i></span>
+<UL>
+<LI>Treat this as a list of separate givens,
+<span class="formula"><i>P</i><sub>1</sub></span>, <span class="formula"><i>P</i><sub>1</sub></span>,
+&hellip;, <span class="formula"><i>P<sub>n</sub></i></span>.  In
+Proof Designer, select the given and give the <A href="SplitUp.html">Split
+Up</A> command in the Infer menu.
+</LI>
+</UL>
+</LI>
+<LI><span class="formula"><i>P</i><sub>1</sub>&or;<i>P</i><sub>2</sub>&or;&hellip;&or;<i>P<sub>n</sub></i></span>
+<UL>
+<LI>Use proof by cases.  In case 1 assume <span class="formula"><i>P</i><sub>1</sub></span> is true,
+in case 2 assume <span class="formula"><i>P</i><sub>2</sub></span> is true, etc.  In Proof Designer,
+select the given and give the <A href="Cases.html">Cases</A> command in the
+Strategy menu.
+</LI>
+<LI>If you are also given that some of the statements in the list
+<span class="formula"><i>P</i><sub>1</sub></span>, <span class="formula"><i>P</i><sub>2</sub></span>,
+&hellip;, <span class="formula"><i>P<sub>n</sub></i></span> are
+false, or you can prove that they are false, you can conclude that one of
+the other statements in the list must be true.  In ProofDesigner, select
+the given <span class="formula"><i>P</i><sub>1</sub>&or;<i>P</i><sub>2</sub>&or;&hellip;&or;<i>P<sub>n</sub></i></span>, 
+together with any
+negations of statements in the list <span class="formula"><i>P</i><sub>1</sub></span>,
+<span class="formula"><i>P</i><sub>2</sub></span>, &hellip;, <span class="formula"><i>P<sub>n</sub></i></span>
+that you have in your
+givens list, and give the <A href="DisjSyll.html">Disjunctive Syllogism</A>
+command in the Infer menu.
+</LI>
+</UL>
+</LI>
+<LI><span class="formula"><i>P</i>&harr;<i>Q</i></span>
+<UL>
+<LI>Treat this as two givens: <span class="formula"><i>P</i>&rarr;<i>Q</i></span>, and
+  <span class="formula"><i>Q</i>&rarr;<i>P</i></span>.  In Proof Designer, select the given and give the
+<A href="SplitUp.html">Split Up</A> command in the Infer menu.
+</LI>
+</UL>
+</LI>
+<LI><span class="formula">&forall;<i>x</i>&thinsp;<i>P</i>(<i>x</i>)</span>
+<UL>
+<LI>You may plug in any value, say <span class="formula"><i>a</i></span>, for
+<span class="formula"><i>x</i></span>, and conclude
+that <span class="formula"><i>P</i>(<i>a</i>)</span> is true.  In Proof Designer, select the given and
+give the <A href="UI.html">Universal Instantiation</A> command in the Infer
+menu.  Proof Designer will ask what you want to plug in for <span class="formula"><i>x</i></span>.  As
+with proofs of goals of the form <span class="formula">&exist;<i>x</i>&thinsp;<i>P</i>(<i>x</i>)</span>,
+if you're not sure what to plug in for <span class="formula"><i>x</i></span>,
+you can choose a new variable to stand for the object
+to be plugged in, and fill in the definition of this variable later.
+</LI>
+</UL>
+</LI>
+<LI><span class="formula">&exist;<i>x</i>&thinsp;<i>P</i>(<i>x</i>)</span>
+<UL>
+<LI>Introduce a new variable, say <span class="formula"><i>x</i><sub>0</sub></span>, into the proof,
+to stand for a particular object for which <span class="formula"><i>P</i>(<i>x</i><sub>0</sub>)</span>
+is true.  In Proof Designer, select the given and give the <A
+href="EI.html">Existential Instantiation</A> command in the Infer menu.
+</LI>
+</UL>
+</LI>
+<LI><span class="formula">&exist;!<i>x</i>&thinsp;<i>P</i>(<i>x</i>)</span>
+<UL>
+<LI>Introduce a new variable, say <span class="formula"><i>x</i><sub>0</sub></span>, into the proof,
+to stand for a particular object for which <span class="formula"><i>P</i>(<i>x</i><sub>0</sub>)</span>
+is true.  You may also assume that
+<span class="formula">&forall;<i>y</i>(<i>P</i>(<i>y</i>)&rarr;<i>y</i>=<i>x</i><sub>0</sub>)</span>.
+In Proof Designer, select
+the given and give the <A href="EI.html">Existential Instantiation</A>
+command in the Infer menu.
+</LI>
+</UL>
+</LI>
+</UL>
+<H2>Techniques That Can Be Used in Any Proof</H2>
+<UL>
+<LI>Proof by contradiction: Assume the goal is false and derive a
+contradiction.  In Proof Designer, select the goal and give the <A
+href="Contrad.html">Contradiction</A> command in the Strategy menu.  If you
+already know which given you are planning to contradict, you can select it
+too before giving the Contradiction command
+</LI>
+<LI> Proof by cases: Consider several cases that are
+<EM>exhaustive</EM>&#8212;i.e., that include all the possibilities.  Prove
+the goal in each case.  There are two ways to do this in Proof Designer. 
+If you select a given of the form
+<span class="formula"><i>P</i><sub>1</sub>&or;<i>P</i><sub>2</sub>&or;&hellip;&or;<i>P<sub>n</sub></i></span>
+and give the <A
+href="Cases.html">Cases</A> command in the Strategy menu, Proof Designer
+will break the proof into the cases determined by this given.  You can also
+select any goal and give the Cases command, and Proof Designer will ask you
+to type in some statement <span class="formula"><i>P</i></span> that will be used to distinguish the
+cases in the proof of this goal.  In case 1, Proof Designer will assume
+that <span class="formula"><i>P</i></span> is true, and in case 2 it will assume
+that <span class="formula"><i>P</i></span> is false.
+</LI>
+</UL>
+</BODY>
+</HTML>

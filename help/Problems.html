@@ -1,0 +1,229 @@
+<!DOCTYPE HTML>
+<HTML lang="en">
+<HEAD>
+<meta charset="utf-8">
+<TITLE>Proof Designer Problems</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H1>Suggested Problems for Proof Designer</H1>
+<OL>
+<LI> Hypotheses: <span class="formula"><i>A</i>&sube;<i>B</i></span>,
+  <span class="formula"><i>A</i>&sube;<i>C</i></span><br>
+Conclusion: <span class="formula"><i>A</i>&sube;<i>B</i>&cap;<i>C</i></span>
+</LI>
+<LI> Hypotheses: <span class="formula"><i>A</i>&sube;<i>B</i></span><BR>
+Conclusion: <span class="formula"><i>C</i>&#x2216<i>B</i>&sube;<i>C</i>&#x2216<i>A</i></span>
+</LI>
+<LI> Hypotheses: <span class="formula"><i>A</i>&#x2216<i>B</i>&sube;<i>C</i></span><BR>
+Conclusion: <span class="formula"><i>A</i>&#x2216<i>C</i>&sube;<i>B</i></span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula"><i>A</i>&#x2216(<i>B</i>&#x2216<i>C</i>)&sube;(<i>A</i>&#x2216<i>B</i>)&cup;<i>C</i></span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula"><i>A</i>&#x2216(<i>B</i>&cap;<i>C</i>)=(<i>A</i>&#x2216<i>B</i>)&cup;(<i>A</i>&#x2216<i>C</i>)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula"><i>A</i>&cap;(<i>B</i>&cup;<i>C</i>)&sube;(<i>A</i>&cap;<i>B</i>)&cup;<i>C</i></span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">(<i>A</i>&cup;<i>B</i>)&#x2216<i>C</i>&sube;<i>A</i>&cup;(<i>B</i>&#x2216<i>C</i>)</span>
+</LI>
+<LI> Hypotheses: <span class="formula"><i>A</i>&cap;(<i>B</i>&#x2216<i>C</i>)=&empty;</span><BR>
+Conclusion: <span class="formula"><i>A</i>&cap;<i>B</i>&sube;<i>C</i></span>
+</LI>
+<LI> Hypotheses: <span class="formula"><i>A</i>&sube;<i>B</i></span>,
+  <span class="formula"><i>A</i>&#x2288<i>C</i></span><BR>
+Conclusion: <span class="formula"><i>B</i>&#x2288<i>C</i></span>
+</LI>
+<LI> Hypotheses: <span class="formula"><i>A</i>&sube;<i>B</i></span>,
+  <span class="formula"><i>A</i>&cap;<i>C</i>=&empty;</span><BR>
+Conclusion: <span class="formula"><i>A</i>&sube;<i>B</i>&#x2216<i>C</i></span>
+</LI>
+<LI> Hypotheses: <span class="formula"><i>A</i>&sube;<i>B</i>&#x2216<i>C</i></span>,
+  <span class="formula"><i>A</i>&ne;&empty;</span><BR>
+Conclusion: <span class="formula"><i>B</i>&#x2288<i>C</i></span>
+</LI>
+<LI> Hypotheses: <span class="formula"><i>A</i>&#x2216<i>B</i>&sube;<i>C</i></span>,
+  <span class="formula"><i>A</i>&#x2288<i>C</i></span><BR>
+Conclusion: <span class="formula"><i>A</i>&cap;<i>B</i>&ne;&empty;</span>
+</LI>
+<LI> Hypotheses: <span class="formula"><i>A</i>&sube;<i>B</i>&#x2216<i>C</i></span><BR>
+Conclusion: <span class="formula"><i>A</i>&cap;<i>C</i>=&empty;</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula"><i>A</i>&#x2216<i>C</i>&sube;(<i>A</i>&#x2216<i>B</i>)&cup;(<i>B</i>&#x2216<i>C</i>)</span>
+</LI>
+<LI> Hypotheses: <span class="formula"><i>A</i>&cap;<i>C</i>&sube;<i>B</i>&cap;<i>C</i></span>,
+  <span class="formula"><i>A</i>&cup;<i>C</i>&sube;<i>B</i>&cup;<i>C</i></span><BR>
+Conclusion: <span class="formula"><i>A</i>&sube;<i>B</i></span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">&exist;!<i>A</i>&forall;<i>B</i>(<i>A</i>&cup;<i>B</i>=<i>B</i>)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula"><i>A</i>&sube;<i>B</i>&harr;&Pscr;(<i>A</i>)&sube;&Pscr;(<i>B</i>)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">&Pscr;(<i>A</i>&cap;<i>B</i>)=&Pscr;(<i>A</i>)&cap;(<i>B</i>)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">&Pscr;(<i>A</i>)&cup;&Pscr;(<i>B</i>)&sube;&Pscr;(<i>A</i>&cup;<i>B</i>)</span>
+</LI>
+<LI> Hypotheses: <span class="formula">&Pscr;(<i>A</i>)&cup;&Pscr;(<i>B</i>)=&Pscr;(<i>A</i>&cup;<i>B</i>)</span><BR>
+Conclusion: <span class="formula"><i>A</i>&sube;<i>B</i>&or;<i>B</i>&sube;<i>A</i></span>
+</LI>
+<LI> Hypotheses: <span class="formula">&forall;<i>x</i>(<i>x</i>&isin;<i>A</i>&rarr;<i>x</i>&sube;<i>A</i>)</span><BR>
+Conclusion: <span class="formula">&forall;<i>x</i>(<i>x</i>&isin;&Pscr;(<i>A</i>)&rarr;<i>x</i>&sube;&Pscr;(<i>A</i>))</span>
+</LI>
+<LI> Hypotheses: <span class="formula"><i>A</i>&isin;<i>F</i></span><BR>
+Conclusion: <span class="formula"><i>A</i>&sube;&cup;<i>F</i></span>
+</LI>
+<LI> Hypotheses: <span class="formula"><i>A</i>&isin;<i>F</i></span><BR>
+Conclusion: <span class="formula"><i>U</i>&cap;&cap;<i>F</i>&sube;<i>A</i></span>
+</LI>
+<LI> Hypotheses: <span class="formula"><i>F</i>&sube;<i>G</i></span><BR>
+Conclusion: <span class="formula">&cup;<i>F</i>&sube;&cup;<i>G</i></span>
+</LI>
+<LI> Hypotheses: <span class="formula"><i>F</i>&sube;<i>G</i></span><BR>
+Conclusion: <span class="formula"><i>U</i>&cap;&cap;<i>G</i>&sube;<i>U</i>&cap;&cap;<i>F</i></span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">&cup;(<i>F</i>&cup;<i>G</i>)=(&cup;<i>F</i>)&cup;(&cup;<i>G</i>)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">&cup;(<i>F</i>&cap;<i>G</i>)&sube;(&cup;<i>F</i>)&cap;(&cup;<i>G</i>)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula"><i>U</i>&cap;&cap;(<i>F</i>&cup;<i>G</i>)=(<i>U</i>&cap;&cap;<i>F</i>)&cap;(<i>U</i>&cap;&cap;<i>G</i>)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula"><i>A</i>&cap;(&cup;<i>F</i>)=&cup;{<i>A</i>&cap;<i>X</i>|<i>X</i>&isin;<i>F</i>}</span>
+</LI>
+<LI> Hypotheses: <span class="formula"><i>A</i>&sube;<i>U</i></span><BR>
+Conclusion: <span class="formula"><i>A</i>&cup;(<i>U</i>&cap;&cap;<i>F</i>)=<i>U</i>&cap;&cap;{<i>A</i>&cup;<i>X</i>|<i>X</i>&isin;<i>F</i>}</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula"><i>U</i>&#x2216&cup;<i>F</i>=<i>U</i>&cap;&cap;{<i>U</i>&#x2216<i>X</i>|<i>X</i>&isin;<i>F</i>}</span>
+</LI>
+<LI> Hypotheses: <span class="formula"><i>A</i>&sube;<i>U</i></span><BR>
+Conclusion: <span class="formula"><i>A</i>&#x2216(<i>U</i>&cap;&cap;<i>F</i>)=&cup;{<i>A</i>&#x2216<i>X</i>|<i>X</i>&isin;<i>F</i>}</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">&cup;<i>F</i>&#x2216&cup;<i>G</i>&sube;&cup;(<i>F</i>&#x2216<i>G</i>)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">&cup;(<i>F</i>&#x2216<i>G</i>)&sube;&cup;<i>F</i>&#x2216&cup;<i>G</i>&rarr;&cup;<i>F</i>&cap;&cup;<i>G</i>&sube;&cup;(<i>F</i>&cap;<i>G</i>)</span>
+</LI>
+<LI> Hypotheses:
+<span class="formula">&forall;<i>A</i>&isin;<i>F</i>&exist;<i>B</i>&isin;<i>G</i>(<i>A</i>&cap;<i>B</i>&isin;<i>H</i>)</span><BR>
+Conclusion: <span class="formula">(&cup;<i>F</i>)&cap;&cap;<i>G</i>&sube;&cup;<i>H</i></span>
+</LI>
+<LI> Hypotheses:
+<span class="formula">&forall;<i>A</i>&isin;<i>F</i>&exist;<i>B</i>&isin;<i>G</i>(<i>A</i>&sube;<i>B</i>)</span>,
+<span class="formula">&exist;<i>A</i>&isin;<i>F</i>&forall;<i>B</i>&isin;<i>G</i>(<i>B</i>&sube;<i>A</i>)</span><BR>
+Conclusion: <span class="formula"><i>F</i>&cap;<i>G</i>&ne;&empty;</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula"><i>F</i>&sube;&Pscr;(&cup;<i>F</i>)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula"><i>A</i>=&cup;&Pscr;(<i>A</i>)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula"><i>U</i>&cap;&cap;<i>F</i>&isin;&Pscr;(<i>U</i>)&cap;&cap;{&Pscr;(<i>X</i>)|<i>X</i>&isin;<i>F</i>}</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">&cup;{<i>X</i>&#x2216<i>A</i>|<i>X</i>&isin;<i>F</i>}&sube;&cup;{<i>X</i>&isin;<i>F</i>|<i>X</i>&#x2288<i>A</i>}</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">(&cup;<i>F</i>)&cap;(&cup;<i>G</i>)=&empty;&harr;&forall;<i>A</i>&isin;<i>F</i>&forall;<i>B</i>&isin;<i>G</i>(<i>A</i>&cap;<i>B</i>=&empty;)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">&cup;{&Pscr;(<i>X</i>)|<i>X</i>&isin;<i>F</i>}&sube;&Pscr;(&cup;<i>F</i>)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">&Pscr;(<i>U</i>)&cap;&cap;{&Pscr;(<i>X</i>)|<i>X</i>&isin;<i>F</i>}=&Pscr;(<i>U</i>&cap;&cap;<i>F</i>)</span>
+</LI>
+<LI> Hypotheses: <span class="formula">&cup;{&Pscr;(<i>X</i>)|<i>X</i>&isin;<i>F</i>}=&Pscr;(&cup;<i>F</i>)</span><BR>
+Conclusion: <span class="formula">&exist;<i>A</i>&isin;<i>F</i>&forall;<i>B</i>&isin;<i>F</i>(<i>B</i>&sube;<i>A</i>)</span>
+</LI>
+<LI> Hypotheses: <span class="formula">&forall;<i>F</i>(&cup;<i>F</i>=<i>A</i>&rarr;<i>A</i>&isin;<i>F</i>)</span><BR>
+Conclusion: <span class="formula">&exist;<i>x</i>(<i>A</i>={<i>x</i>})</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">&Pscr;(<i>A</i>&#x2216<i>B</i>)&#x2216(&Pscr;(<i>A</i>)&#x2216&Pscr;(<i>B</i>))={&empty;}</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula"><i>A</i>&times;(<i>B</i>&cap;<i>C</i>)=(<i>A</i>&times;<i>B</i>)&cap;(<i>A</i>&times;<i>C</i>)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula"><i>A</i>&times;(<i>B</i>&cup;<i>C</i>)=(<i>A</i>&times;<i>B</i>)&cup;(<i>A</i>&times;<i>C</i>)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">(<i>A</i>&#x25B3<i>B</i>)&cap;<i>C</i>=(<i>A</i>&cap;<i>C</i>)&#x25B3(<i>B</i>&cap;<i>C</i>)</span>
+</LI>
+<LI> Hypotheses: <span class="formula"><i>A</i>&#x25B3<i>B</i>&sube;<i>B</i></span><BR>
+Conclusion: <span class="formula"><i>A</i>&sube;<i>B</i></span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula"><i>A</i>&#x25B3<i>B</i>&sube;(<i>A</i>&#x25B3<i>C</i>)&cup;(<i>B</i>&#x25B3<i>C</i>)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula"><i>A</i>&#x25B3(<i>A</i>&cap;<i>B</i>)=<i>A</i>&#x2216<i>B</i></span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula"><i>A</i>&#x25B3(<i>A</i>&cup;<i>B</i>)=<i>B</i>&#x2216<i>A</i></span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">(<i>A</i>&#x25B3<i>B</i>)&#x25B3<i>C</i>=<i>A</i>&#x25B3(<i>B</i>&#x25B3<i>C</i>)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula"><i>A</i>&#x25B3<i>A</i>=&empty;</span>
+</LI>
+<LI> Hypotheses: <span class="formula"><i>A</i>&#x25B3<i>C</i>=<i>B</i>&#x25B3<i>C</i></span><BR>
+Conclusion: <span class="formula"><i>A</i>=<i>B</i></span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">&exist;!<i>A</i>&forall;<i>B</i>(<i>A</i>&#x25B3<i>B</i>=<i>B</i>)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">&forall;<i>A</i>&forall;<i>B</i>&exist;!<i>C</i>(<i>A</i>&#x25B3<i>C</i>=<i>B</i>)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">&not;&exist;<i>U</i>&forall;<i>A</i>(<i>A</i>&isin;<i>U</i>)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">(<i>R</i>&#x25CB<i>S</i>)<sup>−1</sup>=<i>S</i><sup>−1</sup>&#x25CB<i>R</i><sup>−1</sup></span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">(<i>R</i>&#x25CB<i>S</i>)&#x25CB<i>T</i>=<i>R</i>&#x25CB(<i>S</i>&#x25CB<i>T</i>)</span>
+</LI>
+<LI> Hypotheses: <span class="formula"><i>S</i>&sube;<i>T</i></span><BR>
+Conclusion: <span class="formula"><i>R</i>&#x25CB<i>S</i>&sube;<i>R</i>&#x25CB<i>T</i></span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">(<i>S</i>&cap;<i>T</i>)&#x25CB<i>R</i>&sube;(<i>S</i>&#x25CB<i>R</i>)&cap;(<i>T</i>&#x25CB<i>R</i>)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">(<i>S</i>&cup;<i>T</i>)&#x25CB<i>R</i>=(<i>S</i>&#x25CB<i>R</i>)&cup;(<i>T</i>&#x25CB<i>R</i>)</span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion: <span class="formula">(<i>S</i>&#x25CB<i>R</i>)&#x2216(<i>T</i>&#x25CB<i>R</i>)&sube;(<i>S</i>&#x2216<i>T</i>)&#x25CB<i>R</i></span>
+</LI>
+<LI> Hypotheses: none<BR>
+Conclusion:  <span class="formula">&Pscr;(<i>A</i>&cup;<i>B</i>)=&cup;{{<i>X</i>&cup;<i>Y</i>|<i>Y</i>&in;&Pscr;(<i>B</i>)}|<i>X</i>&in;&Pscr;(<i>A</i>)}</span>
+</LI>
+</OL>
+</BODY>
+</HTML>

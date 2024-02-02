@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<HTML lang="en">
+<HEAD>
+<meta charset="utf-8">
+<TITLE>Existential Instantiation Command Help</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H2>Infer Menu:</H2>
+<H1>Existential Instantiation Command</H1>
+<P>If you have a given of the form <span class="formula">&exist;<i>x</i>&thinsp;<i>P</i>(<i>x</i>)</span>
+or <span class="formula">&exist;!<i>x</i>&thinsp;<i>P</i>(<i>x</i>)</span>,
+then you can introduce a new variable into the proof to stand for a value (or the unique value) of 
+<span class="formula"><i>x</i></span> for which <span class="formula"><i>P</i>(<i>x</i>)</span>
+is true.  Select the given and give the Existential Instantiation command,
+and a dialog box will open asking 
+what variable you would like to use to stand for the object that is 
+asserted to exist.  You must choose a variable that is not already in use 
+in the proof to stand for something else.  When you click OK, Proof 
+Designer will add a step to the proof asserting that <span class="formula"><i>P</i></span> is true of 
+the object named by the variable you chose (and, if appropriate, that it is the only such object).
+</P>
+<P>If the given starts with several existential quantifiers in a row, then you can 
+introduce several new variables in one step.  Choose a variable to 
+stand for the first object asserted to exist, and then click the Next button.  
+Proof Designer will fill in the variable you selected and then ask what 
+name you would like to use for the next object.  Once you have 
+chosen a name for the last object you want to introduce, click 
+OK.
+</P>
+<p>
+If your goal is to define some variable <span class="formula"><i>y</i></span>, and
+<span class="formula"><i>y</i></span> gets defined as a result of the Existential Instantiation
+command, then Proof Designer will recognize that you have achieved your goal and remove the gap
+from the proof.  As a shortcut for this, you can select both an existential given statement
+<span class="formula">&exist;<i>x</i>&thinsp;<i>P</i>(<i>x</i>)</span>
+or <span class="formula">&exist;!<i>x</i>&thinsp;<i>P</i>(<i>x</i>)</span> and the goal
+<span class="formula"><i>y</i>=?</span>
+and give the Existential Instantiation command.  Proof Designer will use
+<span class="formula"><i>y</i></span> as the name of the object asserted to exist.  Since this step
+achieves the goal of defining <span class="formula"><i>y</i></span>, Proof Designer will remove
+the gap from the proof.
+</p>
+</BODY>
+</HTML>

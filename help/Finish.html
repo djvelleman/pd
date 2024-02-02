@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<TITLE>Finish Command Help</TITLE>
+
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H2>Edit Menu:</H2>
+<H1>Finish Command</H1>
+<P>Proof Designer does not automatically recognize when you have proven a
+statement you are trying to prove.  You must tell it that you have reached
+your goal by using the Finish command.
+</P>
+<P>If your goal is to prove some statement, then you cannot use the Finish
+command unless the statement you are trying to prove is in your givens
+list.  If it is, select it in the givens list and give the Finish command. 
+If your goal is to prove a contradiction, then you cannot use the Finish
+command unless there are two statements in your givens list, one of which
+is the negation of the other.  If there are two such statements in your
+givens list, select both of them and give the Finish command.  Note that it
+is not sufficient to choose two statements that contradict each other; one
+must actually be the negation of the other.  For example, Proof Designer
+would not recognize the givens <span class="formula"><i>x</i>&isin;<i>A</i>&cap;<i>B</i></span> and
+<span class="formula"><i>x</i>&notin;<i>A</i></span> as achieving the goal
+of reaching a contradiction, even though they contradict each other. 
+However, it would recognize <span class="formula"><i>x</i>&isin;<i>A</i></span>
+and <span class="formula"><i>x</i>&notin;<i>A</i></span> as achieving the
+goal of reaching a contradiction.
+</P>
+<P>When you finish the last gap in a proof, Proof Designer will 
+congratulate you on completing the proof.
+</P>
+<p>Note: If you have a gap in your proof whose goal is to define some variable,
+then Proof Designer will automatically close the gap when you define the
+variable.  There are two commands that you can use to accomplish this: 
+<a href="Define.html">Define</a> and <a href="EI.html">Existential Instantiation</a>.
+If you have a gap that has no goal, you can simply delete it at any time.
+</p>
+</BODY>
+</HTML>

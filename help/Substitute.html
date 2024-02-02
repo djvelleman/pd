@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<TITLE>Substitute Command Help</TITLE>
+<style>
+body {
+  line-height: 20px;
+}
+
+.formula {
+  font-family: Verdana, sans-serif;
+}
+</style>
+</HEAD>
+
+<BODY>
+<H2>Strategy Menu:</H2>
+<H1>Substitute Command</H1>
+<P>If you have a given of the form <span class="formula"><i>x</i>=<i>y</i></span>,
+then in any given or goal you may substitute <span class="formula"><i>y</i></span>
+for <span class="formula"><i>x</i></span> or <span class="formula"><i>x</i></span>
+for <span class="formula"><i>y</i></span>.  To
+perform such a substitution, select the given or goal in which you would
+like to do the substitution and give the Substitute
+command.
+
+A dialog box will open.  The statement in which the substitution is to be
+performed appears at the top of the dialog box, and initially the entire
+statement is selected.  You can perform the substitution in only part of
+the statement by selecting the part in which you want the substitution to
+be performed.  Selecting works in the usual way, except that when you drag
+the mouse across a part of the statement, what gets selected is <EM>the
+smallest meaningful subexpression containing the symbols you drag
+across</EM>.  For example, if you drag the mouse across the symbols
+&#8220;<span class="formula"><i>x</i>&isin;</span>&#8221; in the statement
+&#8220;<span class="formula"><i>x</i>&isin;<i>A</i>&and;<i>y</i>&isin;<i>B</i></span>&#8221;,
+what will be selected is the statement &#8220;<span class="formula"><i>x</i>&isin;<i>A</i></span>&#8221;.
+</P>
+<P>Click on the word &ldquo;Substitute&rdquo; in the dialog box, and a menu will
+appear showing all available substitutions; an
+entry of the form &#8220;<span class="formula"><i>x</i>&rArr;<i>y</i></span>&#8221;
+means &#8220;replace <span class="formula"><i>x</i></span> by
+<span class="formula"><i>y</i></span>&#8221;.  Select a substitution from the menu
+and the substitution will be performed.  If no substitutions are available, there will be no
+Substitute menu in the dialog box.  The other
+buttons in the dialog box can be used to rewrite the statement in some
+other ways; for details see the instructions for the <A
+href="Reexpress.html">Reexpress</A> command.
+</P>
+</BODY>
+</HTML>
