@@ -564,7 +564,38 @@ function findShortcut(elems, code) {
   return null;
 }
 
+function clearFocus() {
+  if (document.activeElement != document.body) {
+    document.activeElement.blur();
+  }
+}
+
+function findButton(layer, label) {
+  var b;
+  for (b of layer.getElementsByTagName("BUTTON")) {
+    if ((b.textContent == label) && !b.disabled) {
+      return b;
+    }
+  }
+  return null;
+}
+
+function handleDialogEscape(event) {
+  var layer = document.body.lastChild;
+  var subMenu = layer.querySelector(".menu-container .menu-background:not(.hide)");
+  var target = (subMenu != null) ? layer : (findButton(layer, "Cancel") || findButton(layer, "OK"));
+  if (target != null) {
+    target.click();
+    clearFocus();
+    event.preventDefault();
+  }
+}
+
 function handleDialogShortcut(event) {
+  if (event.key == "Escape") {
+    handleDialogEscape(event);
+    return;
+  }
   if (!event.altKey || event.shiftKey) {
     return;
   }
@@ -604,6 +635,7 @@ function handleMenuShortcut(event) {
   if (event.key == "Escape") {
     if (openMenu != null) {
       hideMenu();
+      clearFocus();
       event.preventDefault();
     }
     return;
