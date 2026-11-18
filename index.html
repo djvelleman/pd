@@ -73,6 +73,10 @@
   background-color: lightgray;
 }
 
+.alt-held .accel {
+  text-decoration: underline;
+}
+
 .submenu-item {
   font-family: Verdana, sans-serif;
   line-height: 1.2em;
@@ -381,7 +385,18 @@ function init() {
   initMathPal();
   document.onselectionchange = fixSelection;
   document.onclick = hideMenu;
-  document.onkeydown = handleDeleteKey;
+  document.onkeydown = function(event) {
+    setAltHeld(event.altKey);
+    handleMenuShortcut(event);
+    handleDeleteKey(event);
+  };
+  document.onkeyup = function(event) {
+    setAltHeld(event.altKey);
+    if (event.key == "Alt") {
+      event.preventDefault();  // Keep the browser's own menu bar from taking focus
+    }
+  };
+  window.onblur = function() {setAltHeld(false)};
   document.body.style.lineHeight = lineHeight + "em";
   document.documentElement.style.fontSize = "16px";
 
@@ -464,21 +479,22 @@ function doUndoRedo(dir) {
   fixUndoRedo();
 }
 
+// The first letter of each item is in its own span, so only the rest of the text is replaced.
 function fixUndoRedo() {
   var undoItem = document.getElementById("Undo");
   var redoItem = document.getElementById("Redo");
   if (currStatePos > 0) {
-    undoItem.textContent = "Undo " + stateList[currStatePos - 1].command;
+    undoItem.lastChild.textContent = "ndo " + stateList[currStatePos - 1].command;
     undoItem.classList.remove("inactive");
   } else {
-    undoItem.textContent = "Undo";
+    undoItem.lastChild.textContent = "ndo";
     undoItem.classList.add("inactive");
   }
   if (currStatePos < stateList.length - 1) {
-    redoItem.textContent = "Redo " + stateList[currStatePos].command;
+    redoItem.lastChild.textContent = "edo " + stateList[currStatePos].command;
     redoItem.classList.remove("inactive");
   } else {
-    redoItem.textContent = "Redo";
+    redoItem.lastChild.textContent = "edo";
     redoItem.classList.add("inactive");
   }
 }
@@ -508,6 +524,58 @@ function handleDeleteKey(event) {
         (openMenu == null) && (event.key == "Backspace") && (selectedStep != null)) {
     doDelete();
     event.preventDefault();
+  }
+}
+
+function dialogOpen() {
+  return document.body.lastChild.className == "modal-background";
+}
+
+function setAltHeld(held) {
+  document.body.classList.toggle("alt-held", held && !dialogOpen());
+}
+
+// Match on event.code because Alt+letter produces special characters on macOS.
+function findShortcut(elems, code) {
+  var e;
+  for (e of elems) {
+    if ("Key" + e.dataset.key == code) {
+      return e;
+    }
+  }
+  return null;
+}
+
+// With a menu open, a letter (with or without Alt) chooses an item; otherwise Alt+letter opens a menu.
+function handleMenuShortcut(event) {
+  if (dialogOpen() || event.repeat || event.ctrlKey || event.metaKey) {
+    return;
+  }
+  var target;
+  if (event.key == "Escape") {
+    if (openMenu != null) {
+      hideMenu();
+      event.preventDefault();
+    }
+    return;
+  }
+  if (openMenu != null) {
+    target = findShortcut(openMenu.parentNode.getElementsByClassName("menu-item"), event.code);
+    if (target != null) {
+      if (!target.classList.contains("inactive")) {
+        target.click();
+      }
+      event.preventDefault();
+      return;
+    }
+  }
+  if (event.altKey) {
+    target = findShortcut(document.getElementsByClassName("menu-title"), event.code);
+    if (target != null) {
+      hideMenu();
+      showMenu(event, target);
+      event.preventDefault();
+    }
   }
 }
 
@@ -704,58 +772,58 @@ function spacerHTML(width) {
 
 <div class="menubar">
   <div class="menu-container">
-    <div class="menu-title" onclick="showMenu(event, this)">File</div>
+    <div class="menu-title" data-key="F" onclick="showMenu(event, this)"><span class="accel">F</span>ile</div>
     <div class="menu-background hide">
-      <div class="menu-item" onclick="window.open('help/Help.html')">Help</div>
-      <div class="menu-item" onclick="doNewTheorem()">New Theorem&hellip;</div>
-      <div class="menu-item inactive" onclick="doReviseTheorem()">Revise Theorem&hellip;</div>
-      <div class="menu-item inactive" onclick="doSave()">Save</div>
-      <div class="menu-item" onclick="doOpen()">Open&hellip;</div>
+      <div class="menu-item" data-key="H" onclick="window.open('help/Help.html')"><span class="accel">H</span>elp</div>
+      <div class="menu-item" data-key="N" onclick="doNewTheorem()"><span class="accel">N</span>ew Theorem&hellip;</div>
+      <div class="menu-item inactive" data-key="R" onclick="doReviseTheorem()"><span class="accel">R</span>evise Theorem&hellip;</div>
+      <div class="menu-item inactive" data-key="S" onclick="doSave()"><span class="accel">S</span>ave</div>
+      <div class="menu-item" data-key="O" onclick="doOpen()"><span class="accel">O</span>pen&hellip;</div>
     </div>
   </div><div class="menu-container">
-    <div class="menu-title" onclick="showMenu(event, this)">Edit</div>
+    <div class="menu-title" data-key="E" onclick="showMenu(event, this)"><span class="accel">E</span>dit</div>
     <div class="menu-background hide">
-      <div id="Undo" class="menu-item inactive" onclick="doUndoRedo(-1)">Undo</div>
-      <div id="Redo" class="menu-item inactive" onclick="doUndoRedo(1)">Redo</div>
-      <div class="menu-item inactive" onclick="doFinish()">Finish</div>
-      <div class="menu-item inactive" onclick="doDelete()">Delete</div>
-      <div class="menu-item inactive" onclick="doInsert()">Insert&hellip;</div>
-      <div class="menu-item inactive" onclick="doRejustify()">Rejustify</div>
-      <div class="menu-item inactive" onclick="doLemma()">Lemma</div>
+      <div id="Undo" class="menu-item inactive" data-key="U" onclick="doUndoRedo(-1)"><span class="accel">U</span><span>ndo</span></div>
+      <div id="Redo" class="menu-item inactive" data-key="R" onclick="doUndoRedo(1)"><span class="accel">R</span><span>edo</span></div>
+      <div class="menu-item inactive" data-key="F" onclick="doFinish()"><span class="accel">F</span>inish</div>
+      <div class="menu-item inactive" data-key="D" onclick="doDelete()"><span class="accel">D</span>elete</div>
+      <div class="menu-item inactive" data-key="I" onclick="doInsert()"><span class="accel">I</span>nsert&hellip;</div>
+      <div class="menu-item inactive" data-key="J" onclick="doRejustify()">Re<span class="accel">j</span>ustify</div>
+      <div class="menu-item inactive" data-key="L" onclick="doLemma()"><span class="accel">L</span>emma</div>
     </div>
   </div><div class="menu-container">
-    <div class="menu-title" onclick="showMenu(event, this)">Strategy</div>
+    <div class="menu-title" data-key="S" onclick="showMenu(event, this)"><span class="accel">S</span>trategy</div>
     <div class="menu-background hide">
-      <div class="menu-item inactive" onclick="doContrad()">Contradiction</div>
-      <div class="menu-item inactive" onclick="doCases()">Cases&hellip;</div>
-      <div class="menu-item inactive" onclick="doReexSub(true)">Reexpress&hellip;</div>
-      <div class="menu-item inactive" onclick="doReexSub(false)">Substitute&hellip;</div>
-      <div class="menu-item inactive" onclick="doDefine()">Define&hellip;</div>
+      <div class="menu-item inactive" data-key="C" onclick="doContrad()"><span class="accel">C</span>ontradiction</div>
+      <div class="menu-item inactive" data-key="A" onclick="doCases()">C<span class="accel">a</span>ses&hellip;</div>
+      <div class="menu-item inactive" data-key="R" onclick="doReexSub(true)"><span class="accel">R</span>eexpress&hellip;</div>
+      <div class="menu-item inactive" data-key="S" onclick="doReexSub(false)"><span class="accel">S</span>ubstitute&hellip;</div>
+      <div class="menu-item inactive" data-key="D" onclick="doDefine()"><span class="accel">D</span>efine&hellip;</div>
     </div>
   </div><div class="menu-container">
-    <div class="menu-title" onclick="showMenu(event, this)">Infer</div>
+    <div class="menu-title" data-key="I" onclick="showMenu(event, this)"><span class="accel">I</span>nfer</div>
     <div class="menu-background hide">
-      <div class="menu-item inactive" onclick="doMPMT(true)">Modus Ponens</div>
-      <div class="menu-item inactive" onclick="doMPMT(false)">Modus Tollens</div>
-      <div class="menu-item inactive" onclick="doConj(true)">Conjoin</div>
-      <div class="menu-item inactive" onclick="doSplitUp()">Split Up</div>
-      <div class="menu-item inactive" onclick="doAddition()">Addition&hellip;</div>
-      <div class="menu-item inactive" onclick="doDisjSyll()">Disjunctive Syllogism</div>
-      <div class="menu-item inactive" onclick="doExistUI(false)">Universal Instantiation&hellip;</div>
-      <div class="menu-item inactive" onclick="doArbEI(false)">Existential Instantiation&hellip;</div>
-      <div class="menu-item inactive" onclick="doReflexive()">Reflexive Law&hellip;</div>
+      <div class="menu-item inactive" data-key="P" onclick="doMPMT(true)">Modus <span class="accel">P</span>onens</div>
+      <div class="menu-item inactive" data-key="T" onclick="doMPMT(false)">Modus <span class="accel">T</span>ollens</div>
+      <div class="menu-item inactive" data-key="C" onclick="doConj(true)"><span class="accel">C</span>onjoin</div>
+      <div class="menu-item inactive" data-key="S" onclick="doSplitUp()"><span class="accel">S</span>plit Up</div>
+      <div class="menu-item inactive" data-key="A" onclick="doAddition()"><span class="accel">A</span>ddition&hellip;</div>
+      <div class="menu-item inactive" data-key="D" onclick="doDisjSyll()"><span class="accel">D</span>isjunctive Syllogism</div>
+      <div class="menu-item inactive" data-key="U" onclick="doExistUI(false)"><span class="accel">U</span>niversal Instantiation&hellip;</div>
+      <div class="menu-item inactive" data-key="E" onclick="doArbEI(false)"><span class="accel">E</span>xistential Instantiation&hellip;</div>
+      <div class="menu-item inactive" data-key="R" onclick="doReflexive()"><span class="accel">R</span>eflexive Law&hellip;</div>
     </div>
   </div><div class="menu-container">
-    <div class="menu-title" onclick="showMenu(event, this)">Goal</div>
+    <div class="menu-title" data-key="G" onclick="showMenu(event, this)"><span class="accel">G</span>oal</div>
     <div class="menu-background hide">
-      <div class="menu-item inactive" onclick="doDirContrap(true)">Direct</div>
-      <div class="menu-item inactive" onclick="doDirContrap(false)">Contrapositive</div>
-      <div class="menu-item inactive" onclick="doBicond()">Biconditional</div>
-      <div class="menu-item inactive" onclick="doConj(false)">Conjunction</div>
-      <div class="menu-item inactive" onclick="doDisj()">Disjunction&hellip;</div>
-      <div class="menu-item inactive" onclick="doArbEI(true)">Arbitrary Object&hellip;</div>
-      <div class="menu-item inactive" onclick="doExistUI(true)">Existence&hellip;</div>
-      <div class="menu-item inactive" onclick="doExistUnique()">Existence & Uniquenesss</div>
+      <div class="menu-item inactive" data-key="D" onclick="doDirContrap(true)"><span class="accel">D</span>irect</div>
+      <div class="menu-item inactive" data-key="P" onclick="doDirContrap(false)">Contra<span class="accel">p</span>ositive</div>
+      <div class="menu-item inactive" data-key="B" onclick="doBicond()"><span class="accel">B</span>iconditional</div>
+      <div class="menu-item inactive" data-key="C" onclick="doConj(false)"><span class="accel">C</span>onjunction</div>
+      <div class="menu-item inactive" data-key="J" onclick="doDisj()">Dis<span class="accel">j</span>unction&hellip;</div>
+      <div class="menu-item inactive" data-key="A" onclick="doArbEI(true)"><span class="accel">A</span>rbitrary Object&hellip;</div>
+      <div class="menu-item inactive" data-key="E" onclick="doExistUI(true)"><span class="accel">E</span>xistence&hellip;</div>
+      <div class="menu-item inactive" data-key="U" onclick="doExistUnique()">Existence &amp; <span class="accel">U</span>niqueness</div>
     </div>
   </div><button style="margin-left: 3em; margin-right: 0.5em" onclick="scaleFont(true)">+</button><button onclick="scaleFont(false)">&minus;</button>
 </div>
