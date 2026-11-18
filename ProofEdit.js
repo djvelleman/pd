@@ -7,7 +7,7 @@ assumed, and newConclusion is proven.  infText is text of inference; if null,
 use default produced by createInference.  subText is intro text for SubProof; if null, use
 "Suppose (newPremises)"; newPremises must be non-null for this.
 Anything can be null except proofBefore.
-*/ 
+*/
 function inferenceBySubproof(gap, usedStmnts, newDefined, newPremises, newConclusion, infTextHTML, subTextHTML, proofBefore) {
   var thisProof = getProof(gap);
   var pfData = getData(thisProof);
@@ -309,7 +309,7 @@ function updateContext(step, newDefined, newGivens) {
         for (theGiven of newGivens) {
           details.insertBefore(makeGGPane(given, theGiven), goalHead);
         }
-      }  
+      }
     }
   }
 }
@@ -769,7 +769,11 @@ function makeRadioGroup(label, setButtons, includeField) {
     button.onchange = function() {buttonChange(this, false)};
   }
   var labelSpan = document.createElement("SPAN");
-  labelSpan.innerHTML = label;
+  labelSpan.innerHTML = accelLabelHTML(label);
+  var key = accelKey(label);
+  if (key != null) {
+    button.dataset.key = key;
+  }
   labelSpan.style.marginLeft = radioCheckSpace + "em";
   var radioPanel = document.createElement("LABEL");
   radioPanel.appendChild(button);

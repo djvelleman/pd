@@ -386,8 +386,9 @@ function init() {
   document.onselectionchange = fixSelection;
   document.onclick = hideMenu;
   document.onkeydown = function(event) {
-    setAltHeld(event.altKey);
+    handleZoomKey(event);
     handleMenuShortcut(event);
+    setAltHeld(event.altKey);
     handleDeleteKey(event);
   };
   document.onkeyup = function(event) {
@@ -442,7 +443,7 @@ function init() {
   }
   // End of code for writing documentation
 */
- 
+
 }
 
 function scaleFont(magnify) {
@@ -531,24 +532,72 @@ function dialogOpen() {
   return document.body.lastChild.className == "modal-background";
 }
 
+// Underlines apply only to the topmost layer (open dialog, if any, else the page).
 function setAltHeld(held) {
-  document.body.classList.toggle("alt-held", held && !dialogOpen());
+  var marked = document.getElementsByClassName("alt-held");
+  while (marked.length > 0) {
+    marked[0].classList.remove("alt-held");
+  }
+  if (held) {
+    (dialogOpen() ? document.body.lastChild : document.body).classList.add("alt-held");
+  }
+}
+
+function keyToCode(key) {
+  if ((key >= "A") && (key <= "Z")) {
+    return "Key" + key;
+  }
+  if ((key >= "0") && (key <= "9")) {
+    return "Digit" + key;
+  }
+  return (key == "[") ? "BracketLeft" : "";
 }
 
 // Match on event.code because Alt+letter produces special characters on macOS.
 function findShortcut(elems, code) {
   var e;
   for (e of elems) {
-    if ("Key" + e.dataset.key == code) {
+    if (keyToCode(e.dataset.key) == code) {
       return e;
     }
   }
   return null;
 }
 
+function handleDialogShortcut(event) {
+  if (!event.altKey || event.shiftKey) {
+    return;
+  }
+  var target = findShortcut(document.body.lastChild.querySelectorAll("[data-key]"), event.code);
+  if (target != null) {
+    if (!target.disabled) {
+      target.click();
+    }
+    event.preventDefault();
+  }
+}
+
+function handleZoomKey(event) {
+  if (!(event.ctrlKey || event.metaKey) || event.altKey) {
+    return;
+  }
+  var zoomIn = (event.key == "=") || (event.key == "+");
+  var zoomOut = (event.key == "-") || (event.key == "_");
+  if (zoomIn || zoomOut) {
+    if (!dialogOpen()) {
+      scaleFont(zoomIn);
+    }
+    event.preventDefault();
+  }
+}
+
 // With a menu open, a letter (with or without Alt) chooses an item; otherwise Alt+letter opens a menu.
 function handleMenuShortcut(event) {
-  if (dialogOpen() || event.repeat || event.ctrlKey || event.metaKey) {
+  if (event.repeat || event.ctrlKey || event.metaKey) {
+    return;
+  }
+  if (dialogOpen()) {
+    handleDialogShortcut(event);
     return;
   }
   var target;
@@ -608,8 +657,8 @@ function hideMenu() {
 }
 
 function useError(messageHTML = "Incorrect use of command.", doAfter = null) {
-  showMessage(messageHTML + "<br><br><button onclick='window.open(\"" +
-      helpURL + "\")'>Get Help</button>", doAfter)
+  showMessage(messageHTML + "<br><br><button data-key='H' onclick='window.open(\"" +
+      helpURL + "\")'>Get <span class='accel'>H</span>elp</button>", doAfter)
 }
 
 function alreadyDefinedError(v, doAfter = null) {
@@ -625,7 +674,7 @@ function willDefineError(v, doAfter = null) {
 function showMessage(messageHTML, doAfter = null) {
   var d = makeDialog(25);
   d.appendChild(makeTextPane(messageHTML, 0, 1.25));
-  d.appendChild(makeButtonPanel(["OK"]));
+  d.appendChild(makeButtonPanel(["<u>O</u>K"]));
   var OKButton = d.lastChild.firstChild;
   OKButton.onclick = function() {hideDialog(doAfter)};
   showDialog(d, OKButton, false);
@@ -746,9 +795,30 @@ function makeButtonPanel(names) {
   return d;
 }
 
+// Converts <u> to <span class='accel'>, which is underlined only while Alt is held.
+function accelLabelHTML(text) {
+  return text.replace(/<u>(.*?)<\/u>/, "<span class='accel'>$1</span>");
+}
+
+function accelKey(text) {
+  var m = text.match(/<u>(.)<\/u>/);
+  if (m == null) {
+    return null;
+  }
+  return (m[1] == "(") ? "9" : m[1].toUpperCase();
+}
+
+function setAccelLabel(elem, text) {
+  elem.innerHTML = accelLabelHTML(text);
+  var key = accelKey(text);
+  if (key != null) {
+    elem.dataset.key = key;
+  }
+}
+
 function makeButton(text) {
   var b = document.createElement("BUTTON");
-  b.innerHTML = text;
+  setAccelLabel(b, text);
   return b;
 }
 
@@ -848,4 +918,4 @@ Please report bugs to:  Daniel J. Velleman<br><img style="height: 1.4em" src="Em
 </div>
 
 </body>
-</html> 
+</html>

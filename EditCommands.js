@@ -189,7 +189,7 @@ function doDelete() {
     whereUsed = firstUse(nextStep, delDefine, delAssertCopy);
     if (whereUsed != null) {
       var msg = "This step can't be removed, because it is used later.<br><br>" +
-      "<button id='show-used'>Show Where Used</button>";
+      "<button id='show-used' data-key='S'><span class='accel'>S</span>how Where Used</button>";
       showMessage(msg);
       document.getElementById("show-used").onclick = showUsed;
       return;
@@ -295,22 +295,23 @@ function doInsert() {
   var willDefine = willBeDefined(selectedStep, true);
   var theDialog = makeDialog(42);
   theDialog.appendChild(mathPal);
-  var noGoalGroup = makeRadioGroup("No goal", setOKButton, false);
+  var noGoalGroup = makeRadioGroup("No <u>g</u>oal", setOKButton, false);
   noGoalRadio = noGoalGroup.firstChild.firstChild;
-  var goalGroup = makeRadioGroup("Prove:", setOKButton, true);
+  var goalGroup = makeRadioGroup("P<u>r</u>ove:", setOKButton, true);
   goalRadio = goalGroup.firstChild.firstChild;
   goalField = goalGroup.lastChild;
   lemmaCheck = document.createElement("INPUT");
   lemmaCheck.type = "checkbox";
   var lemmaLabel = document.createElement("SPAN");
-  lemmaLabel.innerHTML = "Lemma";
+  lemmaLabel.innerHTML = accelLabelHTML("<u>L</u>emma");
+  lemmaCheck.dataset.key = "L";
   lemmaLabel.style.marginLeft = radioCheckSpace + "em";
   var lemmaPanel = document.createElement("LABEL");
   lemmaPanel.style.marginLeft = "1.5em";
   lemmaPanel.appendChild(lemmaCheck);
   lemmaPanel.appendChild(lemmaLabel);
   goalGroup.insertBefore(lemmaPanel, goalField);
-  var defineGroup = makeRadioGroup("Define:", setOKButton, true);
+  var defineGroup = makeRadioGroup("D<u>e</u>fine:", setOKButton, true);
   defineRadio = defineGroup.firstChild.firstChild;
   defineField = defineGroup.lastChild;
   defineField.style.width = varFieldWidth + "em";
@@ -318,7 +319,7 @@ function doInsert() {
   theDialog.appendChild(noGoalGroup);
   theDialog.appendChild(goalGroup);
   theDialog.appendChild(defineGroup);
-  var okCancelPanel = makeButtonPanel(["OK", "Cancel"]);
+  var okCancelPanel = makeButtonPanel(["O<u>K</u>", "Ca<u>n</u>cel"]);
   okButton = okCancelPanel.firstChild;
   var cancelButton = okButton.nextSibling;
   okButton.onclick = finishInsert;
