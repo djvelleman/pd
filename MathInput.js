@@ -11,40 +11,41 @@ function initMathPal() {
   instrCell.style.marginRight = "0.66em";
   instrCell.appendChild(document.createTextNode("Click here to enter these symbols:"));
   mathPal.appendChild(instrCell);
-  appendSymbolButton(symbols[all].letter);
-  appendSymbolButton(symbols[exist].letter);
-  appendSymbolButton(symbols[conj].letter);
-  appendSymbolButton(symbols[disj].letter);
-  appendSymbolButton(symbols[cond].letter);
-  appendSymbolButton(symbols[bicond].letter);
-  appendSymbolButton(symbols[neg].letter);
-  appendSymbolButton(symbols[symmDiff].letter);
-  appendSymbolButton(symbols[diff].letter);
-  appendSymbolButton(symbols[prod].letter);
-  appendSymbolButton(symbols[comp].letter);
-  appendSymbolButton(symbols[equals].letter);
-  appendSymbolButton(symbols[notEquals].letter);
-  appendSymbolButton(symbols[element].letter);
-  appendSymbolButton(symbols[notElement].letter);
-  appendSymbolButton(symbols[subset].letter);
-  appendSymbolButton(symbols[notSubset].letter);
-  appendSymbolButton(symbols[intr].letter);
-  appendSymbolButton(symbols[union].letter);
-  appendSymbolButton(symbols[power].letter);
-  appendSymbolButton(symbols[empty].letter);
-  appendSupSymbolButton(symbols[inverse].letter);
+  appendSymbolButton(symbols[all].letter, "for all (Alt+Shift+A)");
+  appendSymbolButton(symbols[exist].letter, "there exists (Alt+Shift+E)");
+  appendSymbolButton(symbols[conj].letter, "AND (Alt+A)");
+  appendSymbolButton(symbols[disj].letter, "OR (Alt+O)");
+  appendSymbolButton(symbols[cond].letter, "conditional (Alt+C)");
+  appendSymbolButton(symbols[bicond].letter, "biconditional (Alt+B)");
+  appendSymbolButton(symbols[neg].letter, "NOT (Alt+F, for False)");
+  appendSymbolButton(symbols[symmDiff].letter, "symmetric difference (Alt+D)");
+  appendSymbolButton(symbols[diff].letter, "set difference");
+  appendSymbolButton(symbols[prod].letter, "cartesian product (Alt+P)");
+  appendSymbolButton(symbols[comp].letter, "composition (of relations) (Alt+Shift+C)");
+  appendSymbolButton(symbols[equals].letter, "equals");
+  appendSymbolButton(symbols[notEquals].letter, "not equals (Alt+=)");
+  appendSymbolButton(symbols[element].letter, "element of (Alt+M, for Member of)");
+  appendSymbolButton(symbols[notElement].letter, "not an element of (Alt+Shift+M)");
+  appendSymbolButton(symbols[subset].letter, "subset of (Alt+S)");
+  appendSymbolButton(symbols[notSubset].letter, "not a subset of (Alt+Shift+S)");
+  appendSymbolButton(symbols[intr].letter, "intersection (Alt+Shift+I)");
+  appendSymbolButton(symbols[union].letter, "union (Alt+Shift+U)");
+  appendSymbolButton(symbols[power].letter, "power set (Alt+Shift+P)");
+  appendSymbolButton(symbols[empty].letter, "empty set (Alt+0)");
+  appendSupSymbolButton(symbols[inverse].letter, "inverse (of a relation) (Alt+1)");
 }
 
-function appendSymbolButton(c) {
+function appendSymbolButton(c, tooltip) {
   var b = document.createElement("BUTTON");
   mathPal.append(b);
-  b.outerHTML = "<button class=\"pal\" onclick=\"inputChar('" + c + "')\">" + c + "</button>";
+  b.outerHTML = "<button class=\"pal\" title=\"" + tooltip + "\" onclick=\"inputChar('"
+  + c + "')\">" + c + "</button>";
 }
 
-function appendSupSymbolButton(c) {
+function appendSupSymbolButton(c, tooltip) {
   var b = document.createElement("BUTTON");
   mathPal.append(b);
-  b.outerHTML = "<button class=\"pal\" onclick=\"inputChar('"
+  b.outerHTML = "<button class=\"pal\" title=\"" + tooltip + "\" onclick=\"inputChar('"
   + c + "', 'SUP')\"><sup>" + c + "</sup></button>";
 }
 
@@ -110,7 +111,7 @@ function setMySel() {
     var adjustFunc = getData(field).adjustMySel;
     if (adjustFunc != null) {
       adjustFunc();
-    }  
+    }
   }
 }
 
