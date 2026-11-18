@@ -521,15 +521,19 @@ function installProof(thmString, newProof) {
 }
 
 function handleDeleteKey(event) {
-  if ((document.body.lastChild.className != "modal-background") &&
+  if (!dialogOpen() &&
         (openMenu == null) && (event.key == "Backspace") && (selectedStep != null)) {
     doDelete();
     event.preventDefault();
   }
 }
 
+function isModalLayer(node) {
+  return (node.classList != undefined) && node.classList.contains("modal-background");
+}
+
 function dialogOpen() {
-  return document.body.lastChild.className == "modal-background";
+  return isModalLayer(document.body.lastChild);
 }
 
 // Underlines apply only to the topmost layer (open dialog, if any, else the page).
@@ -650,7 +654,7 @@ function handleMenuShortcut(event) {
       return;
     }
   }
-  if (event.altKey) {
+  if (event.altKey && !event.shiftKey) {
     target = findShortcut(document.getElementsByClassName("menu-title"), event.code);
     if (target != null) {
       hideMenu();
@@ -737,7 +741,7 @@ function showDialog(d, defaultButton, equalize) {
   }
 
   context = document.body.lastChild;
-  if (context.className != "modal-background") {
+  if (!isModalLayer(context)) {
     context = document.body;
   }
   mathFields = context.getElementsByClassName("math-input");
@@ -779,7 +783,7 @@ function hideDialog(doAfter = null) {
     d.removeChild(mathPal);
   }
   context = document.body.lastChild;
-  if (context.className != "modal-background") {
+  if (!isModalLayer(context)) {
     context = document.body;
   }
   mathFields = context.getElementsByClassName("math-input");
