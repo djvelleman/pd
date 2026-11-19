@@ -24,7 +24,9 @@ function inferenceBySubproof(gap, usedStmnts, newDefined, newPremises, newConclu
     theInference.appendChild(theSubproof);
     getData(theInference).subproofs = subproofsLast;
   }
-  theSubproof.lastChild.appendChild(updateGoalGap(gap, newDefined, newPremises, newConclusion));
+  var newGap = updateGoalGap(gap, newDefined, newPremises, newConclusion);
+  theSubproof.lastChild.appendChild(newGap);
+  arrowAnchor = {within: newGap};
   return theInference;
 }
 
@@ -63,6 +65,24 @@ function forwardStep(gap, newVars, usedStmnts, definedVars, infStmnts, infHTML, 
   if (clearGap && (newVars == null)) {
     gapRemoved(stepsPane);
   }
+  if (infStmnts != null) {
+    selectProduced(clearGap ? nextStep : gap, infStmnts[0]);
+  }
+}
+
+// Select the first variant of stmnt, if it is a given of gap.
+function selectProduced(gap, stmnt) {
+  if ((gap == null) || (getData(gap).kind == inference)) {
+    return;
+  }
+  var pane, d;
+  for (pane of gap.firstChild.lastChild.childNodes) {
+    d = getData(pane);
+    if ((d != undefined) && (d.kind == given) && (d.theStmnt == stmnt)) {
+      selectVariant(pane.firstChild);
+      return;
+    }
+  }
 }
 
 /* gap must be a goalGap.  Replace gap with sequence of gaps for
@@ -73,6 +93,7 @@ newVars, stillToProve, usedStmnts, and infText can all be null.
 function backwardStep(gap, newVars, stillToProve, usedStmnts, infHTML) {
   prepareStep();
   var stepsPane = gap.parentNode;
+  var before = gap.previousSibling;
   var i, g, s, last, numToProve;
   if (newVars != null) {
     g = addDefineGaps(stepsPane, gap, newVars);
@@ -96,7 +117,13 @@ function backwardStep(gap, newVars, stillToProve, usedStmnts, infHTML) {
   }
   s = getGoal(gap);
   var nextStep = gap.nextSibling;
-  stepsPane.replaceChild(makeInference(null, usedStmnts, (s == null) ? null : [s], infHTML), gap);
+  var newInf = makeInference(null, usedStmnts, (s == null) ? null : [s], infHTML);
+  stepsPane.replaceChild(newInf, gap);
+  if ((newVars == null) && (stillToProve == null)) {
+    arrowAnchor = {within: newInf};
+  } else {
+    arrowAnchor = {within: (before == null) ? stepsPane.firstChild : before.nextSibling};
+  }
   if ((newVars == null) && (stillToProve == null)) {
     gapRemoved(stepsPane);
   } else {

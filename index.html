@@ -376,6 +376,7 @@ var selectedStep;
 var selection;
 var lastSelected = null;
 var cursor = null;  // Statement line moved by Ctrl/Cmd+arrow
+var arrowAnchor = null;  // {within: node}: arrow keys continue from the last statement in node
 var lastStep = null;  // {element, parent, next} of the step selected when the selection was last cleared
 var stmntCopyTable;
 var stateList;
@@ -594,6 +595,19 @@ function lastStepPosition() {
   return lastStep.parent.isConnected ? lastStep.parent.lastChild : null;
 }
 
+// Up arrow should land on the last selectable item in the anchor's node.
+function anchorTarget(items, down) {
+  if (arrowAnchor == null) {
+    return null;
+  }
+  var inside = items.filter(function(e) {return arrowAnchor.within.contains(e)});
+  if (inside.length == 0) {
+    return null;
+  }
+  var last = inside[inside.length - 1];
+  return down ? nextInCycle(items, last, true) : last;
+}
+
 function nextInCycle(items, current, down) {
   var n = items.length;
   var i = items.indexOf(current);
@@ -692,14 +706,18 @@ function handleArrowKey(event) {
     return;
   }
   var current;
+  var target = null;
   if (selection.length > 0) {
     current = lastSelectedPosition() || selection[down ? selection.length - 1 : 0];
   } else if (selectedStep != null) {
     current = selectedStep;
   } else {
+    target = anchorTarget(items, down);
     current = lastStepPosition();
   }
-  var target = nextInCycle(items, current, down);
+  if (target == null) {
+    target = nextInCycle(items, current, down);
+  }
   clearSelection();
   if (getData(target).variant != undefined) {
     selectVariant(target);

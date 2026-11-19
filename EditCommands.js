@@ -37,6 +37,7 @@ function doFinish() {
 			return;
 		}
     backwardStep(selectedStep, null, null, [selectedGiven, selectedGiven2], null);
+    anchorNextGap(arrowAnchor.within, false);
     return;
 	}
   // Goal is not contradiction
@@ -58,6 +59,7 @@ function doFinish() {
   }
   if (!formMatch(selectedGiven[0].theForm, goalStatement[0].theForm, true)) {
     backwardStep(selectedStep, null, null, [selectedGiven], null);
+    anchorNextGap(arrowAnchor.within, false);
     return;
   }
   // Given matches goal exactly.  Do we need to reiterate?
@@ -117,6 +119,27 @@ function doFinish() {
     }
   }
   gapRemoved(steps);
+  if (reiterate) {
+    anchorNextGap(inf, false);
+  } else if (beforeGap != null) {
+    anchorNextGap(beforeGap, false);
+  } else if (afterGap != null) {
+    anchorNextGap(afterGap, true);
+  }
+}
+
+// Arrow keys continue from the first gap after ref (or inside it, if inclusive); otherwise unchanged.
+function anchorNextGap(ref, inclusive) {
+  var e, d;
+  for (e of mainProof.querySelectorAll("*")) {
+    d = getData(e);
+    if ((d != undefined) && (d.kind >= goalGap) && (d.kind <= noGoalGap) &&
+        ((inclusive && ((e == ref) || ref.contains(e))) ||
+         (!ref.contains(e) && (ref.compareDocumentPosition(e) & Node.DOCUMENT_POSITION_FOLLOWING)))) {
+      arrowAnchor = {within: e};
+      return;
+    }
+  }
 }
 
 function doDelete() {
@@ -127,7 +150,7 @@ function doDelete() {
     clearSelection();
     toggleStepSelected(null, whereUsed);
     whereUsed.scrollIntoView({behavior: "smooth", block: "nearest"});  // Is this a good idea?  Check if visible before scrolling??
-  }  
+  }
 
   helpURL = "help/Delete.html";
   commandName = "Delete";
@@ -140,6 +163,7 @@ function doDelete() {
     var selPane = selection[0];
     if ((getData(selPane.parentNode).kind == given) || (getData(selPane).variant > 0)) {
       var selCopy = selection.slice(0);
+      var prevNode = ((getData(selCopy[0]).variant == 0) ? selCopy[0].parentNode : selCopy[0]).previousSibling;
       prepareStep();
       for (i = 0; i < selSize; i++) {
         selPane = selCopy[i];
@@ -149,6 +173,9 @@ function doDelete() {
         } else {
           ggPane.removeChild(selPane);
         }
+      }
+      if (prevNode != null) {
+        arrowAnchor = {within: prevNode};
       }
       return;
     }
@@ -213,8 +240,12 @@ function doDelete() {
   }
   var toDelete = selectedStep;
   var stepsPane = toDelete.parentNode;
+  var prevStep = toDelete.previousSibling;
   prepareStep();
   stepsPane.removeChild(toDelete);
+  if (prevStep != null) {
+    arrowAnchor = {within: prevStep};
+  }
   if ((delAssert != null) || (delDefine != null)) {
     deleteContext(nextStep, delDefine, delAssert);
   }
@@ -247,11 +278,12 @@ function doInsert() {
   }
 
   function finishInsert() {
-    var insertion;
+    var insertion, newGap;
     var newGivens = null;
     var newDefined = null;
     if (noGoalRadio.checked) {
       insertion = makeNoGoalGap(nowDefined, nowKnown);
+      newGap = insertion;
     } else if (goalRadio.checked) {
 			var newGoalForm = parse(goalField, bool);
       if (newGoalForm == null) {
@@ -263,6 +295,7 @@ function doInsert() {
       var newGoal = makeStmnt(newGoalForm);
       newGivens = [newGoal];
       insertion = makeGoalGap(nowDefined, nowKnown, newGoal);
+      newGap = insertion;
       if (lemmaCheck.checked) {
         insertion = makeLemma(newGoal, insertion, getProof(selectedStep));
       }
@@ -273,6 +306,7 @@ function doInsert() {
       }
       newDefined = [theVar];
       insertion = makeDefineGoalGap(nowDefined, nowKnown, theVar);
+      newGap = insertion;
     }
     hideDialog();
     var insBefore = selectedStep;
@@ -281,6 +315,7 @@ function doInsert() {
     steps.insertBefore(insertion, insBefore);
     updateRest(insBefore, newDefined, newGivens);
     gapAdded(steps);
+    arrowAnchor = {within: newGap};
   }
 
   helpURL = "help/Insert.html";
@@ -346,6 +381,7 @@ function doRejustify() {
   }
   prepareStep();
   var steps = selectedInf.parentNode;
+  var before = selectedInf.previousSibling;
   var nowDefined = [];
   var nowKnown = [];
   addContext(selectedInf, nowDefined, nowKnown);
@@ -376,6 +412,7 @@ function doRejustify() {
   }
   steps.removeChild(selectedInf);
   gapAdded(steps);
+  arrowAnchor = {within: (before == null) ? steps.firstChild : before.nextSibling};
 }
 
 function doLemma() {
@@ -400,6 +437,7 @@ function doLemma() {
   prepareStep();
   var lemmaGap = updateGoalGap(theGap, null, null, goalStmnt);
   theGap.parentNode.replaceChild(makeLemma(goalStmnt, lemmaGap, getProof(theGap)), theGap);
+  arrowAnchor = {within: lemmaGap};
 }
 
 function makeLemma(lemmaStmnt, lemmaGap, proof) {

@@ -564,6 +564,7 @@ function toggleSteps(event, proof) {
 }
 
 function clearSelection() {
+	arrowAnchor = null;
 	if (selectedStep == null) {
 		return;
 	}
