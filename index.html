@@ -390,6 +390,7 @@ function init() {
   document.onclick = hideMenu;
   document.onkeydown = function(event) {
     handleZoomKey(event);
+    handleUndoKey(event);
     if ((event.key == "Escape") && (cursor != null)) {
       cancelCursor();
       event.preventDefault();
@@ -764,6 +765,24 @@ function handleDialogShortcut(event) {
   if (target != null) {
     if (!target.disabled) {
       target.click();
+    }
+    event.preventDefault();
+  }
+}
+
+function handleUndoKey(event) {
+  if (!(event.ctrlKey || event.metaKey) || event.altKey || dialogOpen() || (openMenu != null) ||
+      (mainProof == null)) {
+    return;
+  }
+  var key = event.key.toLowerCase();
+  var redo = ((key == "z") && event.shiftKey) || ((key == "y") && !event.shiftKey);
+  var undo = (key == "z") && !event.shiftKey;
+  if (undo || redo) {
+    if (undo && (currStatePos > 0)) {
+      doUndoRedo(-1);
+    } else if (redo && (currStatePos < stateList.length - 1)) {
+      doUndoRedo(1);
     }
     event.preventDefault();
   }
