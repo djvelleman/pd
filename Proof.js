@@ -567,6 +567,7 @@ function clearSelection() {
 	if (selectedStep == null) {
 		return;
 	}
+	lastStep = {element: selectedStep, parent: selectedStep.parentNode, next: selectedStep.nextSibling};
 	if (selection.length == 0) {
 		if (getData(selectedStep).kind == inference) {
       selectedStep.classList.remove("selected");
@@ -610,7 +611,9 @@ function toggleVariantSelected(event, varPane) {
   if (openMenu != null) {
     return;
   }
-  event.stopPropagation();
+  if (event != null) {
+    event.stopPropagation();
+  }
 	if ((g != selectedStep) || (l == 0)) {
 		selectVariant(varPane);
 		return;
@@ -635,6 +638,7 @@ function toggleVariantSelected(event, varPane) {
     firstSelected.classList.remove("selected");
     selection[0] = varPane;
   }
+  lastSelected = varPane;
   varPane.classList.add("selected");
 }
 
@@ -643,6 +647,7 @@ function selectVariant(varPane) {
 	clearSelection();
 	selectedStep = getGap(varPane);
   selection.push(varPane);
+  lastSelected = varPane;
   varPane.classList.add("selected");
 }
 

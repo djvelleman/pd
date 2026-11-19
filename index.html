@@ -374,6 +374,9 @@ var openMenu = null;
 var mainProof = null;
 var selectedStep;
 var selection;
+var lastSelected = null;
+var cursor = null;  // Statement line moved by Ctrl/Cmd+arrow
+var lastStep = null;  // {element, parent, next} of the step selected when the selection was last cleared
 var stmntCopyTable;
 var stateList;
 var currStatePos;
@@ -387,17 +390,29 @@ function init() {
   document.onclick = hideMenu;
   document.onkeydown = function(event) {
     handleZoomKey(event);
+    if ((event.key == "Escape") && (cursor != null)) {
+      cancelCursor();
+      event.preventDefault();
+      return;
+    }
     handleMenuShortcut(event);
+    handleArrowKey(event);
     setAltHeld(event.altKey);
     handleDeleteKey(event);
   };
   document.onkeyup = function(event) {
     setAltHeld(event.altKey);
+    if ((event.key == "Control") || (event.key == "Meta")) {
+      commitCursor();
+    }
     if (event.key == "Alt") {
       event.preventDefault();  // Keep the browser's own menu bar from taking focus
     }
   };
-  window.onblur = function() {setAltHeld(false)};
+  window.onblur = function() {
+    setAltHeld(false);
+    cancelCursor();
+  };
   document.body.style.lineHeight = lineHeight + "em";
   document.documentElement.style.fontSize = "16px";
 
@@ -530,6 +545,148 @@ function handleDeleteKey(event) {
 
 function isModalLayer(node) {
   return (node.classList != undefined) && node.classList.contains("modal-background");
+}
+
+function selectableItems() {
+  var items = [];
+  var e, d;
+  for (e of mainProof.querySelectorAll("*")) {
+    d = getData(e);
+    if ((d != undefined) && ((d.variant != undefined) || (d.kind <= noGoalGap)) && (e.getClientRects().length > 0)) {
+      items.push(e);
+    }
+  }
+  return items;
+}
+
+// The step the arrow keys continue from after the selection was cleared.
+function lastStepPosition() {
+  if (lastStep == null) {
+    return null;
+  }
+  if (lastStep.element.isConnected) {
+    return lastStep.element;
+  }
+  if ((lastStep.next != null) && lastStep.next.isConnected) {
+    return lastStep.next.previousSibling;
+  }
+  return lastStep.parent.isConnected ? lastStep.parent.lastChild : null;
+}
+
+function nextInCycle(items, current, down) {
+  var n = items.length;
+  var i = items.indexOf(current);
+  if (i < 0) {
+    return items[down ? 0 : n - 1];
+  }
+  return items[(i + (down ? 1 : n - 1)) % n];
+}
+
+function handleDialogArrow(event, down) {
+  var layer = document.body.lastChild;
+  var items = Array.from(layer.querySelectorAll(".list-element"));
+  var current = layer.querySelector(".list-element.selected");
+  if (items.length == 0) {
+    if (document.activeElement.type == "radio") {
+      return;
+    }
+    items = Array.from(layer.querySelectorAll("input[type=radio]"));
+    current = items.find(function(r) {return r.checked});
+  }
+  if (items.length == 0) {
+    return;
+  }
+  var target = nextInCycle(items, current, down);
+  target.click();
+  target.scrollIntoView({block: "nearest"});
+  event.preventDefault();
+}
+
+function cancelCursor() {
+  if (cursor != null) {
+    if (!selection.includes(cursor)) {
+      cursor.classList.remove("selected");
+    }
+    cursor = null;
+  }
+}
+
+function commitCursor() {
+  if (cursor != null) {
+    var pane = cursor;
+    cursor = null;
+    toggleVariantSelected(null, pane);
+    lastSelected = pane;
+  }
+}
+
+function lastSelectedPosition() {
+  if ((lastSelected != null) && lastSelected.isConnected && (selection.length > 0) &&
+      (getGap(lastSelected) == selectedStep)) {
+    return lastSelected;
+  }
+  return null;
+}
+
+function handleCursorKey(event, down) {
+  if ((selection.length == 0) || (mainProof == null)) {
+    return;
+  }
+  if (cursor == null) {
+    cursor = lastSelectedPosition() || selection[selection.length - 1];
+  }
+  var lines = selectableItems().filter(function(e) {
+    return (getData(e).variant != undefined) && (getGap(e) == selectedStep);
+  });
+  var target = nextInCycle(lines, cursor, down);
+  if (!selection.includes(cursor)) {
+    cursor.classList.remove("selected");
+  }
+  cursor = target;
+  cursor.classList.add("selected");
+  cursor.scrollIntoView({block: "nearest"});
+  event.preventDefault();
+}
+
+function handleArrowKey(event) {
+  var down = (event.key == "ArrowDown");
+  if ((!down && (event.key != "ArrowUp")) || event.shiftKey || event.altKey || (openMenu != null)) {
+    return;
+  }
+  if (event.ctrlKey || event.metaKey) {
+    if (!dialogOpen()) {
+      handleCursorKey(event, down);
+    }
+    return;
+  }
+  if (dialogOpen()) {
+    handleDialogArrow(event, down);
+    return;
+  }
+  if (mainProof == null) {
+    return;
+  }
+  var items = selectableItems();
+  if (items.length == 0) {
+    return;
+  }
+  var current;
+  if (selection.length > 0) {
+    current = lastSelectedPosition() || selection[down ? selection.length - 1 : 0];
+  } else if (selectedStep != null) {
+    current = selectedStep;
+  } else {
+    current = lastStepPosition();
+  }
+  var target = nextInCycle(items, current, down);
+  clearSelection();
+  if (getData(target).variant != undefined) {
+    selectVariant(target);
+  } else {
+    toggleStepSelected(null, target);
+  }
+  target.scrollIntoView({block: "nearest"});
+  event.preventDefault();
 }
 
 function dialogOpen() {
