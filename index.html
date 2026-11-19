@@ -410,6 +410,12 @@ function init() {
       event.preventDefault();  // Keep the browser's own menu bar from taking focus
     }
   };
+  window.onbeforeunload = function(event) {
+    if (hasUnfinishedProof()) {
+      event.preventDefault();
+      event.returnValue = "";
+    }
+  };
   window.onblur = function() {
     setAltHeld(false);
     cancelCursor();
@@ -542,6 +548,20 @@ function handleDeleteKey(event) {
     doDelete();
     event.preventDefault();
   }
+}
+
+function hasUnfinishedProof() {
+  var e, d;
+  if (mainProof == null) {
+    return false;
+  }
+  for (e of mainProof.querySelectorAll("*")) {
+    d = getData(e);
+    if ((d != undefined) && (d.kind >= goalGap) && (d.kind <= noGoalGap)) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function isModalLayer(node) {
