@@ -783,7 +783,7 @@ function handleZoomKey(event) {
   }
 }
 
-// With a menu open, a letter (with or without Alt) chooses an item; otherwise Alt+letter opens a menu.
+// Alt+letter prefers menus. With a menu open, any other letter (with or without Alt) chooses an item.
 function handleMenuShortcut(event) {
   if (event.repeat || event.ctrlKey || event.metaKey) {
     return;
@@ -801,21 +801,21 @@ function handleMenuShortcut(event) {
     }
     return;
   }
+  if (event.altKey && !event.shiftKey) {
+    target = findShortcut(document.getElementsByClassName("menu-title"), event.code);
+    if (target != null) {
+      hideMenu();
+      showMenu(event, target);
+      event.preventDefault();
+      return;
+    }
+  }
   if (openMenu != null) {
     target = findShortcut(openMenu.parentNode.getElementsByClassName("menu-item"), event.code);
     if (target != null) {
       if (!target.classList.contains("inactive")) {
         target.click();
       }
-      event.preventDefault();
-      return;
-    }
-  }
-  if (event.altKey && !event.shiftKey) {
-    target = findShortcut(document.getElementsByClassName("menu-title"), event.code);
-    if (target != null) {
-      hideMenu();
-      showMenu(event, target);
       event.preventDefault();
     }
   }
@@ -1037,56 +1037,56 @@ function spacerHTML(width) {
   <div class="menu-container">
     <div class="menu-title" data-key="F" onclick="showMenu(event, this)"><span class="accel">F</span>ile</div>
     <div class="menu-background hide">
-      <div class="menu-item" data-key="H" onclick="window.open('help/Help.html')"><span class="accel">H</span>elp</div>
-      <div class="menu-item" data-key="N" onclick="doNewTheorem()"><span class="accel">N</span>ew Theorem&hellip;</div>
-      <div class="menu-item inactive" data-key="R" onclick="doReviseTheorem()"><span class="accel">R</span>evise Theorem&hellip;</div>
-      <div class="menu-item inactive" data-key="S" onclick="doSave()"><span class="accel">S</span>ave</div>
-      <div class="menu-item" data-key="O" onclick="doOpen()"><span class="accel">O</span>pen&hellip;</div>
+      <div class="menu-item" data-key="H" onclick="window.open('help/Help.html')"><u>H</u>elp</div>
+      <div class="menu-item" data-key="N" onclick="doNewTheorem()"><u>N</u>ew Theorem&hellip;</div>
+      <div class="menu-item inactive" data-key="R" onclick="doReviseTheorem()"><u>R</u>evise Theorem&hellip;</div>
+      <div class="menu-item inactive" data-key="S" onclick="doSave()"><u>S</u>ave</div>
+      <div class="menu-item" data-key="O" onclick="doOpen()"><u>O</u>pen&hellip;</div>
     </div>
   </div><div class="menu-container">
     <div class="menu-title" data-key="E" onclick="showMenu(event, this)"><span class="accel">E</span>dit</div>
     <div class="menu-background hide">
-      <div id="Undo" class="menu-item inactive" data-key="U" onclick="doUndoRedo(-1)"><span class="accel">U</span><span>ndo</span></div>
-      <div id="Redo" class="menu-item inactive" data-key="R" onclick="doUndoRedo(1)"><span class="accel">R</span><span>edo</span></div>
-      <div class="menu-item inactive" data-key="F" onclick="doFinish()"><span class="accel">F</span>inish</div>
-      <div class="menu-item inactive" data-key="D" onclick="doDelete()"><span class="accel">D</span>elete</div>
-      <div class="menu-item inactive" data-key="I" onclick="doInsert()"><span class="accel">I</span>nsert&hellip;</div>
-      <div class="menu-item inactive" data-key="J" onclick="doRejustify()">Re<span class="accel">j</span>ustify</div>
-      <div class="menu-item inactive" data-key="L" onclick="doLemma()"><span class="accel">L</span>emma</div>
+      <div id="Undo" class="menu-item inactive" data-key="U" onclick="doUndoRedo(-1)"><u>U</u><span>ndo</span></div>
+      <div id="Redo" class="menu-item inactive" data-key="R" onclick="doUndoRedo(1)"><u>R</u><span>edo</span></div>
+      <div class="menu-item inactive" data-key="F" onclick="doFinish()"><u>F</u>inish</div>
+      <div class="menu-item inactive" data-key="D" onclick="doDelete()"><u>D</u>elete</div>
+      <div class="menu-item inactive" data-key="I" onclick="doInsert()"><u>I</u>nsert&hellip;</div>
+      <div class="menu-item inactive" data-key="J" onclick="doRejustify()">Re<u>j</u>ustify</div>
+      <div class="menu-item inactive" data-key="L" onclick="doLemma()"><u>L</u>emma</div>
     </div>
   </div><div class="menu-container">
     <div class="menu-title" data-key="S" onclick="showMenu(event, this)"><span class="accel">S</span>trategy</div>
     <div class="menu-background hide">
-      <div class="menu-item inactive" data-key="C" onclick="doContrad()"><span class="accel">C</span>ontradiction</div>
-      <div class="menu-item inactive" data-key="A" onclick="doCases()">C<span class="accel">a</span>ses&hellip;</div>
-      <div class="menu-item inactive" data-key="R" onclick="doReexSub(true)"><span class="accel">R</span>eexpress&hellip;</div>
-      <div class="menu-item inactive" data-key="S" onclick="doReexSub(false)"><span class="accel">S</span>ubstitute&hellip;</div>
-      <div class="menu-item inactive" data-key="D" onclick="doDefine()"><span class="accel">D</span>efine&hellip;</div>
+      <div class="menu-item inactive" data-key="C" onclick="doContrad()"><u>C</u>ontradiction</div>
+      <div class="menu-item inactive" data-key="A" onclick="doCases()">C<u>a</u>ses&hellip;</div>
+      <div class="menu-item inactive" data-key="R" onclick="doReexSub(true)"><u>R</u>eexpress&hellip;</div>
+      <div class="menu-item inactive" data-key="S" onclick="doReexSub(false)"><u>S</u>ubstitute&hellip;</div>
+      <div class="menu-item inactive" data-key="D" onclick="doDefine()"><u>D</u>efine&hellip;</div>
     </div>
   </div><div class="menu-container">
     <div class="menu-title" data-key="I" onclick="showMenu(event, this)"><span class="accel">I</span>nfer</div>
     <div class="menu-background hide">
-      <div class="menu-item inactive" data-key="P" onclick="doMPMT(true)">Modus <span class="accel">P</span>onens</div>
-      <div class="menu-item inactive" data-key="T" onclick="doMPMT(false)">Modus <span class="accel">T</span>ollens</div>
-      <div class="menu-item inactive" data-key="C" onclick="doConj(true)"><span class="accel">C</span>onjoin</div>
-      <div class="menu-item inactive" data-key="S" onclick="doSplitUp()"><span class="accel">S</span>plit Up</div>
-      <div class="menu-item inactive" data-key="A" onclick="doAddition()"><span class="accel">A</span>ddition&hellip;</div>
-      <div class="menu-item inactive" data-key="D" onclick="doDisjSyll()"><span class="accel">D</span>isjunctive Syllogism</div>
-      <div class="menu-item inactive" data-key="U" onclick="doExistUI(false)"><span class="accel">U</span>niversal Instantiation&hellip;</div>
-      <div class="menu-item inactive" data-key="E" onclick="doArbEI(false)"><span class="accel">E</span>xistential Instantiation&hellip;</div>
-      <div class="menu-item inactive" data-key="R" onclick="doReflexive()"><span class="accel">R</span>eflexive Law&hellip;</div>
+      <div class="menu-item inactive" data-key="P" onclick="doMPMT(true)">Modus <u>P</u>onens</div>
+      <div class="menu-item inactive" data-key="T" onclick="doMPMT(false)">Modus <u>T</u>ollens</div>
+      <div class="menu-item inactive" data-key="C" onclick="doConj(true)"><u>C</u>onjoin</div>
+      <div class="menu-item inactive" data-key="S" onclick="doSplitUp()"><u>S</u>plit Up</div>
+      <div class="menu-item inactive" data-key="A" onclick="doAddition()"><u>A</u>ddition&hellip;</div>
+      <div class="menu-item inactive" data-key="D" onclick="doDisjSyll()"><u>D</u>isjunctive Syllogism</div>
+      <div class="menu-item inactive" data-key="U" onclick="doExistUI(false)"><u>U</u>niversal Instantiation&hellip;</div>
+      <div class="menu-item inactive" data-key="E" onclick="doArbEI(false)"><u>E</u>xistential Instantiation&hellip;</div>
+      <div class="menu-item inactive" data-key="R" onclick="doReflexive()"><u>R</u>eflexive Law&hellip;</div>
     </div>
   </div><div class="menu-container">
     <div class="menu-title" data-key="G" onclick="showMenu(event, this)"><span class="accel">G</span>oal</div>
     <div class="menu-background hide">
-      <div class="menu-item inactive" data-key="D" onclick="doDirContrap(true)"><span class="accel">D</span>irect</div>
-      <div class="menu-item inactive" data-key="P" onclick="doDirContrap(false)">Contra<span class="accel">p</span>ositive</div>
-      <div class="menu-item inactive" data-key="B" onclick="doBicond()"><span class="accel">B</span>iconditional</div>
-      <div class="menu-item inactive" data-key="C" onclick="doConj(false)"><span class="accel">C</span>onjunction</div>
-      <div class="menu-item inactive" data-key="J" onclick="doDisj()">Dis<span class="accel">j</span>unction&hellip;</div>
-      <div class="menu-item inactive" data-key="A" onclick="doArbEI(true)"><span class="accel">A</span>rbitrary Object&hellip;</div>
-      <div class="menu-item inactive" data-key="E" onclick="doExistUI(true)"><span class="accel">E</span>xistence&hellip;</div>
-      <div class="menu-item inactive" data-key="U" onclick="doExistUnique()">Existence &amp; <span class="accel">U</span>niqueness</div>
+      <div class="menu-item inactive" data-key="D" onclick="doDirContrap(true)"><u>D</u>irect</div>
+      <div class="menu-item inactive" data-key="P" onclick="doDirContrap(false)">Contra<u>p</u>ositive</div>
+      <div class="menu-item inactive" data-key="B" onclick="doBicond()"><u>B</u>iconditional</div>
+      <div class="menu-item inactive" data-key="C" onclick="doConj(false)"><u>C</u>onjunction</div>
+      <div class="menu-item inactive" data-key="J" onclick="doDisj()">Dis<u>j</u>unction&hellip;</div>
+      <div class="menu-item inactive" data-key="A" onclick="doArbEI(true)"><u>A</u>rbitrary Object&hellip;</div>
+      <div class="menu-item inactive" data-key="E" onclick="doExistUI(true)"><u>E</u>xistence&hellip;</div>
+      <div class="menu-item inactive" data-key="U" onclick="doExistUnique()">Existence &amp; <u>U</u>niqueness</div>
     </div>
   </div><button style="margin-left: 3em; margin-right: 0.5em" onclick="scaleFont(true)">+</button><button onclick="scaleFont(false)">&minus;</button>
 </div>
