@@ -13,11 +13,11 @@ function initMathPal() {
   mathPal.appendChild(instrCell);
   appendSymbolButton(symbols[all].letter, "for all (Alt+Shift+A)");
   appendSymbolButton(symbols[exist].letter, "there exists (Alt+Shift+E)");
-  appendSymbolButton(symbols[conj].letter, "AND (Alt+A)");
-  appendSymbolButton(symbols[disj].letter, "OR (Alt+O)");
+  appendSymbolButton(symbols[conj].letter, "and (Alt+A)");
+  appendSymbolButton(symbols[disj].letter, "or (Alt+O)");
   appendSymbolButton(symbols[cond].letter, "conditional (Alt+C)");
   appendSymbolButton(symbols[bicond].letter, "biconditional (Alt+B)");
-  appendSymbolButton(symbols[neg].letter, "NOT (Alt+F, for False)");
+  appendSymbolButton(symbols[neg].letter, "not (Alt+F, for False)");
   appendSymbolButton(symbols[symmDiff].letter, "symmetric difference (Alt+D)");
   appendSymbolButton(symbols[diff].letter, "set difference");
   appendSymbolButton(symbols[prod].letter, "cartesian product (Alt+P)");
