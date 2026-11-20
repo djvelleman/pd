@@ -648,10 +648,12 @@ function cancelCursor() {
 }
 
 function commitCursor() {
-  if (cursor != null) {
-    var pane = cursor;
-    cursor = null;
+  var pane = cursor;
+  cursor = null;
+  if ((pane != null) && !selection.includes(pane)) {
     toggleVariantSelected(null, pane);
+  }
+  if (pane != null) {
     lastSelected = pane;
   }
 }
@@ -668,16 +670,11 @@ function handleCursorKey(event, down) {
   if ((selection.length == 0) || (mainProof == null)) {
     return;
   }
-  if (cursor == null) {
-    cursor = lastSelectedPosition() || selection[selection.length - 1];
-  }
   var lines = selectableItems().filter(function(e) {
     return (getData(e).variant != undefined) && (getGap(e) == selectedStep);
   });
-  var target = nextInCycle(lines, cursor, down);
-  if (!selection.includes(cursor)) {
-    cursor.classList.remove("selected");
-  }
+  var target = nextInCycle(lines, cursor || lastSelectedPosition() || selection[selection.length - 1], down);
+  cancelCursor();
   cursor = target;
   cursor.classList.add("selected");
   cursor.scrollIntoView({block: "nearest"});
