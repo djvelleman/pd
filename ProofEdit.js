@@ -65,24 +65,6 @@ function forwardStep(gap, newVars, usedStmnts, definedVars, infStmnts, infHTML, 
   if (clearGap && (newVars == null)) {
     gapRemoved(stepsPane);
   }
-  if (infStmnts != null) {
-    selectProduced(clearGap ? nextStep : gap, infStmnts[0]);
-  }
-}
-
-// Select the first variant of stmnt, if it is a given of gap.
-function selectProduced(gap, stmnt) {
-  if ((gap == null) || (getData(gap).kind == inference)) {
-    return;
-  }
-  var pane, d;
-  for (pane of gap.firstChild.lastChild.childNodes) {
-    d = getData(pane);
-    if ((d != undefined) && (d.kind == given) && (d.theStmnt == stmnt)) {
-      selectVariant(pane.firstChild);
-      return;
-    }
-  }
 }
 
 /* gap must be a goalGap.  Replace gap with sequence of gaps for

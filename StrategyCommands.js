@@ -427,9 +427,7 @@ function doReexSub(reex) {
     var newFWT = {theForm: subformSpec.mainForm, theText: mainFormText};
     finishReexSubDialog(e);
     if (usedStmnts.length == 0) {
-      var gap = selectedStep;
       addVariant(theStmnt, newFWT);
-      selectNewVariant(gap);
     } else {
       var newStmnt = [newFWT];
       if (paneKind == given) {
@@ -438,23 +436,6 @@ function doReexSub(reex) {
       } else {
         addElemToSet(usedStmnts, newStmnt);
         backwardStep(selectedStep, null, [newStmnt], usedStmnts, null);
-      }
-    }
-  }
-
-  function selectNewVariant(gap) {
-    var panes = gap.firstChild.lastChild.childNodes;
-    var first, last, i;
-    if (paneKind == given) {
-      first = 1;
-      last = numGivens(getData(gap).kind, gap.firstChild.lastChild);
-    } else {
-      first = last = panes.length - 1;
-    }
-    for (i = first; i <= last; i++) {
-      if (getData(panes[i]).theStmnt == theStmnt) {
-        selectVariant(panes[i].lastChild);
-        return;
       }
     }
   }
