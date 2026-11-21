@@ -170,7 +170,7 @@ function doCases() {
   caseField.style.textAlign = "left";
   d.appendChild(caseField);
   casesDialog.appendChild(d);
-  var okCancelPanel = makeButtonPanel(["OK", "Cancel"]);
+  var okCancelPanel = makeButtonPanel(["O<u>K</u>", "Ca<u>n</u>cel"]);
   okButton = okCancelPanel.firstChild;
   cancelButton = okButton.nextSibling;
   okButton.onclick = doOK;
@@ -234,7 +234,7 @@ function doReexSub(reex) {
     varField.style.margin = "1.25em auto 1.25em";
     varField.style.textAlign = "left";
     varDialog.appendChild(varField);
-    dlogOKCancel = makeButtonPanel(["OK", "Cancel"]);
+    dlogOKCancel = makeButtonPanel(["O<u>K</u>", "Ca<u>n</u>cel"]);
     dlogOK = dlogOKCancel.firstChild;
     dlogCancel = dlogOKCancel.lastChild;
     dlogOK.onclick = finishRenameVar;
@@ -465,10 +465,10 @@ function doReexSub(reex) {
     }
     if (reex) {
       if (noRange && (selectedKind == neg)) {
-        negative.textContent = "Reexpress Negative";
+        setAccelLabel(negative, "Reexpress <u>N</u>egative");
         negative.onclick = doReexNeg;
       } else {
-        negative.textContent = "Make Negative";
+        setAccelLabel(negative, "Make <u>N</u>egative");
         negative.onclick = doMakeNeg;
       }
       negative.disabled = (subformSpec.subForm.objType != bool);
@@ -546,7 +546,7 @@ function doReexSub(reex) {
   focusFunction = selectField.onfocus;
   theDialog.appendChild(selectField);
   getData(selectField).adjustMySel = subformAdjustMySel;
-  minorEdits = makeButtonPanel(["Rename Bound Variable", "( . . . )", "[ . . . ]", "Remove ( ) or [ ]"]);
+  minorEdits = makeButtonPanel(["<u>R</u>ename Bound Variable", "<u>(</u> . . . )", "<u>[</u> . . . ]", "Re<u>m</u>ove ( ) or [ ]"]);
   renameVar = minorEdits.firstChild;
   renameVar.onclick = function(event) {doRenameVar(event)};
   addParens = renameVar.nextSibling;
@@ -559,14 +559,14 @@ function doReexSub(reex) {
   theDialog.appendChild(minorEdits);
   majorEdits;
   if (reex) {
-    majorEdits = makeButtonPanel(["Reexpress Negative", "Apply Definition"]);
+    majorEdits = makeButtonPanel(["Reexpress <u>N</u>egative", "<u>A</u>pply Definition"]);
     negative = majorEdits.firstChild;
     applyDef = majorEdits.lastChild;
     applyDef.onclick = doApplyDef;
   } else {
     majorEdits = document.createElement("DIV");
     majorEdits.style.textAlign = "center";
-    majorEdits.innerHTML = "<div class='menu-container'><div style='padding: 0.1em 0.25em; border: 1px solid gray'>Substitute</div><div class='menu-background hide' style='text-align: left'></div></div>";
+    majorEdits.innerHTML = "<div class='menu-container'><div data-key='S' style='padding: 0.1em 0.25em; border: 1px solid gray'><span class='accel'>S</span>ubstitute</div><div class='menu-background hide' style='text-align: left'></div></div>";
     subMenuCont = majorEdits.firstChild;
     subButton = subMenuCont.firstChild;
     subMenu = subMenuCont.lastChild;
@@ -596,6 +596,7 @@ function doReexSub(reex) {
     }
     if (subList.length == 0) {
       subButton.textContent = "No Substitutions Available";
+      subButton.removeAttribute("data-key");
     } else {
       subMenu.innerHTML = subMenuHTML;
       for (subMenuItem of subMenu.childNodes) {
@@ -606,7 +607,7 @@ function doReexSub(reex) {
   }
   majorEdits.style.paddingBottom = "0.66em";
   theDialog.appendChild(majorEdits);
-  okCancelPanel = makeButtonPanel(["OK", "Cancel"]);
+  okCancelPanel = makeButtonPanel(["<u>O</u>K", "<u>C</u>ancel"]);
   okButton = okCancelPanel.firstChild;
   okButton.onclick = function(event) {finishReexSub(event)};
   cancelButton = okCancelPanel.lastChild;
@@ -681,7 +682,7 @@ function doDefine() {
   letBox.appendChild(document.createTextNode("="));
   theDialog.appendChild(letBox);
   theDialog.appendChild(valueField);
-  var okCancelPanel = makeButtonPanel(["OK", "Cancel"]);
+  var okCancelPanel = makeButtonPanel(["O<u>K</u>", "Ca<u>n</u>cel"]);
   okCancelPanel.style.marginTop = "1.25em";
   theDialog.appendChild(okCancelPanel);
   okButton = okCancelPanel.firstChild;

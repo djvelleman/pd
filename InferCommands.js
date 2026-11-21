@@ -190,7 +190,7 @@ function doAddition() {
 	entryField = makeMathField();
 	entryField.style.marginTop = "0.66em";
 	theDialog.appendChild(entryField);
-	var okCancelPanel = makeButtonPanel(["OK", "Cancel"]);
+	var okCancelPanel = makeButtonPanel(["O<u>K</u>", "Ca<u>n</u>cel"]);
 	okCancelPanel.style.marginTop = "1.25em";
 	theDialog.appendChild(okCancelPanel);
 	okButton = okCancelPanel.firstChild;
@@ -366,7 +366,7 @@ function doReflexive() {
 		0, 0.66));
 	entryField = makeMathField();
 	theDialog.appendChild(entryField);
-	var okCancelPanel = makeButtonPanel(["OK", "Cancel"]);
+	var okCancelPanel = makeButtonPanel(["O<u>K</u>", "Ca<u>n</u>cel"]);
 	okCancelPanel.style.marginTop = "1.25em";
 	theDialog.appendChild(okCancelPanel);
 	okButton = okCancelPanel.firstChild;

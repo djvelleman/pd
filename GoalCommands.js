@@ -224,11 +224,12 @@ function doDisj() {
   negateBox.checked = true;
   negatePane.appendChild(negateBox);
   var negateLabel = document.createElement("SPAN");
-  negateLabel.innerHTML = "Assume negations of others.";
+  negateLabel.innerHTML = accelLabelHTML("<u>A</u>ssume negations of others.");
+  negateBox.dataset.key = "A";
   negateLabel.style.marginLeft = radioCheckSpace + "em";
   negatePane.appendChild(negateLabel);
   theDialog.appendChild(negatePane);
-  var okCancelPanel = makeButtonPanel(["OK", "Cancel"]);
+  var okCancelPanel = makeButtonPanel(["<u>O</u>K", "<u>C</u>ancel"]);
   theDialog.appendChild(okCancelPanel);
   okButton = okCancelPanel.firstChild;
   var cancelButton = okButton.nextSibling;
