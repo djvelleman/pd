@@ -191,7 +191,7 @@ function doArbEI(arb) {
   varField.style.width = varFieldWidth + "em";
   varField.style.margin = "1.25em auto 1.25em";
   arbEIDialog.appendChild(varField);
-  var buttonPane = makeButtonPanel(["OK", "Cancel", "Next"]);
+  var buttonPane = makeButtonPanel(["O<u>K</u>", "Ca<u>n</u>cel", "Nex<u>t</u>"]);
   arbEIDialog.appendChild(buttonPane);
   okButton = buttonPane.firstChild;
   cancelButton = okButton.nextSibling;
@@ -399,16 +399,16 @@ function doExistUI(ex) {
     promptPane = makeTextPane(textToElemHTML("x", "span", false), 0.66, 0.66); // Placeholder until correct prompt filled in
     promptPane.style.textAlign = "center";
     existUIDialog.appendChild(promptPane);
-    valueGroup = makeRadioGroup("Use this value:", setButtons, true);
+    valueGroup = makeRadioGroup("Use this <u>v</u>alue:", setButtons, true);
     valueButton = valueGroup.firstChild.firstChild;
     valueField = valueGroup.lastChild;
     existUIDialog.appendChild(valueGroup);
-    variableGroup = makeRadioGroup("Use this new variable, whose definition will be inserted later:", setButtons, true);
+    variableGroup = makeRadioGroup("Use this new va<u>r</u>iable, whose definition will be inserted later:", setButtons, true);
     variableButton = variableGroup.firstChild.firstChild;
     variableField = variableGroup.lastChild;
     variableField.style.width = varFieldWidth + "em";
     existUIDialog.appendChild(variableGroup);
-    var buttonPane = makeButtonPanel(["OK", "Cancel", "Next"]);
+    var buttonPane = makeButtonPanel(["O<u>K</u>", "Ca<u>n</u>cel", "Nex<u>t</u>"]);
     buttonPane.style.marginTop = "0.66em";
     existUIDialog.appendChild(buttonPane);
     okButton = buttonPane.firstChild;

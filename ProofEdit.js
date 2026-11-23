@@ -7,7 +7,7 @@ assumed, and newConclusion is proven.  infText is text of inference; if null,
 use default produced by createInference.  subText is intro text for SubProof; if null, use
 "Suppose (newPremises)"; newPremises must be non-null for this.
 Anything can be null except proofBefore.
-*/ 
+*/
 function inferenceBySubproof(gap, usedStmnts, newDefined, newPremises, newConclusion, infTextHTML, subTextHTML, proofBefore) {
   var thisProof = getProof(gap);
   var pfData = getData(thisProof);
@@ -24,7 +24,9 @@ function inferenceBySubproof(gap, usedStmnts, newDefined, newPremises, newConclu
     theInference.appendChild(theSubproof);
     getData(theInference).subproofs = subproofsLast;
   }
-  theSubproof.lastChild.appendChild(updateGoalGap(gap, newDefined, newPremises, newConclusion));
+  var newGap = updateGoalGap(gap, newDefined, newPremises, newConclusion);
+  theSubproof.lastChild.appendChild(newGap);
+  arrowAnchor = {within: newGap};
   return theInference;
 }
 
@@ -73,6 +75,7 @@ newVars, stillToProve, usedStmnts, and infText can all be null.
 function backwardStep(gap, newVars, stillToProve, usedStmnts, infHTML) {
   prepareStep();
   var stepsPane = gap.parentNode;
+  var before = gap.previousSibling;
   var i, g, s, last, numToProve;
   if (newVars != null) {
     g = addDefineGaps(stepsPane, gap, newVars);
@@ -96,7 +99,13 @@ function backwardStep(gap, newVars, stillToProve, usedStmnts, infHTML) {
   }
   s = getGoal(gap);
   var nextStep = gap.nextSibling;
-  stepsPane.replaceChild(makeInference(null, usedStmnts, (s == null) ? null : [s], infHTML), gap);
+  var newInf = makeInference(null, usedStmnts, (s == null) ? null : [s], infHTML);
+  stepsPane.replaceChild(newInf, gap);
+  if ((newVars == null) && (stillToProve == null)) {
+    arrowAnchor = {within: newInf};
+  } else {
+    arrowAnchor = {within: (before == null) ? stepsPane.firstChild : before.nextSibling};
+  }
   if ((newVars == null) && (stillToProve == null)) {
     gapRemoved(stepsPane);
   } else {
@@ -309,7 +318,7 @@ function updateContext(step, newDefined, newGivens) {
         for (theGiven of newGivens) {
           details.insertBefore(makeGGPane(given, theGiven), goalHead);
         }
-      }  
+      }
     }
   }
 }
@@ -769,7 +778,11 @@ function makeRadioGroup(label, setButtons, includeField) {
     button.onchange = function() {buttonChange(this, false)};
   }
   var labelSpan = document.createElement("SPAN");
-  labelSpan.innerHTML = label;
+  labelSpan.innerHTML = accelLabelHTML(label);
+  var key = accelKey(label);
+  if (key != null) {
+    button.dataset.key = key;
+  }
   labelSpan.style.marginLeft = radioCheckSpace + "em";
   var radioPanel = document.createElement("LABEL");
   radioPanel.appendChild(button);

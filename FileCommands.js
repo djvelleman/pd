@@ -134,9 +134,9 @@ function doEntryDialog(currPrem, currConc) {
   d.style.justifyContent = "stretch";
   d.style.margin = "0.66em 0em";
   var d2 = document.createElement("DIV");
-  addHypButton = makeButton("Add Hypothesis");
+  addHypButton = makeButton("Add <u>H</u>ypothesis");
   addHypButton.onclick = doAddHyp;
-  cutHypButton = makeButton("Cut Hypothesis");
+  cutHypButton = makeButton("C<u>u</u>t Hypothesis");
   cutHypButton.onclick = doCutHyp;
   d2.appendChild(addHypButton);
   d2.appendChild(document.createElement("BR"));
@@ -151,7 +151,7 @@ function doEntryDialog(currPrem, currConc) {
   d2.appendChild(hypList);
   d.appendChild(d2);
   d2 = document.createElement("DIV");
-  setConcButton = makeButton("Set Conclusion");
+  setConcButton = makeButton("Se<u>t</u> Conclusion");
   setConcButton.onclick = doSetConc;
   d2.appendChild(setConcButton);
   d.appendChild(d2);
@@ -165,7 +165,7 @@ function doEntryDialog(currPrem, currConc) {
   d2.appendChild(conc);
   d.appendChild(d2);
   entryDialog.appendChild(d);
-  OKCancelPanel = makeButtonPanel(["OK", "Cancel"]);
+  OKCancelPanel = makeButtonPanel(["O<u>K</u>", "Ca<u>n</u>cel"]);
   OKButton = OKCancelPanel.firstChild;
   cancelButton = OKButton.nextSibling;
   entryDialog.appendChild(OKCancelPanel);
@@ -594,7 +594,7 @@ function doOpen() {
   fileInput.type = "file";
   fileInput.onchange = startRead;
   theDialog.appendChild(fileInput);
-  var okCancelPanel = makeButtonPanel(["Open", "Cancel"]);
+  var okCancelPanel = makeButtonPanel(["<u>O</u>pen", "<u>C</u>ancel"]);
   okCancelPanel.style.marginTop = "1em";
   theDialog.appendChild(okCancelPanel);
   okButton = okCancelPanel.firstChild;
