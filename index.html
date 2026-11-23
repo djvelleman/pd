@@ -858,12 +858,20 @@ function handleMenuShortcut(event) {
   }
   if (event.altKey && !event.shiftKey) {
     target = findShortcut(document.getElementsByClassName("menu-title"), event.code);
-    if ((target != null) && (target != openMenu)) {
-      hideMenu();
-      showMenu(event, target);
+    if (target != null) {
+      target.click();
+      clearFocus();
       event.preventDefault();
       return;
     }
+    /*
+    if ((target != null) && (target != openMenu)) {
+      hideMenu();
+      clickMenu(event, target);
+      event.preventDefault();
+      return;
+    }
+    */
     if (openMenu != null) {
       target = findShortcut(openMenu.parentNode.getElementsByClassName("menu-item"), event.code);
       if (target != null) {
@@ -878,6 +886,8 @@ function handleMenuShortcut(event) {
 
 function toggleMenu(menu) {
   menu.parentNode.getElementsByClassName("menu-background")[0].classList.toggle("hide");
+  menu.classList.toggle("active");
+  /*
   var mts = document.getElementsByClassName("menu-title");
   var m;
   for (m of mts) {
@@ -887,14 +897,25 @@ function toggleMenu(menu) {
       m.classList.toggle("inactive");
     }
   }
+  */
 }
 
-function showMenu(event, menu) {
+function clickMenu(event, menu) {
+  if (openMenu == menu) {
+    hideMenu();
+  } else {
+    hideMenu();
+    toggleMenu(menu);
+    openMenu = menu;
+  }
+  event.stopPropagation();
+  /*
   if (openMenu == null) {
     toggleMenu(menu);
     openMenu = menu;
     event.stopPropagation();
   }
+  */
 }
 
 function hideMenu() {
@@ -1090,7 +1111,7 @@ function spacerHTML(width) {
 
 <div class="menubar">
   <div class="menu-container">
-    <div class="menu-title" data-key="F" onclick="showMenu(event, this)"><span class="accel">F</span>ile</div>
+    <div class="menu-title" data-key="F" onclick="clickMenu(event, this)"><span class="accel">F</span>ile</div>
     <div class="menu-background hide">
       <div class="menu-item" data-key="H" onclick="window.open('help/Help.html')"><span class="accel">H</span>elp</div>
       <div class="menu-item" data-key="N" onclick="doNewTheorem()"><span class="accel">N</span>ew Theorem&hellip;</div>
@@ -1099,7 +1120,7 @@ function spacerHTML(width) {
       <div class="menu-item" data-key="O" onclick="doOpen()"><span class="accel">O</span>pen&hellip;</div>
     </div>
   </div><div class="menu-container">
-    <div class="menu-title" data-key="E" onclick="showMenu(event, this)"><span class="accel">E</span>dit</div>
+    <div class="menu-title" data-key="E" onclick="clickMenu(event, this)"><span class="accel">E</span>dit</div>
     <div class="menu-background hide">
       <div id="Undo" class="menu-item inactive" data-key="U" onclick="doUndoRedo(-1)"><span class="accel">U</span><span>ndo</span></div>
       <div id="Redo" class="menu-item inactive" data-key="R" onclick="doUndoRedo(1)"><span class="accel">R</span><span>edo</span></div>
@@ -1110,7 +1131,7 @@ function spacerHTML(width) {
       <div class="menu-item inactive" data-key="L" onclick="doLemma()"><span class="accel">L</span>emma</div>
     </div>
   </div><div class="menu-container">
-    <div class="menu-title" data-key="S" onclick="showMenu(event, this)"><span class="accel">S</span>trategy</div>
+    <div class="menu-title" data-key="S" onclick="clickMenu(event, this)"><span class="accel">S</span>trategy</div>
     <div class="menu-background hide">
       <div class="menu-item inactive" data-key="C" onclick="doContrad()"><span class="accel">C</span>ontradiction</div>
       <div class="menu-item inactive" data-key="A" onclick="doCases()">C<span class="accel">a</span>ses&hellip;</div>
@@ -1119,12 +1140,12 @@ function spacerHTML(width) {
       <div class="menu-item inactive" data-key="D" onclick="doDefine()"><span class="accel">D</span>efine&hellip;</div>
     </div>
   </div><div class="menu-container">
-    <div class="menu-title" data-key="I" onclick="showMenu(event, this)"><span class="accel">I</span>nfer</div>
+    <div class="menu-title" data-key="I" onclick="clickMenu(event, this)"><span class="accel">I</span>nfer</div>
     <div class="menu-background hide">
       <div class="menu-item inactive" data-key="P" onclick="doMPMT(true)">Modus <span class="accel">P</span>onens</div>
       <div class="menu-item inactive" data-key="T" onclick="doMPMT(false)">Modus <span class="accel">T</span>ollens</div>
       <div class="menu-item inactive" data-key="C" onclick="doConj(true)"><span class="accel">C</span>onjoin</div>
-      <div class="menu-item inactive" data-key="I" onclick="doSplitUp()">Spl<span class="accel">i</span>t Up</div>
+      <div class="menu-item inactive" data-key="L" onclick="doSplitUp()">Sp<span class="accel">l</span>it Up</div>
       <div class="menu-item inactive" data-key="A" onclick="doAddition()"><span class="accel">A</span>ddition&hellip;</div>
       <div class="menu-item inactive" data-key="D" onclick="doDisjSyll()"><span class="accel">D</span>isjunctive Syllogism</div>
       <div class="menu-item inactive" data-key="U" onclick="doExistUI(false)"><span class="accel">U</span>niversal Instantiation&hellip;</div>
@@ -1132,7 +1153,7 @@ function spacerHTML(width) {
       <div class="menu-item inactive" data-key="R" onclick="doReflexive()"><span class="accel">R</span>eflexive Law&hellip;</div>
     </div>
   </div><div class="menu-container">
-    <div class="menu-title" data-key="G" onclick="showMenu(event, this)"><span class="accel">G</span>oal</div>
+    <div class="menu-title" data-key="G" onclick="clickMenu(event, this)"><span class="accel">G</span>oal</div>
     <div class="menu-background hide">
       <div class="menu-item inactive" data-key="D" onclick="doDirContrap(true)"><span class="accel">D</span>irect</div>
       <div class="menu-item inactive" data-key="P" onclick="doDirContrap(false)">Contra<span class="accel">p</span>ositive</div>
