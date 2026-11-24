@@ -143,7 +143,7 @@ function selEndPos(field, node, offset) {
 }
 
 function highlightMySel() {
-   var chrs = mySel.theField.childNodes;
+  var chrs = mySel.theField.childNodes;
   var i;
   for (i = 0; i < mySel.start; i++) {
     chrs[i].classList.remove("selected");
