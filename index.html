@@ -633,6 +633,7 @@ function handleDialogArrow(event, down) {
     return;
   }
   var target = nextInCycle(items, current, down);
+  document.activeElement.blur();  // So text field of radio button loses focus
   target.click();
   target.scrollIntoView({block: "nearest"});
   event.preventDefault();
@@ -802,7 +803,7 @@ function handleDialogShortcut(event) {
     if (!target.disabled) {
       target.click();
     }
-    //event.preventDefault();  //Don't want mouse cursor to disappear if it could be hovering over substitute menu
+    event.preventDefault();
   }
 }
 

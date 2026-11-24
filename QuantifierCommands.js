@@ -399,11 +399,11 @@ function doExistUI(ex) {
     promptPane = makeTextPane(textToElemHTML("x", "span", false), 0.66, 0.66); // Placeholder until correct prompt filled in
     promptPane.style.textAlign = "center";
     existUIDialog.appendChild(promptPane);
-    valueGroup = makeRadioGroup("Use this <u>v</u>alue:", setButtons, true);
+    valueGroup = makeRadioGroup("Use this value:", setButtons, true);
     valueButton = valueGroup.firstChild.firstChild;
     valueField = valueGroup.lastChild;
     existUIDialog.appendChild(valueGroup);
-    variableGroup = makeRadioGroup("Use this new va<u>r</u>iable, whose definition will be inserted later:", setButtons, true);
+    variableGroup = makeRadioGroup("Use this new variable, whose definition will be inserted later:", setButtons, true);
     variableButton = variableGroup.firstChild.firstChild;
     variableField = variableGroup.lastChild;
     variableField.style.width = varFieldWidth + "em";

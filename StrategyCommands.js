@@ -566,7 +566,9 @@ function doReexSub(reex) {
   } else {
     majorEdits = document.createElement("DIV");
     majorEdits.style.textAlign = "center";
-    majorEdits.innerHTML = "<div class='menu-container'><div data-key='S' style='padding: 0.1em 0.25em; border: 1px solid gray'><span class='accel'>S</span>ubstitute</div><div class='menu-background hide' style='text-align: left'></div></div>";
+    // No keyboard shortcuts to select from substitution menu, so keyboard shortcut here not helpful
+    //majorEdits.innerHTML = "<div class='menu-container'><div data-key='S' style='padding: 0.1em 0.25em; border: 1px solid gray'><span class='accel'>S</span>ubstitute</div><div class='menu-background hide' style='text-align: left'></div></div>";
+    majorEdits.innerHTML = "<div class='menu-container'><div style='padding: 0.1em 0.25em; border: 1px solid gray'>Substitute</div><div class='menu-background hide' style='text-align: left'></div></div>";
     subMenuCont = majorEdits.firstChild;
     subButton = subMenuCont.firstChild;
     subMenu = subMenuCont.lastChild;
@@ -596,7 +598,7 @@ function doReexSub(reex) {
     }
     if (subList.length == 0) {
       subButton.textContent = "No Substitutions Available";
-      subButton.removeAttribute("data-key");
+//      subButton.removeAttribute("data-key");
     } else {
       subMenu.innerHTML = subMenuHTML;
       for (subMenuItem of subMenu.childNodes) {

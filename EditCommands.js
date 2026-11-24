@@ -330,9 +330,9 @@ function doInsert() {
   var willDefine = willBeDefined(selectedStep, true);
   var theDialog = makeDialog(42);
   theDialog.appendChild(mathPal);
-  var noGoalGroup = makeRadioGroup("No <u>g</u>oal", setOKButton, false);
+  var noGoalGroup = makeRadioGroup("No goal", setOKButton, false);
   noGoalRadio = noGoalGroup.firstChild.firstChild;
-  var goalGroup = makeRadioGroup("P<u>r</u>ove:", setOKButton, true);
+  var goalGroup = makeRadioGroup("Prove:", setOKButton, true);
   goalRadio = goalGroup.firstChild.firstChild;
   goalField = goalGroup.lastChild;
   lemmaCheck = document.createElement("INPUT");
@@ -346,7 +346,7 @@ function doInsert() {
   lemmaPanel.appendChild(lemmaCheck);
   lemmaPanel.appendChild(lemmaLabel);
   goalGroup.insertBefore(lemmaPanel, goalField);
-  var defineGroup = makeRadioGroup("D<u>e</u>fine:", setOKButton, true);
+  var defineGroup = makeRadioGroup("Define:", setOKButton, true);
   defineRadio = defineGroup.firstChild.firstChild;
   defineField = defineGroup.lastChild;
   defineField.style.width = varFieldWidth + "em";

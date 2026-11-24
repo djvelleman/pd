@@ -751,6 +751,8 @@ function checkDefined(definedVars, form, doAfter = null) {
 }
 
 function makeRadioGroup(label, setButtons, includeField) {
+  // Eliminated keyboard shortcuts because they cause problems on Mac
+  // Can use arrow keys instead to select radio buttons
   function buttonChange(btn, withField) {
     if (btn.checked) {
       if (withField) {
@@ -778,11 +780,14 @@ function makeRadioGroup(label, setButtons, includeField) {
     button.onchange = function() {buttonChange(this, false)};
   }
   var labelSpan = document.createElement("SPAN");
+  labelSpan.innerHTML = label
+  /*
   labelSpan.innerHTML = accelLabelHTML(label);
   var key = accelKey(label);
   if (key != null) {
     button.dataset.key = key;
   }
+  */
   labelSpan.style.marginLeft = radioCheckSpace + "em";
   var radioPanel = document.createElement("LABEL");
   radioPanel.appendChild(button);
