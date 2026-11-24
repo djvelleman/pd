@@ -802,7 +802,7 @@ function handleDialogShortcut(event) {
     if (!target.disabled) {
       target.click();
     }
-    event.preventDefault();
+    //event.preventDefault();  //Don't want mouse cursor to disappear if it could be hovering over substitute menu
   }
 }
 
@@ -861,7 +861,7 @@ function handleMenuShortcut(event) {
     if (target != null) {
       target.click();
       clearFocus();
-      event.preventDefault();
+      //event.preventDefault();  //Don't want mouse to disappear if hovering over menu
       return;
     }
     /*
